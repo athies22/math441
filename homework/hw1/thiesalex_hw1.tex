@@ -27,6 +27,7 @@
 		\DeclareMathOperator{\Qp}{\mathbb{Q}^{+}}
 		\DeclareMathOperator{\Qc}{\mathbb{Q}^{c}}
 		\DeclareMathOperator{\R}{\mathbb{R}}
+		\DeclareMathOperator{\F}{\mathbb{F}}
 		\DeclareMathOperator{\Rp}{\mathbb{R}^{+}}
 		\DeclareMathOperator{\C}{\mathbb{C}}
 		\DeclareMathOperator{\Cnon}{\mathbb{C}^{\times}}
@@ -181,4 +182,227 @@
 	\author{Alex Thies \\ \href{mailto:athies@uoregon.edu}{\lowercase{athies$@$uoregon.edu}}}
 
 	\maketitle
+
+	\section*{Section 1.A}
+		\subsection*{Problem 1}
+		Suppose $a$ and $b$ are real numbers, not both $0$. 
+		Find real numbers $c$ and $d$ such that $$1/(a + bi) = c + di.$$
+
+		\begin{proof}[Solution]
+		Let $a,b$ be as above, utilizing the complex conjugate we compute the following:
+			\begin{align*}
+			\frac{1}{a + ib} &= \left( \frac{1}{a + ib} \right) \frac{a - ib}{a - ib}, \\
+			&= \frac{a - ib}{a^{2} - i^{2}b^{2}}, \\
+			&= \frac{a - ib}{a^{2} + b^{2}}, \\
+			&= \frac{a}{a^{2} + b^{2}} + i\left( \frac{-b}{a^{2} + b^{2}} \right).
+			\end{align*}
+		Notice that we have $c = a/(a^{2} + b^{2})$ and $d = -b/(a^{2} + b^{2})$.
+		Further, since $\R$ is a field we know that $c,d \in \R$.
+		Thus, we have found real numbers $c$ and $d$ with the properties stated above.
+		\end{proof}
+		% subsection problem_1 (end)
+		\newpage
+
+		\subsection*{Problem 2}
+		Show that $$\frac{-1 + i\sqrt{3}}{2}$$ is a cube root of 1.
+
+		\begin{proof}[Solution]
+		Let $z \in \C$ such that $z = (-1 + i\sqrt{3})/2$
+		We compute the following:
+			\begin{align*}
+			z^{3} &= \left( \frac{-1 + i\sqrt{3}}{2} \right)^{3}, \\
+			&= \left( \frac{-1 + i\sqrt{3}}{2} \right) \left( \frac{-1 + i\sqrt{3}}{2} \right) \left( \frac{-1 + i\sqrt{3}}{2} \right), \\
+			&= \left( \frac{1 - 2i\sqrt{3} + 3i^{2}}{4} \right) \left( \frac{-1 + i\sqrt{3}}{2} \right), \\
+			&= \left( \frac{(1 - 3) - i(2\sqrt{3})}{4} \right) \left( \frac{-1 + i\sqrt{3}}{2} \right), \\
+			&= \left( \frac{ -2 - i(2\sqrt{3})}{4} \right) \left( \frac{-1 + i\sqrt{3}}{2} \right), \\
+			&= \left( \frac{ -1 - i\sqrt{3}}{2} \right) \left( \frac{-1 + i\sqrt{3}}{2} \right), \\
+			&= \frac{1 - i\sqrt{3} + i\sqrt{3} - 3i^{2}}{4} = \frac{4}{4} = 1.
+			\end{align*}
+		Since $z^{3} = 1$ we have that $z = \sqrt[3]{1}$, as desired.			
+		\end{proof}
+		% subsection problem_2 (end)
+
+		\subsection*{Problem 3}
+		Find two distinct square roots of $i$.
+
+		\begin{proof}[Solution]
+		We will show that two distinct square roots of $i$ are $\pm (1/\sqrt{2})(1 + i)$.
+
+		Recall that the imaginary unit $i = \sqrt{-1}$ is defined as a number whose square is $-1$.
+		From this definition, it follows that $i$ could have several square roots, since that there may exist several numbers that square to $-1$; this is particularly notable given that the previous exercise shows that there are several numbers that cube to $1$.
+		
+		Customarily, we write elements of $\C$ as ordered pairs, and we think of them as points in the complex plane.
+		Given this framework, we can ask things about complex numbers -- points in the plane -- like what is its distance from the origin (denote this $r$), and what angle (denote this $\theta$) does it make with the positive real axis?
+		Recall further that with these tools for thinking about complex numbers, we can express elements of $\C$ in the form $re^{i \theta}$ or $r(\cos{\theta} + i\sin{\theta})$ where $r$ and $\theta$ are defined as above.
+		Since the complex number $i$ is equivalent to the point $(0,1)$ in the complex plane, we know that its distance from the origin is $r = 1$, and that its angle with the positive real axis is $\theta = \pi/2$.
+		Hence, let's write $i = e^{i(\pi/2)}$.
+		Taking the square root of $i$ in this form yields $\sqrt{i} = \pm e^{i(\pi/4)}$.
+		In order to arrive at our final answer, we will transition from the exponential notation ($re^{i \theta}$) to the trigonometric notation ($r(\cos{\theta} + i\sin{\theta})$) and see that:
+			\begin{align*}
+			\pm\sqrt{i} &= \pm\sqrt{e^{i(\pi/2)}}, \\
+			&= \pm \left( e^{i(\pi/2)} \right)^{1/2}, \\
+			&= \pm e^{i(\pi/4)}, \\
+			&= \pm \left( \cos{(\pi/4)} + i\sin{(\pi/4)} \right), \\
+			&= \pm \left( \frac{1}{\sqrt{2}} + i \frac{1}{\sqrt{2}} \right), \\
+			&= \frac{\pm 1}{\sqrt{2}} \left( 1 + i \right), \\
+			&= \frac{-1 - i}{\sqrt{2}}, \ \frac{1 + i}{\sqrt{2}}.
+			\end{align*}
+		Thus, we have two distinct square roots of $i$, $z_{1} = \frac{1}{\sqrt{2}}(-1 - i)$, and $z_{2} = \frac{1}{\sqrt{2}}(1 + i)$.
+		It is easy to check that these numbers do indeed square to $i$.
+		\end{proof}
+		% subsection problem_3 (end)
+
+		\subsection*{Problem 4}
+		Show that $\alpha + \beta = \beta + \alpha$ for all $\alpha, \beta \in \C$.
+
+		\begin{proof}[Solution]
+		Let $\alpha,\beta$ be as above, i.e., $\alpha = (a,b)$ and $\beta = (c,d)$ where $\alpha = a + bi$ and $\beta = c + di$.
+		Recall that addition over $\C$ is defined by adding the components of ordered pairs, which are themselves elements of $\R$.
+		Since $\R$ is a field, the operations of addition and multiplication over $\R$ are associative and commutative; we utilize these properties in the following computation:
+			\begin{align*}
+			\alpha + \beta &= (a,b) + (c,d), \\
+			&= (a + c, b + d), \\
+			&= (c + a, d + b), \\
+			&= (c,d) + (a,b), \\
+			&= \beta + \alpha.
+			\end{align*}
+		Hence $\alpha + \beta = \beta + \alpha$ for all $\alpha, \beta \in \C$, as desired.
+		\end{proof}
+		% subsection problem_4 (end)
+
+		\subsection*{Problem 5}
+		Show that $(\alpha + \beta) + \lambda = \alpha + (\beta + \lambda)$ for all $\alpha, \beta, \lambda \in \C$.
+
+		\begin{proof}[Solution]
+		Let $\alpha, \beta, \lambda$ be as above, utilizing the same arguments as in Problem 4, we compute the following:
+			\begin{align*}
+			(\alpha + \beta) + \lambda &= [(a,b) + (c,d)] + (x,y), \\
+			&= (a + c, b + d) + (x,y), \\
+			&= (a + c + x, b + d + y), \\
+			&= (a,b) + (c + x, d + y), \\
+			&= (a,b) + [(c,d) + (x,y)], \\
+			&= \alpha + (\beta + \lambda).
+			\end{align*}
+		Hence $(\alpha + \beta) + \lambda = \alpha + (\beta + \lambda)$ for all $\alpha, \beta, \lambda \in \C$, as desired.
+		\end{proof}
+		% subsection problem_5 (end)
+
+		\subsection*{Problem 6}
+		Show that $(\alpha \beta)\lambda = \alpha(\beta \lambda)$ for all $\alpha, \beta, \lambda \in \C$.
+
+		\begin{proof}[Solution]
+		Let $\alpha,\beta,\lambda$ be as above, let's write them as $\alpha = (a,b)$, $\beta = (c,d)$, and $\lambda = (x,y)$.
+		Recall our definition of multiplication over $\C$, that is, $\alpha \beta = (a,b)(c,d) = (ac - bd, ad + bc)$.
+		Utilizing the same reasoning that undergirds Problems 4 and 5, we compute the following:
+			\begin{align*}
+			(\alpha \beta) \lambda &= [(a,b)(c,d)](x,y), \\
+			&= [(ac - bd, \ ad + bc)](x,y), \\
+			&= ((ac - bd)x - (ad + bc)y, \ (ac - bd)y + (ad + bc)x), \\
+			&= (acx - bdx - ady - bcy, \ acy - bdy + adx + bcx), \\
+			&= (acx - ady - bdx - bcy, \ bcx - bdy + adx + acy), \\
+			&= (a(cx - dy) - b(dx + cy), \ b(cx - dy) + a (dx + cy)), \\
+			&= (a,b)[(cx - dy, \ dx + cy)], \\
+			&= (a,b)[(c,d)(x,y)], \\
+			&= \alpha (\beta \lambda).
+			\end{align*}
+		Thus, multiplication over the complex numbers is associative, as desired.
+			
+		\end{proof}
+		% subsection problem_6 (end)
+
+		\subsection*{Problem 7}
+		Show that for every $\alpha \in \C$ there exists a unique $\beta \in \C$ such that $\alpha + \beta = 0$.
+
+		\begin{proof}[Solution]
+		Let $\alpha \in \C$, write $\alpha = a + bi$, or $(a,b)$ where $a,b \in \R$ and $i^{2} = -1$.
+		Since $a,b \in \R$, and $\R$ is a field, there exist unique additive inverses $-a$ and $-b$ for $a$ and $b$, respectively.
+		It follows that $\beta = -a + (-b)i = (-a,-b) = - \alpha$ is the unique additive inverse for $\alpha$.
+		\end{proof}
+		% subsection problem_7 (end)
+
+		\subsection*{Problem 8}
+		Show that for every $\alpha \in \C$ with $\alpha \neq 0$, there exists a unique $\beta \in \C$ such that $\alpha \beta = 1$.
+
+		\begin{proof}[Solution]
+		Let $\alpha$ be as above, write $\alpha = a + bi$, or $(a,b)$ where $a,b \in \R$ and $i^{2} = -1$.
+		We will now compute the real and imaginary components of $\beta$, and then show that $\beta$ must be unique.
+			\begin{align*}
+			\alpha \beta &= 1, \\
+			(a + bi)(c + di) &= 1, \\
+			c + di &= \frac{1}{a + bi}, \\
+			&= \frac{a - bi}{a^{2} + b^{2}}, \\
+			&= \frac{a}{a^{2} + b^{2}} - i\frac{b}{a^{2} + b^{2}}.
+			\end{align*}
+		Thus, $\beta = (1/a^{2} + b^{2})(a,-b)$ is certainly \textit{a} multiplicative inverse for $\alpha$, but is it unique?
+		Suppose that there exists another multiplicative inverse for $\alpha$, call it $\beta'$.
+		Since $\beta$ is a multiplicative inverse for $\alpha$, we know that $\alpha \beta = 1$, and for the same reasoning we know $\alpha \beta' = 1$, hence $\alpha \beta = \alpha \beta'$, and because $\alpha \neq 0$, we have that $\beta = \beta'$.
+		Thus, $\beta$ is the unique multiplicative inverse for $\alpha$.	
+		\end{proof}
+		% subsection problem_8 (end)
+
+		\subsection*{Problem 9}
+		Show that $\lambda(\alpha + \beta) = \lambda \alpha + \lambda \beta$ for all $\alpha, \beta, \lambda \in \C$.
+
+		\begin{proof}[Solution]
+		Let $\alpha,\beta,\lambda$ be as above, and as we have done several times already recall that each of these can be expressed as $a + bi$, or as an ordered pair $(a,b)$.
+		We compute the following:
+			\begin{align*}
+			\lambda(\alpha + \beta) &= (x + iy)[(a + bi) + (c + di)], \\
+			&= (x + iy)[(a+c)+ i(b+d)], \\
+			&= x(a + c) + xi(b + d) + yi(a + c) - y(b + d), \\
+			&= x(a + c) - y(b + d) + i[x(b + d) + y(a + c)], \\
+			&= xa + xc - yb - yd + i(xb + xd + ya + yc), \\
+			&= xa - yb + xc - yd + i(xb + ya) + i(xd + yc), \\
+			&= xa - yb + i(xb + ya) + xc - yd + i(xd + yc), \\
+			&= (ax + ayi + bxi + i^{2}by) + (cx + cyi + dxi + i^{2}dy), \\
+			&= [(a + bi)(x + yi)] + [(c + di)(x + yi)], \\
+			&= \lambda \alpha + \lambda \beta.
+			\end{align*}
+			
+		\end{proof}
+		Hence, addition and multiplication have the distributive property over the complex numbers.
+		% subsection problem_9 (end)
+
+		\subsection*{Problem 10}
+		Find $x \in \R^{4}$ such that $$(4, -3, 1, 7) + 2x = (5, 9, -6, 8).$$
+
+		\begin{proof}[Solution]
+		I prefer to write column vectors, so that's what we'll use in the following computation:
+		\begin{align*}
+		\begin{pmatrix} 4 \\ -3 \\ 1 \\ 7 \end{pmatrix} + 2 \begin{pmatrix} x_{1} \\ x_{2} \\ x_{3} \\ x_{4} \end{pmatrix} &= \begin{pmatrix} 5 \\ 9 \\ -6 \\ 8 \end{pmatrix}, \\
+		2 \begin{pmatrix} x_{1} \\ x_{2} \\ x_{3} \\ x_{4} \end{pmatrix} &= \begin{pmatrix} 5 \\ 9 \\ -6 \\ 8 \end{pmatrix} - \begin{pmatrix} 4 \\ -3 \\ 1 \\ 7 \end{pmatrix}, \\
+		\begin{pmatrix} x_{1} \\ x_{2} \\ x_{3} \\ x_{4} \end{pmatrix} &= \frac{1}{2}\begin{pmatrix} 1 \\ 12 \\ -7 \\ 1 \end{pmatrix}.
+		\end{align*}
+		Thus, the desired vector is $\vec{x} = (0.5, 6, -3.5, 0.5)$.
+		\end{proof}
+		% subsection problem_10 (end)
+
+		\subsection*{Problem 11}
+		Explain why there does not exist $\lambda \in \C$ such that $$\lambda(2 - 3i, 5 + 4i, -6 + 7i) = (12 - 5i, 7 + 22i, -32 - 9i).$$
+
+		\begin{proof}[Solution]
+		There does not exist a number $\lambda$ for which $2 \lambda = 12$ and $5\lambda = 7$ (the first two real components of the given complex vector), thus the vectors on either side of the equals sign are linearly independent.
+		\end{proof}
+		% subsection problem_11 (end)
+
+		\subsection*{Problem 12}
+		Show that $(x + y) + z = x + (y + z)$ for all $x,y,z \in \F^{n}$.
+		% subsection problem_12 (end)
+
+		\subsection*{Problem 13}
+		Show that $(ab)x = a(bx)$ for all $x \in \F^{n}$ and $a,b \in \F$.	
+		% subsection problem_13 (end)
+
+		\subsection*{Problem 14}
+		Show that $1x = x$ for all $x \in \F^{n}$.
+		% subsection problem_14 (end)
+
+		\subsection*{Problem 15}
+		Show that $\lambda(x + y) = \lambda x + \lambda y$ for all $\lambda \in \F$ and all $x,y \in \F^{n}$.	
+		% subsection problem_15 (end)
+
+		\subsection*{Problem 16}
+		Show that $(a + b)x = ax + bx$ for all $a,b \in \F$ and all $x \in \F^{n}$.
+		% subsection problem_16 (end)
+	% section section_1_a (end)
 \end{document}
