@@ -13,6 +13,8 @@
 *.dvi
 *.glg
 *.gls
+*.fdb
+*.fls
 *.ilg
 *.ind
 *.lof
