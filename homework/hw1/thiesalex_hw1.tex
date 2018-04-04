@@ -183,45 +183,9 @@
 
 	\maketitle
 
+	Assignment: 1.A - 3,8,13; 1.B - 2,6; 1.C - 3,8,10,12,21,23
+
 	\section*{Section 1.A}
-		\subsection*{Problem 1}
-		Suppose $a$ and $b$ are real numbers, not both $0$. 
-		Find real numbers $c$ and $d$ such that $$1/(a + bi) = c + di.$$
-
-		\begin{proof}[Solution]
-		Let $a,b$ be as above, utilizing the complex conjugate we compute the following:
-			\begin{align*}
-			\frac{1}{a + ib} &= \left( \frac{1}{a + ib} \right) \frac{a - ib}{a - ib}, \\
-			&= \frac{a - ib}{a^{2} - i^{2}b^{2}}, \\
-			&= \frac{a - ib}{a^{2} + b^{2}}, \\
-			&= \frac{a}{a^{2} + b^{2}} + i\left( \frac{-b}{a^{2} + b^{2}} \right).
-			\end{align*}
-		Notice that we have $c = a/(a^{2} + b^{2})$ and $d = -b/(a^{2} + b^{2})$.
-		Further, since $\R$ is a field we know that $c,d \in \R$.
-		Thus, we have found real numbers $c$ and $d$ with the properties stated above.
-		\end{proof}
-		% subsection problem_1 (end)
-		\newpage
-
-		\subsection*{Problem 2}
-		Show that $$\frac{-1 + i\sqrt{3}}{2}$$ is a cube root of 1.
-
-		\begin{proof}[Solution]
-		Let $z \in \C$ such that $z = (-1 + i\sqrt{3})/2$
-		We compute the following:
-			\begin{align*}
-			z^{3} &= \left( \frac{-1 + i\sqrt{3}}{2} \right)^{3}, \\
-			&= \left( \frac{-1 + i\sqrt{3}}{2} \right) \left( \frac{-1 + i\sqrt{3}}{2} \right) \left( \frac{-1 + i\sqrt{3}}{2} \right), \\
-			&= \left( \frac{1 - 2i\sqrt{3} + 3i^{2}}{4} \right) \left( \frac{-1 + i\sqrt{3}}{2} \right), \\
-			&= \left( \frac{(1 - 3) - i(2\sqrt{3})}{4} \right) \left( \frac{-1 + i\sqrt{3}}{2} \right), \\
-			&= \left( \frac{ -2 - i(2\sqrt{3})}{4} \right) \left( \frac{-1 + i\sqrt{3}}{2} \right), \\
-			&= \left( \frac{ -1 - i\sqrt{3}}{2} \right) \left( \frac{-1 + i\sqrt{3}}{2} \right), \\
-			&= \frac{1 - i\sqrt{3} + i\sqrt{3} - 3i^{2}}{4} = \frac{4}{4} = 1.
-			\end{align*}
-		Since $z^{3} = 1$ we have that $z = \sqrt[3]{1}$, as desired.			
-		\end{proof}
-		% subsection problem_2 (end)
-
 		\subsection*{Problem 3}
 		Find two distinct square roots of $i$.
 
@@ -252,74 +216,6 @@
 		\end{proof}
 		% subsection problem_3 (end)
 
-		\subsection*{Problem 4}
-		Show that $\alpha + \beta = \beta + \alpha$ for all $\alpha, \beta \in \C$.
-
-		\begin{proof}[Solution]
-		Let $\alpha,\beta$ be as above, i.e., $\alpha = (a,b)$ and $\beta = (c,d)$ where $\alpha = a + bi$ and $\beta = c + di$.
-		Recall that addition over $\C$ is defined by adding the components of ordered pairs, which are themselves elements of $\R$.
-		Since $\R$ is a field, the operations of addition and multiplication over $\R$ are associative and commutative; we utilize these properties in the following computation:
-			\begin{align*}
-			\alpha + \beta &= (a,b) + (c,d), \\
-			&= (a + c, b + d), \\
-			&= (c + a, d + b), \\
-			&= (c,d) + (a,b), \\
-			&= \beta + \alpha.
-			\end{align*}
-		Hence $\alpha + \beta = \beta + \alpha$ for all $\alpha, \beta \in \C$, as desired.
-		\end{proof}
-		% subsection problem_4 (end)
-
-		\subsection*{Problem 5}
-		Show that $(\alpha + \beta) + \lambda = \alpha + (\beta + \lambda)$ for all $\alpha, \beta, \lambda \in \C$.
-
-		\begin{proof}[Solution]
-		Let $\alpha, \beta, \lambda$ be as above, utilizing the same arguments as in Problem 4, we compute the following:
-			\begin{align*}
-			(\alpha + \beta) + \lambda &= [(a,b) + (c,d)] + (x,y), \\
-			&= (a + c, b + d) + (x,y), \\
-			&= (a + c + x, b + d + y), \\
-			&= (a,b) + (c + x, d + y), \\
-			&= (a,b) + [(c,d) + (x,y)], \\
-			&= \alpha + (\beta + \lambda).
-			\end{align*}
-		Hence $(\alpha + \beta) + \lambda = \alpha + (\beta + \lambda)$ for all $\alpha, \beta, \lambda \in \C$, as desired.
-		\end{proof}
-		% subsection problem_5 (end)
-
-		\subsection*{Problem 6}
-		Show that $(\alpha \beta)\lambda = \alpha(\beta \lambda)$ for all $\alpha, \beta, \lambda \in \C$.
-
-		\begin{proof}[Solution]
-		Let $\alpha,\beta,\lambda$ be as above, let's write them as $\alpha = (a,b)$, $\beta = (c,d)$, and $\lambda = (x,y)$.
-		Recall our definition of multiplication over $\C$, that is, $\alpha \beta = (a,b)(c,d) = (ac - bd, ad + bc)$.
-		Utilizing the same reasoning that undergirds Problems 4 and 5, we compute the following:
-			\begin{align*}
-			(\alpha \beta) \lambda &= [(a,b)(c,d)](x,y), \\
-			&= [(ac - bd, \ ad + bc)](x,y), \\
-			&= ((ac - bd)x - (ad + bc)y, \ (ac - bd)y + (ad + bc)x), \\
-			&= (acx - bdx - ady - bcy, \ acy - bdy + adx + bcx), \\
-			&= (acx - ady - bdx - bcy, \ bcx - bdy + adx + acy), \\
-			&= (a(cx - dy) - b(dx + cy), \ b(cx - dy) + a (dx + cy)), \\
-			&= (a,b)[(cx - dy, \ dx + cy)], \\
-			&= (a,b)[(c,d)(x,y)], \\
-			&= \alpha (\beta \lambda).
-			\end{align*}
-		Thus, multiplication over the complex numbers is associative, as desired.
-			
-		\end{proof}
-		% subsection problem_6 (end)
-
-		\subsection*{Problem 7}
-		Show that for every $\alpha \in \C$ there exists a unique $\beta \in \C$ such that $\alpha + \beta = 0$.
-
-		\begin{proof}[Solution]
-		Let $\alpha \in \C$, write $\alpha = a + bi$, or $(a,b)$ where $a,b \in \R$ and $i^{2} = -1$.
-		Since $a,b \in \R$, and $\R$ is a field, there exist unique additive inverses $-a$ and $-b$ for $a$ and $b$, respectively.
-		It follows that $\beta = -a + (-b)i = (-a,-b) = - \alpha$ is the unique additive inverse for $\alpha$.
-		\end{proof}
-		% subsection problem_7 (end)
-
 		\subsection*{Problem 8}
 		Show that for every $\alpha \in \C$ with $\alpha \neq 0$, there exists a unique $\beta \in \C$ such that $\alpha \beta = 1$.
 
@@ -340,69 +236,95 @@
 		\end{proof}
 		% subsection problem_8 (end)
 
-		\subsection*{Problem 9}
-		Show that $\lambda(\alpha + \beta) = \lambda \alpha + \lambda \beta$ for all $\alpha, \beta, \lambda \in \C$.
+		\subsection*{Problem 13}
+		Show that $(ab)x = a(bx)$ for all $x \in \F^{n}$ and $a,b \in \F$.
 
 		\begin{proof}[Solution]
-		Let $\alpha,\beta,\lambda$ be as above, and as we have done several times already recall that each of these can be expressed as $a + bi$, or as an ordered pair $(a,b)$.
-		We compute the following:
-			\begin{align*}
-			\lambda(\alpha + \beta) &= (x + iy)[(a + bi) + (c + di)], \\
-			&= (x + iy)[(a+c)+ i(b+d)], \\
-			&= x(a + c) + xi(b + d) + yi(a + c) - y(b + d), \\
-			&= x(a + c) - y(b + d) + i[x(b + d) + y(a + c)], \\
-			&= xa + xc - yb - yd + i(xb + xd + ya + yc), \\
-			&= xa - yb + xc - yd + i(xb + ya) + i(xd + yc), \\
-			&= xa - yb + i(xb + ya) + xc - yd + i(xd + yc), \\
-			&= (ax + ayi + bxi + i^{2}by) + (cx + cyi + dxi + i^{2}dy), \\
-			&= [(a + bi)(x + yi)] + [(c + di)(x + yi)], \\
-			&= \lambda \alpha + \lambda \beta.
-			\end{align*}
-			
+		Let $a,b,x$ be as above, we compute the following:
+		\begin{align*}
+		(ab)x &= (ab) \begin{pmatrix} x_{1} \\ x_{2} \\ \vdots \\ x_{n} \end{pmatrix}, \\
+		&= \begin{pmatrix} (ab)x_{1} \\ (ab)x_{2} \\ \vdots \\ (ab)x_{n} \end{pmatrix}, \\
+		&= \begin{pmatrix} a(bx_{1}) \\ a(bx_{2}) \\ \vdots \\ a(bx_{n}) \end{pmatrix}, \\
+		&= \hspace{8mm} \vdots
+		\end{align*}
+		\pagebreak
+		
+		\begin{align*}
+		(ab)x &= \hspace{5mm} \dots \\
+		&= a\begin{pmatrix} bx_{1} \\ bx_{2} \\ \vdots \\ bx_{n} \end{pmatrix}, \\
+		&= a (bx).
+		\end{align*}
+		Hence, $(ab)x = a(bx)$ for all $x \in \F^{n}$ and $a,b \in \F$.
 		\end{proof}
-		Hence, addition and multiplication have the distributive property over the complex numbers.
-		% subsection problem_9 (end)
+		% subsection problem_13 (end)
+	% section section_1_a (end)
+
+	\section*{Section 1.B}
+		\subsection*{Problem 2}
+		Suppose $a \in \F$ $v \in V$, and $av = 0$.
+		Prove that $a = 0$ or $v = 0$.
+
+		\begin{proof}
+		\end{proof}
+		% subsection problem_2 (end)
+
+		\subsection*{Problem 6}
+		Let $\infty$ and $-\infty$ denote two distinct objects, neither of which is in $\R$.
+		Define an addition and scalar multiplication on $\R \cup \{\infty\} \cup \{-\infty\}$ as you could guess from the notation.
+		Specifically, the sum and product of two real numbers is as usual, and for $t \in \R$ define \[ t \cdot \infty = \begin{cases} -\infty & \text{if $t < 0$,} \\ 0 & \text{if $t = 0$,} \\ \infty & \text{if $t > 0$,} \end{cases} \hspace{1cm} t \cdot (-\infty) = \begin{cases} \infty & \text{if $t < 0$,} \\ 0 & \text{if $t = 0$,} \\ -\infty & \text{if $t > 0$,} \end{cases} \]
+		\[ t + \infty = \infty + t = \infty, \hspace{1.5cm} t + (-\infty) = (-\infty) + t = (-\infty), \]
+		\[ \infty + \infty = \infty, \hspace{.75cm} (-\infty) + (-\infty) = -\infty \hspace{.75cm} \infty + (-\infty) = 0. \]
+		Is $\R \cup \{\infty\} \cup \{-\infty\}$ a vector space over $\R$?
+		Explain.
+
+		\begin{proof}[Solution]
+		\end{proof}
+		% subsection problem_6 (end)
+	% section section_1_b (end)
+
+	\section*{Section 1.C}	
+		\subsection*{Problem 3}
+		Show that the set of differentiable real-valued functions $f$ on the interval $(-􏰈4, 4)$ such that $f'(-1) = 3f(2)$ is a subspace of $\R^{[0,1]}$.
+
+		\begin{proof}[Solution]
+		\end{proof}
+		% subsection problem_3 (end)
+
+		\subsection*{Problem 8}
+		Give an example of a nonempty subset $U$ of $\R^{2}$ such that $U$ is closed under scalar multiplication, but $U$ is not a subspace of $\R^{2}$.
+
+		\begin{proof}[Solution]
+		\end{proof}	
+		% subsection problem_8 (end)
 
 		\subsection*{Problem 10}
-		Find $x \in \R^{4}$ such that $$(4, -3, 1, 7) + 2x = (5, 9, -6, 8).$$
+		Suppose $U_{1}$ and $U_{2}$ are subspaces of $V$. 
+		Prove that the intersection $U_{1} \cap U_{2}$ is a subspace of $V$.
 
-		\begin{proof}[Solution]
-		I prefer to write column vectors, so that's what we'll use in the following computation:
-		\begin{align*}
-		\begin{pmatrix} 4 \\ -3 \\ 1 \\ 7 \end{pmatrix} + 2 \begin{pmatrix} x_{1} \\ x_{2} \\ x_{3} \\ x_{4} \end{pmatrix} &= \begin{pmatrix} 5 \\ 9 \\ -6 \\ 8 \end{pmatrix}, \\
-		2 \begin{pmatrix} x_{1} \\ x_{2} \\ x_{3} \\ x_{4} \end{pmatrix} &= \begin{pmatrix} 5 \\ 9 \\ -6 \\ 8 \end{pmatrix} - \begin{pmatrix} 4 \\ -3 \\ 1 \\ 7 \end{pmatrix}, \\
-		\begin{pmatrix} x_{1} \\ x_{2} \\ x_{3} \\ x_{4} \end{pmatrix} &= \frac{1}{2}\begin{pmatrix} 1 \\ 12 \\ -7 \\ 1 \end{pmatrix}.
-		\end{align*}
-		Thus, the desired vector is $\vec{x} = (0.5, 6, -3.5, 0.5)$.
+		\begin{proof}
 		\end{proof}
 		% subsection problem_10 (end)
 
-		\subsection*{Problem 11}
-		Explain why there does not exist $\lambda \in \C$ such that $$\lambda(2 - 3i, 5 + 4i, -6 + 7i) = (12 - 5i, 7 + 22i, -32 - 9i).$$
+		\subsection*{Problem 12}
+		Prove that the union of two subspaces of V is a subspace of V if and only if one of the subspaces is contained in the other.
 
 		\begin{proof}[Solution]
-		There does not exist a number $\lambda$ for which $2 \lambda = 12$ and $5\lambda = 7$ (the first two real components of the given complex vector), thus the vectors on either side of the equals sign are linearly independent.
-		\end{proof}
-		% subsection problem_11 (end)
-
-		\subsection*{Problem 12}
-		Show that $(x + y) + z = x + (y + z)$ for all $x,y,z \in \F^{n}$.
+		\end{proof}		
 		% subsection problem_12 (end)
 
-		\subsection*{Problem 13}
-		Show that $(ab)x = a(bx)$ for all $x \in \F^{n}$ and $a,b \in \F$.	
-		% subsection problem_13 (end)
+		\subsection*{Problem 21}
+		Suppose $$U = \{ (x,y,x+y,x-y,2x) \in \F^{5} : x, y \in \F \}.$$ 
+		Find a subspace $W$ of $\F^{5}$ such that $\F^{5} = U \oplus W$.
 
-		\subsection*{Problem 14}
-		Show that $1x = x$ for all $x \in \F^{n}$.
-		% subsection problem_14 (end)
+		\begin{proof}[Solution]
+		\end{proof}
+		% subsection problem_21 (end)
 
-		\subsection*{Problem 15}
-		Show that $\lambda(x + y) = \lambda x + \lambda y$ for all $\lambda \in \F$ and all $x,y \in \F^{n}$.	
-		% subsection problem_15 (end)
+		\subsection*{Problem 23}
+		Prove or give a counterexample: if $U_{1}$, $U_{2}$, $W$ are subspaces of $V$ such that	$$V = U_{1} \oplus W \hspace{1cm} \text{and} \hspace{1cm} V = U_{2} \oplus W,$$ then $U_{1} = U_{2}$. 
 
-		\subsection*{Problem 16}
-		Show that $(a + b)x = ax + bx$ for all $a,b \in \F$ and all $x \in \F^{n}$.
-		% subsection problem_16 (end)
-	% section section_1_a (end)
+		\begin{proof}[Solution]
+		\end{proof}
+		% subsection problem_23 (end)
+	% section section_1_c (end)
 \end{document}
