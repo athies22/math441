@@ -13,7 +13,7 @@
 *.dvi
 *.glg
 *.gls
-*.fdb
+*.fdb_latexmk
 *.fls
 *.ilg
 *.ind
