@@ -250,7 +250,7 @@
 		\pagebreak
 		
 		\begin{align*}
-		(ab)x &= \hspace{5mm} \dots \\
+		(ab)x &= \hspace{6mm} \dots \\
 		&= a\begin{pmatrix} bx_{1} \\ bx_{2} \\ \vdots \\ bx_{n} \end{pmatrix}, \\
 		&= a (bx).
 		\end{align*}
@@ -265,6 +265,16 @@
 		Prove that $a = 0$ or $v = 0$.
 
 		\begin{proof}
+		Let $a,v$ be as above, we proceed by cases.
+		
+		Case 1: Suppose $a \neq 0$, then we can divide $a$ wherever we see it.
+		Then since $av = 0$, we can divide by $a$ and find that $v = 0$; and we're done.
+
+		Case 2: Suppose $v \neq 0$, then it has a unique multiplicative inverse $v^{-1}$.
+		Then since $av = 0$, we have $avv^{-1} = 0v^{-1} \iff a = 0$; and we're done again.
+
+		So, since the product $av = 0$, we know that one of the factors from that product must also be 0.
+		Behind the scenes, this is because $a$ and the components of $v$ are elements of a field, so there are no zero divisors, otherwise the zero product property does not hold.
 		\end{proof}
 		% subsection problem_2 (end)
 
@@ -278,6 +288,8 @@
 		Explain.
 
 		\begin{proof}[Solution]
+		Let $W = \R \cup \{ \infty \} \cup \{ -\infty \}$, we claim that $W$ is not a vector space over $\R$.
+		The definition of a vector space requires that it have a unique additive identity, from the definition above we see that $\infty$ has two additive identities, namely 0 and itself, hence $W$ cannot be a vector space.
 		\end{proof}
 		% subsection problem_6 (end)
 	% section section_1_b (end)
