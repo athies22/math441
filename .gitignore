@@ -25,4 +25,4 @@
 *.out
 *.synctex.gz
 
-*/temp/*
+homework*/temp
