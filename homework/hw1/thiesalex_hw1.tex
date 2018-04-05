@@ -297,7 +297,7 @@
 
 	\section*{Section 1.C}	
 		\subsection*{Problem 3}
-		Show that the set of differentiable real-valued functions $f$ on the interval $(-􏰈4, 4)$ such that $f'(-1) = 3f(2)$ is a subspace of $\R^{[0,1]}$.
+		Show that the set of differentiable real-valued functions $f$ on the interval $(-􏰈4, 4)$ such that $f'(-1) = 3f(2)$ is a subspace of $\R^{(-4,4)}$.
 
 		\begin{proof}[Solution]
 		\end{proof}
@@ -307,8 +307,12 @@
 		Give an example of a nonempty subset $U$ of $\R^{2}$ such that $U$ is closed under scalar multiplication, but $U$ is not a subspace of $\R^{2}$.
 
 		\begin{proof}[Solution]
-		Consider $U = \N^{2} = \{ (u_{1},u_{2}) : \text{$u_{j} \in \N$ for each $j \in \N$} \}$.
-		Clearly $U \subset \R^{2}$ and $U$ is closed under scalar multiplication with elements from $\N$, but since there does not exist an element in $U$ that can act as an additive identity -- namely zero -- we can claim that $U$ is not a subspace of $\R^{2}$.
+		Consider $U = \{ (x_{1},x_{2}) : x_{1},x_{2} \in \R \ \text{and} \ |x_{1}| = |x_{2}| \}$.
+		Clearly $U \subset \R^{2}$ and $U$ is closed under scalar multiplication, but we claim that $U$ is not closed under addition, and thus not a subspace of $\R^{2}$.
+		Consider $\vec{u} = (5,-5)$ and $\vec{v} = (7,7)$, both of which are elements of $U$.
+		Notice that $\vec{u} + \vec{v} = (5,-5) + (7,7) = (12,2)$.
+		But $|12| \neq |2|$, so $(\vec{u} + \vec{v}) \notin U$, thus $U$ is not closed under addition (as we claimed).
+		Hence $U$ is a subset of $\R^{2}$ that is closed under multiplication, but not a subspace of $\R^{2}$, as we aimed to show.
 		\end{proof}	
 		% subsection problem_8 (end)
 
@@ -316,13 +320,7 @@
 		Suppose $U_{1}$ and $U_{2}$ are subspaces of $V$. 
 		Prove that the intersection $U_{1} \cap U_{2}$ is a subspace of $V$.
 
-		\begin{proof}
-		Let $U_{1}$, $U_{2}$ be subspaces of $V$, we will show that their intersection $U_{1} \cap U_{2}$ is a subspace of $V$.
-		Since $U_{1}$ and $U_{2}$ are each subspaces of $V$, we have $u_{1i}, u_{2i} \in V$ for each $u_{1i} \in U_{1}$ and $u_{2i} \in U_{2}$.
-		Recall that the intersection in question is simply the set of each element that appears in $U_{1}$ and $U_{2}$, respectively; i.e., $U_{1} \cap U_{2} = \{ u_{j} : \text{$u_{j} \in U_{1}$ and $u_{j} \in U_{2} \ \forall j \in \N$} \}$.
-		We just said that $u_{1i}, u_{2i} \in V$ for each $u_{1i} \in U_{1}$ and $u_{2i} \in U_{2}$, so its clear that $U_{1} \cap U_{2}$ is at least a subset of $V$, it remains to show that it is also a vector space under the same operations as those from $V$.
-
-		
+		\begin{proof}		
 		\end{proof}
 		% subsection problem_10 (end)
 
@@ -345,6 +343,13 @@
 		Prove or give a counterexample: if $U_{1}$, $U_{2}$, $W$ are subspaces of $V$ such that	$$V = U_{1} \oplus W \hspace{1cm} \text{and} \hspace{1cm} V = U_{2} \oplus W,$$ then $U_{1} = U_{2}$. 
 
 		\begin{proof}[Solution]
+		We provide a counterexample, let $V = \R^{2}$, $U_{1} = \{ (x_{1},0) : x_{1} \in \R \}$, $U_{2} = \{ (0,x_{2}) : x_{2} \in \R \}$, and $W = \{ (x_{3},x_{3}) : x_{3} \in \R \}$.
+		Notice that in each of $U_{1} + W$ and $U_{2} + W$, the only way to write $0 = x_{1} + x_{3}$ and $0 = x_{2} + x_{3}$, respectively, is to take each component $x_{i} = 0$; hence, by Theorem 1.44, we can see that the sums above are in fact direct sums.
+		Clearly it is true that $U_{1} \neq U_{2}$, so to finish this counterexample it remains to show that $U_{1} \oplus W = V = U_{2} \oplus W$.
+
+		From the definition of direct sums we have $U_{1} \oplus W = \{ (x_{1} + x_{3}, x_{3}) : x_{1},x_{3} \in \R \}$ and $U_{2} \oplus W = \{ (x_{2} + x_{3}, x_{3}) : x_{2},x_{3} \in \R \}$.
+		It should be clear that each of these sets is simply a convoluted nickname for $\R^{2}$, as each element of $\R^{2}$ can be built in each of $U_{1} \oplus W$ and $U_{2} \oplus W$.
+		Hence, $U_{1} \oplus W = V = U_{2} \oplus W$, as we aimed to show.
 		\end{proof}
 		% subsection problem_23 (end)
 	% section section_1_c (end)
