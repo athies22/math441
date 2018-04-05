@@ -24,5 +24,4 @@
 *.mtc1
 *.out
 *.synctex.gz
-
-homework*/temp
+homework/hw*/temp/
