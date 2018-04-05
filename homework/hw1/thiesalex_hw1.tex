@@ -274,7 +274,7 @@
 		Then since $av = 0$, we have $avv^{-1} = 0v^{-1} \iff a = 0$; and we're done again.
 
 		So, since the product $av = 0$, we know that one of the factors from that product must also be 0.
-		Behind the scenes, this is because $a$ and the components of $v$ are elements of a field, so there are no zero divisors, otherwise the zero product property does not hold.
+		Behind the scenes, this is because $a$ and the components of $v$ are elements of a field, so none of the numbers with which we are working are zero divisors, otherwise the zero product property does not hold.
 		\end{proof}
 		% subsection problem_2 (end)
 
@@ -289,7 +289,8 @@
 
 		\begin{proof}[Solution]
 		Let $W = \R \cup \{ \infty \} \cup \{ -\infty \}$, we claim that $W$ is not a vector space over $\R$.
-		The definition of a vector space requires that it have a unique additive identity, from the definition above we see that $\infty$ has two additive identities, namely 0 and itself, hence $W$ cannot be a vector space.
+		The definition of a vector space requires that it have an additive identity, and further we have a theorem that tells us this additive identity is unique. 
+		From the definition above we see that $\infty$ has two additive identities, namely 0 and itself, hence $W$ cannot be a vector space.
 		\end{proof}
 		% subsection problem_6 (end)
 	% section section_1_b (end)
@@ -306,6 +307,8 @@
 		Give an example of a nonempty subset $U$ of $\R^{2}$ such that $U$ is closed under scalar multiplication, but $U$ is not a subspace of $\R^{2}$.
 
 		\begin{proof}[Solution]
+		Consider $U = \N^{2} = \{ (u_{1},u_{2}) : \text{$u_{j} \in \N$ for each $j \in \N$} \}$.
+		Clearly $U \subset \R^{2}$ and $U$ is closed under scalar multiplication with elements from $\N$, but since there does not exist an element in $U$ that can act as an additive identity -- namely zero -- we can claim that $U$ is not a subspace of $\R^{2}$.
 		\end{proof}	
 		% subsection problem_8 (end)
 
@@ -314,13 +317,19 @@
 		Prove that the intersection $U_{1} \cap U_{2}$ is a subspace of $V$.
 
 		\begin{proof}
+		Let $U_{1}$, $U_{2}$ be subspaces of $V$, we will show that their intersection $U_{1} \cap U_{2}$ is a subspace of $V$.
+		Since $U_{1}$ and $U_{2}$ are each subspaces of $V$, we have $u_{1i}, u_{2i} \in V$ for each $u_{1i} \in U_{1}$ and $u_{2i} \in U_{2}$.
+		Recall that the intersection in question is simply the set of each element that appears in $U_{1}$ and $U_{2}$, respectively; i.e., $U_{1} \cap U_{2} = \{ u_{j} : \text{$u_{j} \in U_{1}$ and $u_{j} \in U_{2} \ \forall j \in \N$} \}$.
+		We just said that $u_{1i}, u_{2i} \in V$ for each $u_{1i} \in U_{1}$ and $u_{2i} \in U_{2}$, so its clear that $U_{1} \cap U_{2}$ is at least a subset of $V$, it remains to show that it is also a vector space under the same operations as those from $V$.
+
+		
 		\end{proof}
 		% subsection problem_10 (end)
 
 		\subsection*{Problem 12}
-		Prove that the union of two subspaces of V is a subspace of V if and only if one of the subspaces is contained in the other.
+		Prove that the union of two subspaces of $V$ is a subspace of $V$ if and only if one of the subspaces is contained in the other.
 
-		\begin{proof}[Solution]
+		\begin{proof}
 		\end{proof}		
 		% subsection problem_12 (end)
 
