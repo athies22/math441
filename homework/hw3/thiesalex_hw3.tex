@@ -187,32 +187,144 @@
 
 	\section*{Section 2.B}
 		\subsection*{Problem 5}
+		Prove or disprove: there exists a basis $p_{0}$, $p_{1}$, $p_{2}$, $p_{3}$ of $\mathcal{P}_{3}(\F)$ such that none of the polynomials $p_{0}$, $p_{1}$, $p_{2}$, $p_{3}$ has degree 2.
+
+		\begin{proof}[Counterexample]
+		We provide a counterexample.
+		Recall that for a vector space $V$ of dimension $m$, with basis $v_{1}, \dots, v_{m}$, a list of $m$ linear combinations of basis elements $v_{1}, \dots, v_{m}$ is itself a basis for $V$.
+		With that in mind we will create some useful linear combinations of the standard basis elements of $\mathcal{P}_{3}(\F)$.
+		Let $e_{0} = x^{0}$, $e_{1} = x^{1}$, $e_{2} = x^{2}$, $e_{3} = x^{3}$ be the standard basis of $\mathcal{P}_{3}(\F)$; our $p_{i}$'s will be linear combinations of these basis elements.
+		Let $p_{0} = x^{0}$, $p_{1} = x^{0} + x^{1}$, $p_{2} = x^{2} + x^{3}$, $p_{3} = x^{3}$, for reasons explained above, these form a basis of $\mathcal{P}_{3}(\F)$.
+		Notice that none of the $p_{i}$'s are degree 2.
+		\end{proof}
 		% subsection problem_5 (end)
 
 		\subsection*{Problem 7}
+		Prove or give a counterexample: If $v_{1}$, $v_{2}$, $v_{3}$, $v_{4}$ is a basis of $V$ and $U$ is a subspace of $V$ such that $v_{1}$, $v_{2} \in U$ and $v_{3} \notin U$ and $v_{4} \notin U$, then $v_{1}$, $v_{2}$ is a basis of $U$.
+
+		\begin{proof}[Counterexample]
+		Let $V = \R^{4}$, $U = \{ (x_{1}, x_{2}, 0, x_{3}) : x_{i} \in \R \}$ and $v_{1} = (1,0,0,0)$, $v_{2} = (0,1,0,0)$, $v_{3} = (0,0,1,0)$, and $v_{4} = (0,0,1,1)$.
+		Notice that $U$ is a subspace of $V$, that $v_{1}$, $v_{2}$, $v_{3}$, $v_{4}$ is a basis of $V$, and that $v_{1}, v_{2} \in U$, and $v_{3} \notin U$ and $v_{4} \notin U$; so we have satisfied all the conditions above.
+		However, notice that $v_{1}, v_{2}$ is clearly not a basis of $U$, because neither vector contains an $x_{3}$ term.
+		\end{proof}
 		% subsection problem_7 (end)
 
 		\subsection*{Problem 8}
+		Suppose $U$ and $W$ are subspaces of $V$ such that $V = U \oplus W$. 
+		Suppose also that $u_{1}, \dots, u_{m}$ is a basis of $U$ and $w_{1}, \dots, w_{n}$ is a basis of $W$. 
+		Prove that $$ u_{1}, \dots, u_{m}, w_{1}, \dots, w_{n} $$ is a basis of $V$.
+
+		\begin{proof}
+		Let $U$, $W$, $V$, $u_{1}, \dots, u_{m}$, and $w_{1}, \dots, w_{n}$ be as above.
+		To show that $u_{1}, \dots, u_{m},$ $w_{1}, \dots, w_{n}$ is a basis of $V$, we will show that it is a linearly independent list, and that it spans $V$.
+
+		Since $u_{1}, \dots, u_{m}$ and $w_{1}, \dots, w_{n}$ are bases of $U$ and $W$, respectively, we know that they are linearly independent.
+		Therefore we know $0 = a_{1}u_{1} + \cdots + a_{m}u_{m}$ and $0 = b_{1}w_{1} + \cdots + b_{n}w_{n}$ only for $a_{1} = \cdots = a_{m} = 0$ and $b_{1} = \cdots = b_{n} = 0$.
+		Thus $0 = 0 + 0 = a_{1}u_{1} + \cdots + a_{m}u_{m} + b_{1}w_{1} + \cdots + b_{n}w_{n}$, and since $V = U \oplus W$, we know that this linear combination is unique, hence $u_{1}, \dots, u_{m},$ $w_{1}, \dots, w_{n}$ is linearly independent; it remains to show that it spans $V$.
+
+		Since $V = U \oplus W$ implies that $v = u + w$ is unique for $u \in U$ and $w \in W$, and since both $u_{1}, \dots, u_{m}$ and $w_{1}, \dots, w_{n}$ are bases of $U$ and $W$, we have that 
+			\begin{align*}
+				v &= u + w, \\
+				&= a_{1}u_{1} + \cdots + a_{m}u_{m} + b_{1}w_{1} + \cdots + b_{n}w_{n}.
+			\end{align*}
+		So, we can express each element in $V$ as a unique linear combination of elements from the linearly independent list of vectors $u_{1}, \dots, u_{m},$ $w_{1}, \dots, w_{n}$.
+		It follows that $u_{1}, \dots, u_{m},$ $w_{1}, \dots, w_{n}$ spans $V$, and is a basis for $V$, as we aimes to prove.
+		\end{proof}
 		% subsection problem_8 (end)
 	% section section_2_b (end)
 
 	\section*{Section 2.C}
 		\subsection*{Problem 1}
+		Suppose $V$ is finite-dimensional and $U$ is a subspace of $V$ such that $\dim U = \dim V$. 
+		Prove that $U = V$.
+
+		\begin{proof}
+		Let $U$ and $V$ be as above, we will prove that they are equal.
+		Let $n = \dim U = \dim V$, and $u_{1}, \dots, u_{n}$ and $v_{1}, \dots, v_{n}$ be bases for $U$ and $V$, respectively.
+		Since $U$ is a subspace of $V$, each of $u_{1}, \dots, u_{n}$ are also elements of $V$.
+		So $u_{1}, \dots, u_{n}$ is a linearly independent list of vectors in $V$ with length $\dim V$, and $u_{1}, \dots, u_{n}$ is a basis for both $U$ and $V$.
+		Hence, since $U$ and $V$ have identical bases, we have $U = V$.
+		\end{proof}
 		% subsection problem_1 (end)
 
 		\subsection*{Problem 9}
+		Suppose $v_{1}, \dots, v_{m}$ is linearly independent in $V$ and $w \in V$. 
+		Prove that $$\dim \Span(v_{1} + w, \dots, v_{m} + w) \geq m-1.$$
+
+		\begin{proof}
+		Let $v_{1}, \dots, v_{m}$, $V$, and $w$ be as above.
+
+		...
+		\end{proof}
 		% subsection problem_9 (end)
 
 		\subsection*{Problem 10}
+		Suppose $p_{0}, p_{1}, \dots, p_{m}, \in \mathcal{P}(\F)$ are such that each $p_{j}$ has degree $j$. 
+		Prove that $p_{0}, p_{1}, \dots, p_{m}$ is a basis of $\mathcal{P}_{m}(\F)$.
+
+		\begin{proof}
+		Let $p_{0}, p_{1}, \dots, p_{m}$ be as above, further, let $p_{i} = x^{i}$ for each $0 \leq i \leq m$.
+		We proceed by mathematical induction.
+			\begin{enumerate}
+				\item[\textbf{Base case}:] Let $n = 0$, then $p_{0} = x^{0} = 1$.
+				Since $\mathcal{P}_{0}(\F)$ is just the set of constant functions, its clear that $p_{0} = 1$ forms a basis for $\mathcal{P}_{0}(\F)$.
+
+				\item[\textbf{Hypothesis}:] Assume that for some $n \in \N$ we have that $p_{0}, p_{1}, \dots, p_{n}$ is a basis of $\mathcal{P}_{n}(\F)$.
+
+				\item[\textbf{Induction}:] We will show that for the given proposition $P(n)$, that our induction hypothesis implies $P(n+1)$.
+			\end{enumerate}
+
+		I ran out of time to finish this.
+		\end{proof}
 		% subsection problem_10 (end)
 
 		\subsection*{Problem 11}
+		Suppose that $U$ and $W$ are subspaces of $\R^{8}$ such that $\dim U = 3$, $\dim W = 5$, and $U + W = \R^{8}$. 
+		Prove that $\R^{8} = U \oplus W$.
+
+		\begin{proof}
+		Let $U$ and $W$ be as above, and recall that $V = U \oplus W$ is equivalent to $U \cap W = \{ 0 \}$.
+		Further, recall the identity:
+			\begin{align*}
+				\dim(U + W) &= \dim U + \dim W - \dim(U \cap W), \\
+				\dim(U \cap W) &= \dim U + \dim W - \dim(U + W).
+			\end{align*}
+		Notice that $3 + 5 - 8 = 0$, which implies that $\dim(U \cap W) = 0 \iff U \cap W = \{ 0 \}$.
+		Hence, $\R^{8} = U \oplus W$, as we aimed to show.	
+		\end{proof}
 		% subsection problem_11 (end)
 
 		\subsection*{Problem 14}
+		Suppose $U_{1}, \dots, U_{m}$, are finite-dimensional subspaces of $V$.
+		Prove that $U_{1} + \cdots + U_{m}$ is finite-dimensional and $$\dim(U_{1} + \cdots + U_{m}) \leq \dim U_{1} + \cdots + \dim U_{m}.$$
+
+		\begin{proof}
+		Let $U_{1}, \dots, U_{m}$ and $V$ be as above.
+		Let $u_{1_{1}}, \dots, u_{1_{m}}$ be a basis for $U_{1}$, and generally, let $u_{i_{1}}, \dots, u_{i_{j}}, \dots u_{i_{m}}$ be a basis for $U_{i}$.
+		From the definition of sums of vector spaces, each $v \in U_{1} + \cdots + U_{m}$ can be written as a linear combination of each of the $u_{i_{j}}$'s.
+		It follows then that $u_{1_{1}}, \dots, u_{1_{m}}, \dots, u_{m_{1}}, \dots, u_{m_{m}}$ spans $U_{1} + \cdots + U_{m}$.
+		Thus by Theorem 2.31, since $u_{1_{1}}, \dots, u_{1_{m}}, \dots, u_{m_{1}}, \dots, u_{m_{m}}$ spans $U_{1} + \cdots + U_{m}$, it contains a basis for $U_{1} + \cdots + U_{m}$, i.e., it could be made shorter.
+		Thus $\dim(U_{1} + \cdots + U_{m}) \leq \dim U_{1} + \cdots + \dim U_{m}$; it remains to show that $U_{1} + \cdots + U_{m}$ is finite-dimensional.
+		Notice that each of $\dim U_{i} \in \Z^{+}$, and that $\dim U_{1} + \cdots + \dim U_{m}$ is a finite sum.
+		Hence $\dim(U_{1} + \cdots + U_{m})$ is less than or equal to a finite sum of integers, which implies that $\dim(U_{1} + \cdots + U_{m}) \leq t$ for some $t \in \Z^{+}$, thus $U_{1} + \cdots + U_{m}$ is finite-dimensional.
+		\end{proof}
 		% subsection problem_14 (end)
 
 		\subsection*{Problem 17}
+		You might guess, by analogy with the formula for the number of elements in the union of three subsets of a finite set, that if $U_{1}, U_{2}, U_{3}$ are subspaces of a finite-dimensional vector space, then 
+		\begin{align*}
+			\dim(U_{1} + U_{2} + U_{3}) &= \dim U_{1} + \dim U_{2} + \dim U_{3} \\
+			&\hspace{5mm} - \dim(U_{1} \cap U_{2}) - \dim(U_{1} \cap U_{3}) - \dim(U_{2} \cap U_{3}) \\
+			&\hspace{5mm} + \dim(U_{1} \cap U_{2} \cap U_{3}).
+		\end{align*}
+		Prove this or give a counterexample.
+
+		\begin{proof}[Counterexample]
+		Given the usefullness of this identity in set theory when applied to probability, I really wanted it to be true, but I ended up finding a counterexample.
+		Consider $V = \F^{2}$ and $U_{1} = \{ (x,x) : x \in \F \}$, $U_{2} = \{ (y,0) : x \in \F \}$, and $U_{1} = \{ (0,z) : y \in \F \}$.
+		It's clear that $\dim U_{i} = 1$ for $1 \leq i \leq 3$, but each of the pairwise, and also the triple intersection are simply $\{ 0 \}$, so their dimensions are $0$, i.e., $\dim U_{1}U_{2} = \dim U_{1}U_{3} = \dim U_{2}U_{3} = \dim U_{1}U_{2}U_{3} = 0$.
+		According to the above identity, this would imply that $\dim(\F^{2}) = \dim U_{1} + \cdots - \dim U_{1}U_{2}U_{3} \iff  2 = 3$, which is obviously false.
+		\end{proof}
 		% subsection problem_17 (end)
 	% section section_2_c (end)
 \end{document}
