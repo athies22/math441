@@ -1,0 +1,283 @@
+%!TEX output_directory = temp
+\documentclass[letterpaper, 12pt]{amsart}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%% boilerplate packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\usepackage{amsmath,amssymb,amsthm}
+	\usepackage[mathscr]{euscript}
+	\usepackage{enumerate}
+	\usepackage{graphicx}
+	\usepackage{mathrsfs}
+	\usepackage{color}
+	\usepackage{hyperref}
+	\usepackage{verbatim}
+	\usepackage{stmaryrd}
+	\usepackage[margin=1.25in]{geometry}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%% rename the abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% \renewcommand{\abstractname}{Introduction}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% sets %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		%% sets 
+		\DeclareMathOperator{\N}{\mathbb{N}}
+		\DeclareMathOperator{\Z}{\mathbb{Z}}
+		\DeclareMathOperator{\Zp}{\mathbb{Z}^{+}}
+		\DeclareMathOperator{\Q}{\mathbb{Q}}
+		\DeclareMathOperator{\Qp}{\mathbb{Q}^{+}}
+		\DeclareMathOperator{\Qc}{\mathbb{Q}^{c}}
+		\DeclareMathOperator{\R}{\mathbb{R}}
+		\DeclareMathOperator{\F}{\mathbb{F}}
+		\DeclareMathOperator{\Rp}{\mathbb{R}^{+}}
+		\DeclareMathOperator{\C}{\mathbb{C}}
+		\DeclareMathOperator{\Cnon}{\mathbb{C}^{\times}}
+		%% powerset of a set
+		\DeclareMathOperator{\pset}{\mathcal{P}}
+		%% set of continuous functions in a certain variable
+		\DeclareMathOperator{\cont}{\mathscr{C}}
+		%% set of functions in a certain variable
+		\DeclareMathOperator{\func}{\mathscr{F}}
+
+		\renewcommand{\null}{\text{null }}
+		
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% linear algebra %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		%% linear span
+		\DeclareMathOperator{\Ell}{\mathscr{L}}
+		%% bold vectors with arrows, and bold matrices
+		\newcommand{\bmat}[1]{{\mathbf{#1}}}
+		\newcommand{\bvec}[1]{{\vec{\mathbf{#1}}}}
+		%% independent vectors/matrices
+		\DeclareMathOperator{\ind}{\perp\!\!\!\perp}
+		%% order
+		\DeclareMathOperator{\ord}{\text{ord}}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%% probability & statistics %%%%%%%%%%%%%%%%%%%%%%%%%
+		%% probability, expectation, variance, etc.
+		\renewcommand{\Pr}{\mathbb{P}}
+		\DeclareMathOperator{\E}{\mathbb{E}}
+		\DeclareMathOperator{\var}{\rm Var}
+		\DeclareMathOperator{\sd}{\rm SD}
+		\DeclareMathOperator{\cov}{\rm Cov}
+		\DeclareMathOperator{\SE}{\rm SE}
+		\DeclareMathOperator{\ssreg}{{\rm SS}_{{\rm Reg}}}
+		\DeclareMathOperator{\ssr}{{\rm SS}_{{\rm Res}}}
+		\DeclareMathOperator{\sst}{{\rm SS}_{{\rm Tot}}}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% congruences %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\renewcommand{\mod}[1]{\ (\mathrm{mod}\ #1)}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% bracket notation %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		% I first used this for principal ideals, that is why the abbreviation is pid
+		\newcommand{\pid}[1]{\langle #1 \rangle}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% fatdot notation %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\makeatletter
+			\newcommand*\fatdot{\mathpalette\fatdot@{.5}}
+			\newcommand*\fatdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+		\makeatother
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% use pretty letters %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\DeclareMathOperator{\ep}{\varepsilon}
+		\DeclareMathOperator{\ph}{\varphi}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%% stolen from Jeske/Dugger %%%%%%%%%%%%%%%%%%%%%%%%%
+	% Some theorem-like environments, all numbered together starting at 1
+	% in each section.
+
+	% The default \theoremstyle is bold headings and italic body text.
+	\newtheorem{thm}{Theorem}[section]
+	\newtheorem{defn}[thm]{Definition}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{claim}[thm]{Claim}
+	\newtheorem{cor}[thm]{Corollary}
+	\newtheorem{lemma}[thm]{Lemma}
+
+	\theoremstyle{definition}  % Bold headings and Roman body text.
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{examples}[thm]{Examples}
+	\newtheorem{exercise}[thm]{Exercise}
+	\newtheorem{note}[thm]{Note}
+	\newtheorem{remark}[thm]{Remark}
+	\newtheorem{remarks}[thm]{Remarks}
+	\newtheorem{discussion}[thm]{Discussion}
+
+	\newcommand{\dfn}{\textbf} % Make defined words bold.
+	\newcommand{\mdfn}[1]{\dfn{\mathversion{bold}#1}} % Even make math symbols bold
+
+	% Various commands that are useful.  Please add your own.
+
+	\DeclareMathOperator{\Arg}{Arg}
+	\DeclareMathOperator{\re}{Re}
+	\DeclareMathOperator{\im}{Im}
+	\DeclareMathOperator{\Log}{Log}
+	\DeclareMathOperator{\Span}{Span}
+
+	\newcommand{\iso}{\cong}						% isometric/congruent
+	\newcommand{\ra}{\rightarrow}                   % right arrow
+	\newcommand{\Ra}{\Rightarrow}                   % right implies
+	\newcommand{\lra}{\longrightarrow}              % long right arrow
+	\newcommand{\la}{\leftarrow}                    % left arrow
+	\newcommand{\La}{\Leftarrow}                    % left implies
+	\newcommand{\lla}{\longleftarrow}               % long left arrow
+	\newcommand{\llra}[1]{\stackrel{#1}{\lra}}      % labeled long right arrow
+	\newcommand{\we}{\llra{\sim}}                   % weak equivalence
+	\newcommand{\cof}{\rightarrowtail}              % cofibration
+	\newcommand{\fib}{\twoheadrightarrow}           % fibration
+	\newcommand{\inc}{\hookrightarrow}              % inclusion
+	\newcommand{\dbra}{\rightrightarrows}           % double arrow for equalizer diagrams
+	\newcommand{\eqra}{\llra{\sim}}                 % equivalence/isomorphism
+
+	% \newcommand{\blank}{\underbar{\ \ }}          % An underscore, as in (__)xV
+	\newcommand{\blank}{-}                          % A hyphen, as in (-)xV
+	\newcommand{\Id}{Id}                            % The identity functor
+	\newcommand{\und}{\underline}
+	\newcommand{\norm}[1]{\mid \!\!#1 \!\!\mid}             %\norm{x} gives |x|
+
+	% These commands are for the period and comma in the lower right entry of
+	% a diagram.  They put the punctuation 2 pts to the right, but make
+	% TeX (and hence the diagram package) unaware of the extra width
+	% of that entry.
+	\newcommand{\period}    {{\makebox[0pt][l]{\hspace{2pt} .}}}
+	\newcommand{\comma}     {{\makebox[0pt][l]{\hspace{2pt} ,}}}
+	\newcommand{\semicolon} {{\makebox[0pt][l]{\hspace{2pt} ;}}}
+
+	\newcommand{\Cech}{\v{C}ech}
+	\newcommand{\scat}{\Delta}
+	\newcommand{\assign}{\ra}
+	\newcommand{\copr}{\,\amalg\,}
+	\newcommand{\ovcat}{\downarrow}
+	\newcommand{\pder}[2]{{\frac{\partial #1}{\partial #2}}}
+	\newcommand{\del}{\nabla}
+	\newcommand{\vectr}[1]{{\mbox{\boldmath $#1$}}}
+	\newcommand{\uvectr}[1]{\vectr{\hat #1}}
+	\newcommand{\ihat}{\uvectr \imath}
+	\newcommand{\jhat}{\uvectr \jmath}
+	\newcommand{\khat}{\uvectr k}
+	\newcommand{\rhat}{\uvectr r}
+	\newcommand{\thhat}{\uvectr \theta}
+	\newcommand{\zhat}{\uvectr z}
+	\newcommand{\rhohat}{\uvectr \rho}
+	\newcommand{\phihat}{\uvectr \phi}
+	\newcommand{\grad}{\vectr{\vec\nabla}}
+	% \newcommand{\R}{\mathbb{R}}
+	\newcommand{\vv}[1]{\vectr{v_{#1}}}
+	\newcommand{\crad}{0.1}
+	\newcommand{\lline}[1]{\overleftrightarrow{#1}}
+	\DeclareMathOperator{\area}{area}
+	\DeclareMathOperator{\vol}{vol}
+	\newcommand{\ray}[1]{\overset{\rightarrow}{#1}}
+	\newcommand{\sr}[2]{???}
+	\newcommand{\iihat}{i}
+	\newcommand{\jjhat}{j}
+	\newcommand{\kkhat}{k}
+
+		
+\begin{document}
+	\title{Homework 4  -- Math 441 \\ \today}
+	\author{Alex Thies \\ \href{mailto:athies@uoregon.edu}{\lowercase{athies$@$uoregon.edu}}}
+
+	\maketitle
+
+	Assignment: 3.A - 3, 4, 7, 8, 10; 3.B - 4, 9, 31.
+
+	\section*{Section 3.A}
+		\subsection*{Problem 3}
+		Suppose $T \in \Ell (\F^{n}, \F^{m})$.
+		Show that there exist scalars $A_{j,k} \in \F$ for $j = 1, \dots, m$ and $k = 1, \dots, n$ such that $$T(x_{1}, \dots, x_{n}) = (A_{1,1} x_{1} + \cdots + A_{1,n}x_{n}, \cdots, A_{m,1}x_{1} + \cdots + A_{m,n}x_{n})$$ for every $(x_{1}, \dots, x_{n}) \in \F^{n}$.
+
+		\begin{proof}[Solution]
+		Let $T$ be as above, and let $e_{1}, \dots, e_{n}$ be the standard basis for $\F^{n}$, i.e., let $e_{i} \in \F^{n}$ for $1 \leq i \leq n$ be a vector of all zeros, with the exception that the $i^{th}$ entry is a 1.
+		This allows us greatly simplify the notation we're working with.
+		Consider the basis element $(1,0, \dots, 0) \in \F^{n}$; if we apply $T$ to this basis element, then  we get $A_{1,1} (1) + A_{1,2} (0) + \cdots + A_{1,n}(0), \ A_{2,1} (1) + A_{2,2} (0) + \cdots + A_{2,n}(0), \ \dots, \ A_{m,1} (1) + A_{m,2} (0) + \cdots + A_{m,n}(0)$, because the only terms that don't get multiplied by zero are precisely the terms being multiplied by $x_{1} = 1$.
+		Thus, we get $Te_{1} = (A_{1,1}, A_{2,1}, \dots, A_{m,1})$.
+		Continue this process and we obtain:
+			\begin{align*}
+				Te_{2} &= (A_{1,2}, A_{2,2}, \dots, A_{m,2}), \\
+				Te_{3} &= (A_{1,3}, A_{2,3}, \dots, A_{m,3}), \\
+				& \hspace{2mm} \vdots \\
+				Te_{n} &= (A_{m,1}, A_{m,2}, \dots, A_{m,n}).
+			\end{align*}
+		Since $e_{1}, \dots, e_{n}$ is a basis for $\F^{n}$ and $(x_{1}, \dots, x_{n}) \in \F^{n}$ we have $(x_{1}, \dots, x_{n}) \in \Span(e_{1}, \dots, e_{n})$, so $(x_{1}, \dots, x_{n})$ can be written as linear combinations of the basis elements $e_{1}, \dots, e_{n}$.
+		So, with $n$-many $x_{i}$'s for components, instead of the 1 and $(n-1)$-many zeros that we used for the standard basis elements, we get $T(x_{1}, \dots, x_{n}) = (A_{1,1} x_{1} + \cdots + A_{1,n}x_{n}, \cdots, A_{m,1}x_{1} + \cdots + A_{m,n}x_{n})$, as we aimed to show.
+		\end{proof}
+		% subsection problem_3 (end)
+
+		\subsection*{Problem 4}
+		Suppose $T \in \Ell(V,W)$ and $v_{1}, \dots, v_{m}$ is a list of vectors in $V$ such that $Tv_{1}, \dots, Tv_{n}$ is a linearly independent list in $W$.
+		Prove that $v_{1}, \dots, v_{m}$ is linearly independent.
+
+		\begin{proof}
+		Let $V,W,T$, $v_{1}, \dots, v_{m}$, and $\, Tv_{1}, \dots, Tv_{n}$ be as above.
+		Then, since $Tv_{1}, \dots, Tv_{n}$ is linearly independent in $W$, we know that $a_{1}Tv_{1} + \cdots + a_{n}Tv_{n} = 0$ if and only if each $a_{i} = 0$ with $1 \leq i \leq n$.
+		From the additivity of linear maps we can write $T(a_{1}v_{1} + \cdots + a_{n}v_{n}) = 0$.
+		To show that $v_{1}, \dots, v_{n}$ is linearly independent, it remains to show that no other choice of $a_{i}$'s yields $a_{1}v_{1} + \cdots + a_{n}v_{n} = 0$.
+		Suppose that there exist $c_{i} \in V$ with $1 \leq i \leq n$ such that $c_{1}v_{1} + \cdots c_{n}v_{n} = 0$.
+		Since $T$ maps $0_{V}$ to $0_{W}$, we have that $T(c_{1}v_{1} + \cdots c_{n}v_{n}) = 0$, again by additivity we can write $c_{1}Tv_{1} + \cdots + c_{n}Tv_{n} = 0$.
+		By the linear independence of $Tv_{1}, \dots, Tv_{n}$, given our previous statement, it follows that $a_{i} = c_{i} = 0$ for each $1 \leq i \leq n$, and that $v_{1}, \dots, v_{n}$ is linearly	independent as well, as we aimed to show.
+		\end{proof}
+		% subsection problem_4 (end)
+
+		\subsection*{Problem 7}
+		Show that every linear map from a 1-dimensional vector space to itself is multiplication by some scalar. 
+		More precisely, prove that if $\dim V = 1$ and $T \in \Ell(V,V)$, then there exists 􏰀$\lambda \in \F$ such that $Tv = \lambda v$ for all $v \in V$.
+
+		\begin{proof}
+		Let $V$ and $T$ be as above.
+		Since $\dim V = 1$, take $u_{1}$ as a basis for $V$, additionally, with $T \in \Ell(V,V)$, it follows that $Tu_{1} \in V$ as well.
+		Since $u_{1}$ is a basis for $V$, each element of $V$ is a scalar multiple of $u_{1}$; linear combinations of one element are pretty boring.
+		Recall that vector spaces are closed under their operations, therefore \textbf{all} scalar multiples (with scalars from $\F$) are elements of $V$, and since $T$ is mapping elements of $V$ to other elements of $V$, it follows that $T$ is doing this mapping by scalar multiplication.
+		Since $T$ is a linear map, the only other operation on $v \in V$ that it could be doing is addition.
+		But if $T$ were mapping things with addition by anything other than zero, it would remove the additive identity from $V$, which linear maps cannot do.
+		Therefore, $T$ must be doing scalar multiplication.
+		\end{proof}
+		% subsection problem_7 (end)
+
+		\subsection*{Problem 8}
+		Give an example of a function $\varphi : \R^{2} \to \R$ such that $\varphi(av) = a\varphi(v)$ for all $a \in \R$ and all $v \in \R^{2}$ but $\varphi$ is not linear.
+
+		\begin{proof}[Solution]
+		\end{proof}
+		% subsection problem_8 (end)
+
+		\subsection*{Problem 10}
+		Suppose $U$ is a subspace of $V$ with $U \neq V$.
+		Suppose $S \in \Ell(U,W)$ and $S \neq 0$.
+		Define $T : V \to W$ by $$Tv = \begin{cases} Sv & \text{if $v \in U$}, \\ 0 & \text{if $v \in V$ and $v \notin U$}. \end{cases}$$
+		Prove that $T$ is not a linear map on $V$.
+
+		\begin{proof}
+		\end{proof}
+		% subsection problem_10 (end)
+	% section section_3_a (end)
+
+	\section*{Section 3.B}
+		\subsection*{Problem 4}
+		Show that $\{ T \in \Ell(\R^{5}, \R^{4}) : \dim \null T > 2 \}$ is not a subspace of $\Ell(\R^{5}, \R^{4})$.
+
+		\begin{proof}[Solution]
+		\end{proof}
+		% subsection problem_4 (end)
+
+		\subsection*{Problem 9}
+		Suppose $T \in \Ell(V,W)$ is injective and $v_{1}, \dots, v_{n}$ is linearly independent in $V$.
+		Prove that $Tv_{1}, \dots, Tv_{n}$ is linearly independent in $W$.
+
+		\begin{proof}
+		\end{proof}
+		% subsection problem_9 (end)
+
+		\subsection*{Problem 31}
+		Give an example of two linear maps $T_{1}$ and $T_{2}$ from $\R^{5}$ to $\R^{2}$ that have the same null space but are such that $T_{1}$ is not a scalar multiple of $T_{2}$.
+
+		\begin{proof}[Solution]
+		\end{proof}
+		% subsection problem_31 (end)
+	% section section_3_b (end)
+\end{document}
