@@ -279,8 +279,29 @@
 		Show that $$\{ T \in \Ell(\R^{5}, \R^{4}) : \dim \null T > 2 \}$$ is not a subspace of $\Ell(\R^{5}, \R^{4})$.
 
 		\begin{proof}[Solution]
-		Let $T$ be as above.
-		Since $\dim \R^{5} = 5$, and $\dim \null T > 2$, by the Fundamental Theorem for Linear Maps we have $\dim \range T = 2$ or $\dim \range T = 1$, or $\dim \range T = 0$.
+		Let $W = \{ T \in \Ell(\R^{5}, \R^{4}) : \dim \null T > 2 \}$, we will show that $W \subsetneq \Ell(\R^{5}, \R^{4})$ is not a subspace by showing that it is not closed under addition.
+		Let $e_{1}, \dots, e_{5}$ be a basis for $\R^{5}$, and let $\ep_{1}, \dots, \ep_{4}$ be a basis for $\R^{4}$.
+		Since the dimension of the null space for elements of $W$ must be either 3, 4, or 5, we will construct two linear maps $S,T$ with $\dim \null S = \dim \null T = 3$, and show that distributing the standard basis elements above across $S+T$ will yield linear maps with a dimension two null space.
+
+		Let $S,T$ be linear maps such that $Se_{i} = \ep_{i}$ for $i = 1,2$; $Se_{i} = 0$ for $i = 3,4,5$; $Te_{i} = \ep_{i}$ for $i = 2,3$; and $Te_{i} = 0$ for $i = 1,4,5$.
+		Notice that $\dim \null S = \dim \null T = 3$, so $S,T \in W$.
+		Consider the linear map $(S+T)$; we compute the following:
+			\begin{align*}
+				(S + T)e_{1} &= Se_{1} + Te_{1}, \\
+				&= \ep_{1}; \\
+				(S + T)e_{2} &= Se_{2} + Te_{2}, \\
+				&= 2\ep_{2}; \\
+				(S + T)e_{3} &= Se_{3} + Te_{3}, \\
+				&= \ep_{3}; \\
+				(S + T)e_{4} &= Se_{4} + Te_{4}, \\
+				&= 0; \\
+				(S + T)e_{5} &= Se_{5} + Te_{5}, \\
+				&= 0.
+			\end{align*}
+		Thus that $\dim \range (S+T) = 3$ and $\dim \null (S+T) = 2$, so $(S+T) \notin W$, and $W$ is not closed under addition.
+		Hence, $W \subsetneq \Ell(\R^{5},\R^{4})$ is not a subspace.
+
+		Notice that we could replicate this `partial-overlapping' strategy with linear maps $S,T$ such that $\dim \null S = \dim \null T = 4$ and create $(S+T)$ such that $\dim \null (S+T) = 1$, but not with linear maps $S'$ such that $\dim \null S' = 5$, because these linear maps are just the zero map, and so they have no issues with additivity.
 		\end{proof}
 		% subsection problem_4 (end)
 
@@ -306,6 +327,18 @@
 		Give an example of two linear maps $T_{1}$ and $T_{2}$ from $\R^{5}$ to $\R^{2}$ that have the same null space but are such that $T_{1}$ is not a scalar multiple of $T_{2}$.
 
 		\begin{proof}[Solution]
+		Let $e_{1}, \dots, e_{5}$ be a basis for $\R^{5}$ and $\ep_{1}, \ep_{2}$ be a basis for $\R^{2}$; further, let $T_{1}, T_{2} \in \Ell(\R^{5}, \R^{2})$ such that:
+			\begin{figure}[h]
+				\begin{tabular}{ll}
+					$T_{1}e_{1} = \ep_{1}$, & $T_{2}e_{1} = \ep_{2}$, \\
+					$T_{1}e_{2} = \ep_{2}$, & $T_{2}e_{2} = \ep_{1}$, \\
+					$T_{1}e_{3} = \ep_{1} + \ep_{2}$, & $T_{2}e_{3} = \ep_{2} - \ep_{1}$, \\
+					$T_{1}e_{4} = \ep_{1} - \ep_{2}$, & $T_{2}e_{4} = \ep_{2} + \ep_{1}$, \\
+					$T_{1}e_{5} = 0$. & $T_{2}e_{5} = 0$.
+				\end{tabular}
+			\end{figure}
+
+		Consider $2T_{1}e_{1} = 2\ep_{1}$ and $2T_{2}e_{1} = 2\ep_{2}$, clearly these are not scalar multiples of another; there are many other examples such as these.
 		\end{proof}
 		% subsection problem_31 (end)
 	% section section_3_b (end)
