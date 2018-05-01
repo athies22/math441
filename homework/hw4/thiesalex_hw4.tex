@@ -39,6 +39,7 @@
 		\DeclareMathOperator{\func}{\mathscr{F}}
 
 		\renewcommand{\null}{\text{null }}
+		\DeclareMathOperator{\range}{\text{range }}
 		
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% linear algebra %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -232,10 +233,17 @@
 		Let $V$ and $T$ be as above.
 		Since $\dim V = 1$, take $u_{1}$ as a basis for $V$, additionally, with $T \in \Ell(V,V)$, it follows that $Tu_{1} \in V$ as well.
 		Since $u_{1}$ is a basis for $V$, each element of $V$ is a scalar multiple of $u_{1}$; linear combinations of one element are pretty boring.
-		Recall that vector spaces are closed under their operations, therefore \textbf{all} scalar multiples (with scalars from $\F$) are elements of $V$, and since $T$ is mapping elements of $V$ to other elements of $V$, it follows that $T$ is doing this mapping by scalar multiplication.
-		Since $T$ is a linear map, the only other operation on $v \in V$ that it could be doing is addition.
-		But if $T$ were mapping things with addition by anything other than zero, it would remove the additive identity from $V$, which linear maps cannot do.
-		Therefore, $T$ must be doing scalar multiplication.
+		Recall that vector spaces are closed under their operations, therefore \textbf{all} scalar multiples $\lambda u_{1}$ (with scalars from $\F$) are elements of $V$, and since $T$ is mapping elements of $V$ to other elements of $V$, it follows that $T$ is doing this mapping by scalar multiplication.
+		More formally, $Tu_{1} = \lambda u_{1}$ for some $\lambda \in \F$.
+		Let $v \in V$ and $a \in \F$ such that $v = a u_{1}$, we compute the following:
+			\begin{align*}
+				Tv &= T(au_{1}), \\
+				&= a T(u_{1}), \\
+				&= a \lambda u_{1}, \\
+				&= \lambda a u_{1}, \\
+				&= \lambda v.
+			\end{align*}
+		Thus, since $\dim V = 1$ implies that any basis of $V$ consists of only one basis element, for $T \in \Ell(V,V)$, there exists 􏰀$\lambda \in \F$ such that $Tv = \lambda v$ for all $v \in V$
 		\end{proof}
 		% subsection problem_7 (end)
 
@@ -243,6 +251,11 @@
 		Give an example of a function $\varphi : \R^{2} \to \R$ such that $\varphi(av) = a\varphi(v)$ for all $a \in \R$ and all $v \in \R^{2}$ but $\varphi$ is not linear.
 
 		\begin{proof}[Solution]
+		Let $\varphi : \R^{2} \to \R$ by $(x,y) \mapsto (x + y)^{1/2}$; consider $(1,0)$ and $(0,1)$, the standard basis elements of $\R^{2}$.
+		Notice that $\varphi(1,0) = 1$, \ $\varphi(0,1) = 1$, and $\varphi(1,0) + \varphi(0,1) = 2$.
+		However, $\varphi((1,0) + (0,1)) = \varphi(1,1) = \sqrt{2}$.
+		Since $2 \neq \sqrt{2}$, we have shown $\varphi$ is not additive; it remains to show that it is still linear with respect to scalar multiplication.
+		Let $a \in \R$.
 		\end{proof}
 		% subsection problem_8 (end)
 
@@ -253,15 +266,21 @@
 		Prove that $T$ is not a linear map on $V$.
 
 		\begin{proof}
+		Let $U,V,S,T$ be as above.
+		Further, let $u \in U$ and $v \in V$ such that $v \notin U$, notice that $u+v \in V$ but $u+v \notin U$.
+		Then, $T(u) = Sv \neq 0$ and $T(v) = 0$, so $T(u) + T(v) = Sv$.
+		But $T(u+v) = 0$, and $Sv \neq 0$, so $T$ is not additive, hence it is not linear on $V$.
 		\end{proof}
 		% subsection problem_10 (end)
 	% section section_3_a (end)
 
 	\section*{Section 3.B}
 		\subsection*{Problem 4}
-		Show that $\{ T \in \Ell(\R^{5}, \R^{4}) : \dim \null T > 2 \}$ is not a subspace of $\Ell(\R^{5}, \R^{4})$.
+		Show that $$\{ T \in \Ell(\R^{5}, \R^{4}) : \dim \null T > 2 \}$$ is not a subspace of $\Ell(\R^{5}, \R^{4})$.
 
 		\begin{proof}[Solution]
+		Let $T$ be as above.
+		Since $\dim \R^{5} = 5$, and $\dim \null T > 2$, by the Fundamental Theorem for Linear Maps we have $\dim \range T = 2$ or $\dim \range T = 1$, or $\dim \range T = 0$.
 		\end{proof}
 		% subsection problem_4 (end)
 
@@ -270,6 +289,16 @@
 		Prove that $Tv_{1}, \dots, Tv_{n}$ is linearly independent in $W$.
 
 		\begin{proof}
+		Let $T, V, W; v_{1}, \dots, v_{n}$ be as above.
+		Since $v_{1}, \dots, v_{n}$ is linearly independent in $V$, we know that $0 = a_{1}v_{1} + \cdots + a_{n}v_{n}$ if and only if each $a_{i} = 0$ for $1 \leq i \leq n$.
+		Recall that since $T$ is injective, we have $\null T = \{ 0 \}$, thus, $T(0) = 0$ is a unique mapping.
+		Apply $T$ to $0 = a_{1}v_{1} + \cdots + a_{n}v_{n}$:
+			\begin{align*}
+				0_{V} &= a_{1}v_{1} + \cdots + a_{n}v_{n}, \\
+				T(0_{V}) &= T(a_{1}v_{1} + \cdots + a_{n}v_{n}), \\
+				0_{W} &= a_{1}T(v_{1}) + \cdots + a_{n}T(v_{n}).
+			\end{align*}
+		Recall that each $a_{i} = 0$ for $1 \leq i \leq n$, and since the mapping $T(0)=0$ is unique, these $a_{i}$'s are the only way to write $Tv_{1}, \dots, Tv_{n}$ as a homogeneous linear combination, hence $Tv_{1}, \dots, Tv_{n}$ is linearly independent, and since $Tv_{1}, \dots, Tv_{n} \in \range T$ and $\range T \subset W$, we have that $Tv_{1}, \dots, Tv_{n}$ is linearly independent in $W$.
 		\end{proof}
 		% subsection problem_9 (end)
 
