@@ -195,7 +195,7 @@
 
 		\begin{proof}[Solution]
 		Let $T$ be as above, and let $e_{1}, \dots, e_{n}$ be the standard basis for $\F^{n}$, i.e., let $e_{i} \in \F^{n}$ for $1 \leq i \leq n$ be a vector of all zeros, with the exception that the $i^{th}$ entry is a 1.
-		This allows us greatly simplify the notation we're working with.
+		This allows us to greatly simplify the notation we're working with.
 		Consider the basis element $(1,0, \dots, 0) \in \F^{n}$; if we apply $T$ to this basis element, then  we get $A_{1,1} (1) + A_{1,2} (0) + \cdots + A_{1,n}(0), \ A_{2,1} (1) + A_{2,2} (0) + \cdots + A_{2,n}(0), \ \dots, \ A_{m,1} (1) + A_{m,2} (0) + \cdots + A_{m,n}(0)$, because the only terms that don't get multiplied by zero are precisely the terms being multiplied by $x_{1} = 1$.
 		Thus, we get $Te_{1} = (A_{1,1}, A_{2,1}, \dots, A_{m,1})$.
 		Continue this process and we obtain:
@@ -221,7 +221,8 @@
 		To show that $v_{1}, \dots, v_{n}$ is linearly independent, it remains to show that no other choice of $a_{i}$'s yields $a_{1}v_{1} + \cdots + a_{n}v_{n} = 0$.
 		Suppose that there exist $c_{i} \in V$ with $1 \leq i \leq n$ such that $c_{1}v_{1} + \cdots c_{n}v_{n} = 0$.
 		Since $T$ maps $0_{V}$ to $0_{W}$, we have that $T(c_{1}v_{1} + \cdots c_{n}v_{n}) = 0$, again by additivity we can write $c_{1}Tv_{1} + \cdots + c_{n}Tv_{n} = 0$.
-		By the linear independence of $Tv_{1}, \dots, Tv_{n}$, given our previous statement, it follows that $a_{i} = c_{i} = 0$ for each $1 \leq i \leq n$, and that $v_{1}, \dots, v_{n}$ is linearly	independent as well, as we aimed to show.
+		By the linear independence of $Tv_{1}, \dots, Tv_{n}$, and given our previous statement, it follows that $a_{i} = c_{i} = 0$ for each $1 \leq i \leq n$.
+		Thus, our choice of $a_{i}$'s was unique, which satisfies the condition for $v_{1}, \dots, v_{n}$ to be linearly independent, as we aimed to show.
 		\end{proof}
 		% subsection problem_4 (end)
 
@@ -233,7 +234,7 @@
 		Let $V$ and $T$ be as above.
 		Since $\dim V = 1$, take $u_{1}$ as a basis for $V$, additionally, with $T \in \Ell(V,V)$, it follows that $Tu_{1} \in V$ as well.
 		Since $u_{1}$ is a basis for $V$, each element of $V$ is a scalar multiple of $u_{1}$; linear combinations of one element are pretty boring.
-		Recall that vector spaces are closed under their operations, therefore \textbf{all} scalar multiples $\lambda u_{1}$ (with scalars from $\F$) are elements of $V$, and since $T$ is mapping elements of $V$ to other elements of $V$, it follows that $T$ is doing this mapping by scalar multiplication.
+		Recall that vector spaces are closed under their operations, therefore \textit{all} scalar multiples $\lambda u_{1}$ (with scalars from $\F$) are elements of $V$, and since $T$ is mapping elements of $V$ to other elements of $V$, it follows that $T$ is doing this mapping by scalar multiplication.
 		More formally, $Tu_{1} = \lambda u_{1}$ for some $\lambda \in \F$.
 		Let $v \in V$ and $a \in \F$ such that $v = a u_{1}$, we compute the following:
 			\begin{align*}
@@ -256,6 +257,8 @@
 		However, $\varphi((1,0) + (0,1)) = \varphi(1,1) = \sqrt{2}$.
 		Since $2 \neq \sqrt{2}$, we have shown $\varphi$ is not additive; it remains to show that it is still linear with respect to scalar multiplication.
 		Let $a \in \R$.
+
+		I forgot that I had yet to complete this and did not complete it on time.
 		\end{proof}
 		% subsection problem_8 (end)
 
