@@ -3,6 +3,7 @@
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%% boilerplate packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\usepackage{amsmath,amssymb,amsthm}
+	\usepackage{marvosym}
 	\usepackage[mathscr]{euscript}
 	\usepackage{enumerate}
 	\usepackage{graphicx}
@@ -12,6 +13,8 @@
 	\usepackage{verbatim}
 	\usepackage{stmaryrd}
 	\usepackage[margin=1.25in]{geometry}
+
+	\raggedbottom
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%% rename the abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -193,6 +196,11 @@
 		Prove that there does not exist a linear map $T : \R^{5} \to \R^{5}$ such that $$\range T = \null T.$$
 
 		\begin{proof}
+		Let $T \in \Ell(\R^{5}, \R^{5})$, i.e., $T : \R^{5} \to \R^{5}$.
+		By the Fundamental Theoreom for Linear Maps (FTLM) we have $\dim \R^{5} = \dim \null T + \, \dim \range T$.
+		Suppose by way of contradiction that $\range T = \null T$, then $\dim \null T = \dim \range T$, so the FTLM states $5 = 2 \dim \null T$.
+		Since $\dim \null T \in \Z^{+}$, the FTLM is asserting that $5 = 2n$, i.e., $5$ is even$\, \lightning$		
+		Hence, there does not exist a linear map $T : \R^{5} \to \R^{5}$ such that $\range T = \null T$, as we aimed to show.
 		\end{proof}
 		% subsection problem_6 (end)
 
@@ -201,14 +209,40 @@
 		Prove that $V$ is finite-dimensional.
 
 		\begin{proof}
+		Let $T \in \Ell(\mathbf{V},\mathbf{W})$ such that $\dim \null T = m$ and $\dim \range T = n$ for $m,n \in \Z^{+}$.
+		By the FTLM we have $\dim \mathbf{V} = m + n$, hence $V$ is finite-dimensional.
 		\end{proof}
 		% subsection problem_16 (end)
 
 		\subsection*{Problem 21}
 		Suppose $V$ is finite-dimensional and $T \in \Ell(V,W)$. 
-		Prove that $T$ is surjective if and only if there exists $S \in \Ell(V,W)$ such that $TS$ is the identity map on $W$.
+		Prove that $T$ is surjective if and only if there exists $S \in \Ell(W,V)$ such that $TS$ is the identity map on $W$.
 
 		\begin{proof}
+		Let $\mathbf{V}$ be a finite-dimensional vector space over $\F$ and let $T \in \Ell(\mathbf{V},\mathbf{W})$ for some vector space $W$; let $\dim \mathbf{V} = n$ for $n \in \Z^{+}$.
+
+		$\Ra)$ Assume $T$ is surjecitive.
+		Then $\range T = \mathbf{W}$, and by the FTLM $\dim \mathbf{V} \geq \dim \mathbf{W}$, hence $\mathbf{W}$ is finite-dimensional; let $\dim \mathbf{W} = m$ for $m \in \Z^{+}$.
+		Let $\mathcal{B}_{V} = \bvec{v}_{1}, \dots, \bvec{v}_{n}$, and $\mathcal{B}_{W} = \bvec{w}_{1}, \dots, \bvec{w}_{m}$ be bases for $\mathbf{V}$ and $\mathbf{W}$, respectively.
+		Since $T$ is surjective, for each $\bvec{w}_{i} \in \mathcal{B}_{W}$ there exists a $\bvec{v}_{j} \in \mathcal{B}_{V}$ such that $T\bvec{v}_{j} = \bvec{w}_{i}$.
+		Let's define a function that reverses that process.
+
+		Define $S \in \Ell(\mathbf{W},\mathbf{V})$ such that $\bvec{w}_{i} \mapsto \bvec{v}_{j}$, we will show that $TS$ acts as the identity map from $\mathbf{W}$.
+		Apply $S$ to $\Span \mathcal{C}$, and go from there
+			\begin{align*}
+				S(a_{1}\bvec{w}_{1} + \cdots + a_{m}\bvec{w}_{m}) &= a_{1}S\bvec{w}_{1} + \cdots + a_{m}S\bvec{w}_{m}, \\
+				&= a_{1}\bvec{v}_{1} + \cdots + a_{m}\bvec{v}_{m}, \\
+				TS(a_{1}\bvec{w}_{1} + \cdots + a_{m}\bvec{w}_{m}) &= T(a_{1}\bvec{v}_{1} + \cdots + a_{m}\bvec{v}_{m}), \\
+				&= a_{1}T\bvec{v}_{1} + \cdots + a_{m}T\bvec{v}_{m}, \\
+				&= a_{1}\bvec{w}_{1} + \cdots + a_{m}\bvec{w}_{m}.
+			\end{align*}
+		Hence, $TS\bvec{w} = \bvec{w}$, so $TS$ acts as the identity map from $\mathbf{W}$, as we aimed to show; it remains to prove the converse.
+
+		$\La)$ Assume there exists $S \in \Ell(\mathbf{W},\mathbf{V})$ such that $TS$ is the identity map on $\mathbf{W}$, we will show that $T$ is surjective, which is equivalent to proving $\range T = \mathbf{W}$.
+		Let $\bvec{w} \in \mathbf{W}$, notice that $S\bvec{w} \in \mathbf{V}$, so we can write $\bvec{v} = S\bvec{w}$.
+		Because $TS = I_{W}$, we have $\bvec{w} = TS\bvec{w} = T\bvec{v}$, so $\bvec{w} \in \mathbf{W}$ and $\bvec{w} \in \range T$.
+		It follows that $\range T = W$, which is equivalent to $T$ being surjective, as we aimed to prove.
+		Thus, for a finite-dimensional vector space $\mathbf{V}$, $T$ is surjective if and only if there exists $S \in \Ell(\mathbf{W},\mathbf{V})$ such that $TS$ is the identity map on $\mathbf{W}$.
 		\end{proof}
 		% subsection problem_21 (end)
 	% section section_3_b (end)
