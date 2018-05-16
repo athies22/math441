@@ -210,7 +210,25 @@
 
 		\begin{proof}
 		Let $T \in \Ell(\mathbf{V},\mathbf{W})$ such that $\dim \null T = m$ and $\dim \range T = n$ for $m,n \in \Z^{+}$.
-		By the FTLM we have $\dim \mathbf{V} = m + n$, hence $V$ is finite-dimensional.
+		Let $u_{1}, \dots, u_{m}$ be a basis of $\null T$ and $w_{1}, \dots, w_{n}$ be a basis of $\range T$.
+		Since $T$ is surjective, $\range T = \mathbf{W}$, so $w_{1}, \dots, w_{n}$ is also a basis of $\mathbf{W}$.
+		Moreover, since $T$ is surjective, for each $w \in \mathbf{W}$, there exists $v \in \mathbf{V}$ such that $Tv = w$, hence we can write our basis of $W$ as $Tv_{1}, \dots, Tv_{n}$ for $v_{j} \in V$.
+		Then $Tv = a_{1}w_{1} + \cdots + a_{n}w_{n} = a_{1}Tv_{1} + \cdots + a_{n}Tv_{n}$.
+		So, with additivity and homogeneity we can compute the following:
+			\begin{align*}
+				Tv &= a_{1}Tv_{1} + \cdots + a_{n}Tv_{n}, \\
+				0 &= T(a_{1}v_{1} + \cdots a_{n}v_{n}) - Tv, \\
+				&= T(a_{1}v_{1} + \cdots a_{n}v_{n} - v), \\
+				&= T(v - (a_{1}v_{1} + \cdots a_{n}v_{n}) ), \\
+			\end{align*}
+		So, we have that $v - a_{1}v_{1} - \cdots a_{n}v_{n} \in \null T$, thus we can write it as a linear combination of the basis elements $u_{i}$. 
+		So we have:
+		\begin{align*}
+			v - (a_{1}v_{1} + \cdots a_{n}v_{n}) &= b_{1}u_{1} + \cdots b_{n}u_{m}, \\
+			v &= b_{1}u_{1} + \cdots b_{n}u_{m} + a_{1}v_{1} + \cdots a_{n}v_{n}
+		\end{align*}
+		Notice that since $\null T \subsetneq \mathbf{V}$, each of the $u_{i}$'s are elements of $\mathbf{V}$.
+		Thus, an arbitrarily chosen element of $\mathbf{V}$ can be expressed as a linear combination of finitely-many basis elements, which implies that $\mathbf{V}$ is finite-dimensional, as we aimed to show.
 		\end{proof}
 		% subsection problem_16 (end)
 
@@ -222,27 +240,15 @@
 		Let $\mathbf{V}$ be a finite-dimensional vector space over $\F$ and let $T \in \Ell(\mathbf{V},\mathbf{W})$ for some vector space $W$; let $\dim \mathbf{V} = n$ for $n \in \Z^{+}$.
 
 		$\Ra)$ Assume $T$ is surjecitive.
-		Then $\range T = \mathbf{W}$, and by the FTLM $\dim \mathbf{V} \geq \dim \mathbf{W}$, hence $\mathbf{W}$ is finite-dimensional; let $\dim \mathbf{W} = m$ for $m \in \Z^{+}$.
-		Let $\mathcal{B}_{V} = \bvec{v}_{1}, \dots, \bvec{v}_{n}$, and $\mathcal{B}_{W} = \bvec{w}_{1}, \dots, \bvec{w}_{m}$ be bases for $\mathbf{V}$ and $\mathbf{W}$, respectively.
-		Since $T$ is surjective, for each $\bvec{w}_{i} \in \mathcal{B}_{W}$ there exists a $\bvec{v}_{j} \in \mathcal{B}_{V}$ such that $T\bvec{v}_{j} = \bvec{w}_{i}$.
-		Let's define a function that reverses that process.
+		Then $\range T = \mathbf{W}$, but more importantly, we have that for each $w \in \mathbf{W}$, there exists $v \in \mathbf{V}$ such that $Tv = w$.
+		Define $S : \mathbf{W} \to \mathbf{V}$ mapped by $w \mapsto v$ where $v$ is such that $Tv = w$.
+		Since $T$ is surjective, $S$ is well-defined.
+		Then we have $TSw = Tv = w$, which shows that $TS$ acts as the identity element from $\mathbf{W}$, as we aimed to show; it remains to prove the converse.
 
-		Define $S \in \Ell(\mathbf{W},\mathbf{V})$ such that $\bvec{w}_{i} \mapsto \bvec{v}_{j}$, we will show that $TS$ acts as the identity map from $\mathbf{W}$.
-		Apply $S$ to $\Span \mathcal{C}$, and go from there
-			\begin{align*}
-				S(a_{1}\bvec{w}_{1} + \cdots + a_{m}\bvec{w}_{m}) &= a_{1}S\bvec{w}_{1} + \cdots + a_{m}S\bvec{w}_{m}, \\
-				&= a_{1}\bvec{v}_{1} + \cdots + a_{m}\bvec{v}_{m}, \\
-				TS(a_{1}\bvec{w}_{1} + \cdots + a_{m}\bvec{w}_{m}) &= T(a_{1}\bvec{v}_{1} + \cdots + a_{m}\bvec{v}_{m}), \\
-				&= a_{1}T\bvec{v}_{1} + \cdots + a_{m}T\bvec{v}_{m}, \\
-				&= a_{1}\bvec{w}_{1} + \cdots + a_{m}\bvec{w}_{m}.
-			\end{align*}
-		Hence, $TS\bvec{w} = \bvec{w}$, so $TS$ acts as the identity map from $\mathbf{W}$, as we aimed to show; it remains to prove the converse.
-
-		$\La)$ Assume there exists $S \in \Ell(\mathbf{W},\mathbf{V})$ such that $TS$ is the identity map on $\mathbf{W}$, we will show that $T$ is surjective, which is equivalent to proving $\range T = \mathbf{W}$.
-		Let $\bvec{w} \in \mathbf{W}$, notice that $S\bvec{w} \in \mathbf{V}$, so we can write $\bvec{v} = S\bvec{w}$.
-		Because $TS = I_{W}$, we have $\bvec{w} = TS\bvec{w} = T\bvec{v}$, so $\bvec{w} \in \mathbf{W}$ and $\bvec{w} \in \range T$.
-		It follows that $\range T = W$, which is equivalent to $T$ being surjective, as we aimed to prove.
-		Thus, for a finite-dimensional vector space $\mathbf{V}$, $T$ is surjective if and only if there exists $S \in \Ell(\mathbf{W},\mathbf{V})$ such that $TS$ is the identity map on $\mathbf{W}$.
+		$\La)$ Assume there exists $S \in \Ell(\mathbf{W},\mathbf{V})$ such that $TS$ is the identity map on $\mathbf{W}$, we will show that $T$ is surjective, using the definition of surjectivity\footnote{I tried to show that $\range T = \textbf{W}$ for awhile, and that was hard; Shida suggested that we just use the definition.}
+		Let $w \in \mathbf{W}$, and note that $S$ in this part of the proof is \textbf{not} defined as it is previously.\footnote{This is because the previous definition of $S$ utilized the fact that $T$ is surjective.}
+		Notice that $Sw \in V$, hence for some $v \in \mathbf{V}$ we know $Sw = v$.
+		By assumption $TSw = w$, but from the previous line we know that $Sw \in \mathbf{V}$ is the element that $T$ maps to $w$, and since $w$ is arbitrary, we have that $Tv = w$ for each $w \in \mathbf{W}$, which means that $T$ satisfies the definition of being a surjective mapping, as we aimed show.
 		\end{proof}
 		% subsection problem_21 (end)
 	% section section_3_b (end)
@@ -254,6 +260,11 @@
 		Prove that there exists a basis $w_{1}, \dots, w_{m}$ of $W$ such that all the entries in the first column of $\mathcal{M}(T)$ (with respect to the bases $v_{1}, \dots, v_{m}$ and $w_{1}, \dots, w_{m}$) are 0 except for possibly a 1 in the first row, first column.
 
 		\begin{proof}
+		Let $v_{1}, \dots, v_{m}$, $V$, $W$, and $T$ be as above.
+		I think the idea behind this problem is to show that matrices can be row-reduced, so we need to make a basis $w_{1}, \dots, w_{m}$ where $Tv_{1} = w_{1}$.
+		So, we have two cases: (1) $Tv_{1} = 0$; and (2) $Tv_{1} \neq 0$.
+		If $Tv_{1} = 0$, then any $w_{1}, \dots, w_{m}$ will work fine.
+		If $Tv_{1} \neq 0$, choose any $w_{1}, \dots, w_{m}$ so that $Tv_{1} = w_{1}$, as we alluded to above.
 		\end{proof}
 		% subsection problem_4 (end)
 
@@ -263,6 +274,7 @@
 		In other words, show that row $j$ of $AC$ equals (row $j$ of $A$) times $C$.
 
 		\begin{proof}
+		The notation for this problem was very cumbersome, so I wasn't able to come up with a good, clean solution.
 		\end{proof}
 		% subsection problem_10 (end)
 
@@ -271,10 +283,24 @@
 		In other words, suppose $A$, $B$, and $C$ are matrices whose sizes are such that $(AB)C$ makes sense. Prove that $A(BC)$ makes sense and that $(AB)C = A(BC)$.
 
 		\begin{proof}
+		As a consequence of my previous abstract algebra coursework, I hate proving that something is associative directly from the definition, its tedious and error-prone, so I tried to avoid that here.
+		Recall that multiplication of linear maps is associative, and that linear maps can always be expressed as a matrix, we just need to ensure that the maps we're choosing have the appropriate dimensions.
+		Let $T \in \Ell(\F^n,\F^m)$, $S \in \Ell(\F^m,\F^p)$, and $R \in \Ell(\F^p,\F^q)$.
+		Next, let $\mathcal{M}(T) = A$, $\mathcal{M}(S) = B$, and $\mathcal{M}(R) = C$.
+		Recall again that by Theorem 3.43 $\mathcal{M}(ST) = \mathcal{M}(S)\mathcal{M}(T)$, using this we compute the following:
+			\begin{align*}
+			(AB)C &= (\mathcal{M}(T)\mathcal{M}(S))\mathcal{M}(R), \\
+			&= \mathcal{M}(TS)\mathcal{M}(R), \\
+			&= \mathcal{M}((TS)R), \\
+			&= \mathcal{M}(TSR), \\
+			&= \mathcal{M}(T(SR)), \\
+			&= \mathcal{M}(T)\mathcal{M}(SR), \\
+			&= \mathcal{M}(T)(\mathcal{M}(S)\mathcal{M}(R)), \\
+			&= A(BC).
+			\end{align*}
+		Thus, $(AB)C = A(BC)$ as we aimed to show.
+			
 		\end{proof}
 		% subsection problem_14 (end)
 	% section section_3_c (end)
-
-	\section*{Section 3.D}
-	% section section_3_d (end)
 \end{document}
