@@ -1,0 +1,329 @@
+%!TEX output_directory = temp
+\documentclass[letterpaper, 12pt]{amsart}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%% boilerplate packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\usepackage{amsmath,amssymb,amsthm}
+	\usepackage{marvosym}
+	\usepackage[mathscr]{euscript}
+	\usepackage{enumerate}
+	\usepackage{graphicx}
+	\usepackage{mathrsfs}
+	\usepackage{color}
+	\usepackage{hyperref}
+	\usepackage{verbatim}
+	\usepackage{stmaryrd}
+	\usepackage[margin=1.2in]{geometry}
+
+	\raggedbottom
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%% rename the abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% \renewcommand{\abstractname}{Introduction}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% sets %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		%% sets 
+		\DeclareMathOperator{\N}{\mathbb{N}}
+		\DeclareMathOperator{\Z}{\mathbb{Z}}
+		\DeclareMathOperator{\Zp}{\mathbb{Z}^{+}}
+		\DeclareMathOperator{\Q}{\mathbb{Q}}
+		\DeclareMathOperator{\Qp}{\mathbb{Q}^{+}}
+		\DeclareMathOperator{\Qc}{\mathbb{Q}^{c}}
+		\DeclareMathOperator{\R}{\mathbb{R}}
+		\DeclareMathOperator{\F}{\mathbb{F}}
+		\DeclareMathOperator{\Rp}{\mathbb{R}^{+}}
+		\DeclareMathOperator{\C}{\mathbb{C}}
+		\DeclareMathOperator{\Cnon}{\mathbb{C}^{\times}}
+		%% powerset of a set
+		\DeclareMathOperator{\pset}{\mathcal{P}}
+		%% set of continuous functions in a certain variable
+		\DeclareMathOperator{\cont}{\mathscr{C}}
+		%% set of functions in a certain variable
+		\DeclareMathOperator{\func}{\mathscr{F}}
+
+		\renewcommand{\null}{\text{null }}
+		\DeclareMathOperator{\range}{\text{range }}
+		
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% linear algebra %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		%% linear span
+		\DeclareMathOperator{\Ell}{\mathscr{L}}
+		%% bold vectors with arrows, and bold matrices
+		\newcommand{\bmat}[1]{{\mathbf{#1}}}
+		\newcommand{\bvec}[1]{{\vec{\mathbf{#1}}}}
+		%% independent vectors/matrices
+		\DeclareMathOperator{\ind}{\perp\!\!\!\perp}
+		%% order
+		\DeclareMathOperator{\ord}{\text{ord}}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%% probability & statistics %%%%%%%%%%%%%%%%%%%%%%%%%
+		%% probability, expectation, variance, etc.
+		\renewcommand{\Pr}{\mathbb{P}}
+		\DeclareMathOperator{\E}{\mathbb{E}}
+		\DeclareMathOperator{\var}{\rm Var}
+		\DeclareMathOperator{\sd}{\rm SD}
+		\DeclareMathOperator{\cov}{\rm Cov}
+		\DeclareMathOperator{\SE}{\rm SE}
+		\DeclareMathOperator{\ssreg}{{\rm SS}_{{\rm Reg}}}
+		\DeclareMathOperator{\ssr}{{\rm SS}_{{\rm Res}}}
+		\DeclareMathOperator{\sst}{{\rm SS}_{{\rm Tot}}}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% congruences %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\renewcommand{\mod}[1]{\ (\mathrm{mod}\ #1)}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% bracket notation %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		% I first used this for principal ideals, that is why the abbreviation is pid
+		\newcommand{\pid}[1]{\langle #1 \rangle}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% fatdot notation %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\makeatletter
+			\newcommand*\fatdot{\mathpalette\fatdot@{.5}}
+			\newcommand*\fatdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+		\makeatother
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% use pretty letters %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\DeclareMathOperator{\ep}{\varepsilon}
+		\DeclareMathOperator{\ph}{\varphi}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%% stolen from Jeske/Dugger %%%%%%%%%%%%%%%%%%%%%%%%%
+	% Some theorem-like environments, all numbered together starting at 1
+	% in each section.
+
+	% The default \theoremstyle is bold headings and italic body text.
+	\newtheorem{thm}{Theorem}[section]
+	\newtheorem{defn}[thm]{Definition}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{claim}[thm]{Claim}
+	\newtheorem{cor}[thm]{Corollary}
+	\newtheorem{lemma}[thm]{Lemma}
+
+	\theoremstyle{definition}  % Bold headings and Roman body text.
+	\newtheorem{example}[thm]{Example}
+	\newtheorem{examples}[thm]{Examples}
+	\newtheorem{exercise}[thm]{Exercise}
+	\newtheorem{note}[thm]{Note}
+	\newtheorem{remark}[thm]{Remark}
+	\newtheorem{remarks}[thm]{Remarks}
+	\newtheorem{discussion}[thm]{Discussion}
+
+	\newcommand{\dfn}{\textbf} % Make defined words bold.
+	\newcommand{\mdfn}[1]{\dfn{\mathversion{bold}#1}} % Even make math symbols bold
+
+	% Various commands that are useful.  Please add your own.
+
+	\DeclareMathOperator{\Arg}{Arg}
+	\DeclareMathOperator{\re}{Re}
+	\DeclareMathOperator{\im}{Im}
+	\DeclareMathOperator{\Log}{Log}
+	\DeclareMathOperator{\Span}{Span}
+
+	\newcommand{\iso}{\cong}						% isometric/congruent
+	\newcommand{\ra}{\rightarrow}                   % right arrow
+	\newcommand{\Ra}{\Rightarrow}                   % right implies
+	\newcommand{\lra}{\longrightarrow}              % long right arrow
+	\newcommand{\la}{\leftarrow}                    % left arrow
+	\newcommand{\La}{\Leftarrow}                    % left implies
+	\newcommand{\lla}{\longleftarrow}               % long left arrow
+	\newcommand{\llra}[1]{\stackrel{#1}{\lra}}      % labeled long right arrow
+	\newcommand{\we}{\llra{\sim}}                   % weak equivalence
+	\newcommand{\cof}{\rightarrowtail}              % cofibration
+	\newcommand{\fib}{\twoheadrightarrow}           % fibration
+	\newcommand{\inc}{\hookrightarrow}              % inclusion
+	\newcommand{\dbra}{\rightrightarrows}           % double arrow for equalizer diagrams
+	\newcommand{\eqra}{\llra{\sim}}                 % equivalence/isomorphism
+
+	% \newcommand{\blank}{\underbar{\ \ }}          % An underscore, as in (__)xV
+	\newcommand{\blank}{-}                          % A hyphen, as in (-)xV
+	\newcommand{\Id}{Id}                            % The identity functor
+	\newcommand{\und}{\underline}
+	\newcommand{\norm}[1]{\mid \!\!#1 \!\!\mid}             %\norm{x} gives |x|
+
+	% These commands are for the period and comma in the lower right entry of
+	% a diagram.  They put the punctuation 2 pts to the right, but make
+	% TeX (and hence the diagram package) unaware of the extra width
+	% of that entry.
+	\newcommand{\period}    {{\makebox[0pt][l]{\hspace{2pt} .}}}
+	\newcommand{\comma}     {{\makebox[0pt][l]{\hspace{2pt} ,}}}
+	\newcommand{\semicolon} {{\makebox[0pt][l]{\hspace{2pt} ;}}}
+
+	\newcommand{\Cech}{\v{C}ech}
+	\newcommand{\scat}{\Delta}
+	\newcommand{\assign}{\ra}
+	\newcommand{\copr}{\,\amalg\,}
+	\newcommand{\ovcat}{\downarrow}
+	\newcommand{\pder}[2]{{\frac{\partial #1}{\partial #2}}}
+	\newcommand{\del}{\nabla}
+	\newcommand{\vectr}[1]{{\mbox{\boldmath $#1$}}}
+	\newcommand{\uvectr}[1]{\vectr{\hat #1}}
+	\newcommand{\ihat}{\uvectr \imath}
+	\newcommand{\jhat}{\uvectr \jmath}
+	\newcommand{\khat}{\uvectr k}
+	\newcommand{\rhat}{\uvectr r}
+	\newcommand{\thhat}{\uvectr \theta}
+	\newcommand{\zhat}{\uvectr z}
+	\newcommand{\rhohat}{\uvectr \rho}
+	\newcommand{\phihat}{\uvectr \phi}
+	\newcommand{\grad}{\vectr{\vec\nabla}}
+	% \newcommand{\R}{\mathbb{R}}
+	\newcommand{\vv}[1]{\vectr{v_{#1}}}
+	\newcommand{\crad}{0.1}
+	\newcommand{\lline}[1]{\overleftrightarrow{#1}}
+	\DeclareMathOperator{\area}{area}
+	\DeclareMathOperator{\vol}{vol}
+	\newcommand{\ray}[1]{\overset{\rightarrow}{#1}}
+	\newcommand{\sr}[2]{???}
+	\newcommand{\iihat}{i}
+	\newcommand{\jjhat}{j}
+	\newcommand{\kkhat}{k}
+
+		
+\begin{document}
+	\title{Homework 6  -- Math 441 \\ \today}
+	\author{Alex Thies \\ \href{mailto:athies@uoregon.edu}{\lowercase{athies$@$uoregon.edu}}}
+
+	\maketitle
+
+	Assignment: 3.D - 7, 9, 15, 20; 3.E - 5;
+
+	\section*{Section 3.D}
+		\subsection*{Exercise 7}
+		Suppose $V$ and $W$ are finite-dimensional. 
+		Let $v \in V$. 
+		Let $$E = \{ T \in \Ell(V,W) : Tv = 0 \}$$
+		\begin{enumerate}[\hspace{5mm} (a)]
+			\item Show that $E$ is a subspace of $\Ell(V,W)$.
+			\item Suppose $v \neq 0$. What is $\dim E$?
+		\end{enumerate}
+		
+		\begin{proof}
+			\textbf{Part (a)}
+			Let $V,W,v,E$ be as above.
+			First, by definition it is clear that $E \subset \Ell(V,W)$, so to show that $E$ is a subspace, it remains to show that $E$ is closed under addition and scalar multiplication.
+			Let $S,T \in E$, then compute $(S+T)v = Sv + Tv = 0 + 0 = 0$, hence $(S+T) \in E$.
+			Let $\lambda \in \F$, then compute $(\lambda T)v = \lambda (Tv) = \lambda \, 0 = 0$, hence $\lambda T \in E$.
+			Thus, we have shown that $E$ is closed under addition and scalar multiplication, therefore it is a subspace.
+			
+			\textbf{Part (b)}
+			Let $v \neq 0$, and extend it to a basis $v, v_{2}, \dots, v_{n}$; let $w_{1}, \dots, w_{m} \in W$ be a basis of $W$, then by Theorem 3.60 we have an isometry between $\Ell(V,W)$ and $\F^{m,n}$. 
+			By Theorem 3.61 we know that $\dim{\Ell(V,W)} = mn$, hence $\dim{E} \leq mn$.
+			This doesn't actually help us, but it gives us an idea of what we're looking for.
+
+			Notice that for $Tv = 0$ such that $v \neq 0$, it must be true that $\mathcal{M}(T)$ has its first column be all zeroes.
+			In other words, we lose the basis element $v$ from $v, v_{2}, \dots, v_{n}$, leaving us with $v_{2}, \dots, v_{n}$, an $n-1$ length list, hence instead of $\F^{m,n}$ we're using $\F^{m,n-1}$.
+			Thus, we have that $\dim E = m(n-1)$; notice that $m(n-1) < mn$, so this fits with what we'd expect from the first paragraph.
+		\end{proof}
+		% subsection exercise_7 (end)
+
+		\subsection*{Exercise 9}
+		Suppose $V$ is finite-dimensional and $S,T \in \Ell(V)$. 
+		Prove that $ST$ is invertible if and only if both $S$ and $T$ are invertible.
+		
+		\begin{proof}
+		Let $V, S, T$ be as above.
+
+		$\Ra)$ Assume $ST$ is invertible.
+		Then there exists a map $R \in \Ell(V)$ such that $R(ST) = I = (ST)R$.
+		We will use this map, and some vectors, to show that $T$ is injective, and therefore invertible; similarly we will show that $S$ is surjective, and therefore invertible.
+
+		Let $v \in V$.
+		Then $v = Iv = (ST)Rv = S(TRv)$, which implies that $v \in \range S$, and since $v$ was arbitrarily chosen we have that $V = \range S$, implying that $S$ is surjective.
+		We know that for linear operators, surjectivity implies invertibility, so $S$ is invertibile.
+
+		Let $u \in V$ such that $u \in \null T$.
+		Then $u = Iu = R(ST)u = (RS)Tu = RS \cdot 0 = 0$.
+		As before, since $u \in \null T$ was arbitrarily chosen, we have that $\null T = \{0\}$, which implies that $T$ is injective.
+		Just as surjectivity is equivalent to invertibility for linear operators, injectivity is as well, hence we have that $T$ is invertibile, as we aimed to show.
+
+		$\La)$ Assume that $S$ and $T$ are each invertibile; we will show that $ST$ is also invertibile.
+		Then there exist $S^{-1}, T^{-1} \in \Ell(V)$ such that $S^{-1}S = SS^{-1} = I = TT^{-1} = T^{-1}T$.
+		Then, we compute the following,
+			\begin{align*}
+				(ST)(T^{-1}S^{-1}) &= S(TT^{-1})S^{-1}, \\
+				&= SIS^{-1}, \\
+				&= SS^{-1}, \\
+				&= I. \\
+				\\
+				(T^{-1}S^{-1})(ST) &= T^{-1}(S^{-1}S)T, \\
+				&= T^{-1}IT, \\
+				&= T^{-1}T, \\
+				&= I.
+			\end{align*}
+		Hence, we can see that $ST$ is invertibile, as we aimed to show.			
+		\end{proof}
+		% subsection exercise_9 (end)
+
+		\subsection*{Exercise 15}
+		Prove that every linear map from $\F^{n,1}$ to $\F^{m,1}$ is given by a matrix multiplication. 
+		In other words, prove that if $T \in \Ell(\F^{n,1}, \F^{m,1})$, then there exists an $m$-by-$n$ matrix $A$ such that $Tx = Ax$ for every $x \in \F^{n,1}$.
+		
+		\begin{proof}
+		Let $\F^{n,1}$, $\F^{m,1}$ be as above, let $x \in \F^{n,1}$, and assume $T \in \Ell(\F^{n,1}, \F^{m,1})$; we will show that there exists an $m$-by-$n$ matrix $A$ such that $Tx = Ax$ for every $x \in \F^{n,1}$.
+		As usual, we begin by defining some bases.
+		Let $\mathcal{E}_{n}$ and $\mathcal{E}_{m}$ be the standard bases for $\F^{n,1}$ and $\F^{m,1}$, respectively.
+		The respective basis elements from $\mathcal{E}_{n}$ or $\mathcal{E}_{m}$ are matrices of all zeroes, except for exactly one 1 in the appropriate spot along the diagonal.
+		Let $A = \mathcal{M}(T;\mathcal{E}_{m},\mathcal{E}_{n})$, i.e., let $A$ be the matrix representation of $T$ with respect to the standard bases.
+		With these bases we also have that $Tx = \mathcal{M}(Tx; \mathcal{E}_{m},\mathcal{E}_{n})$ and $x = \mathcal{M}(x;\mathcal{E}_{m},\mathcal{E}_{n})$.
+		Finally, we apply Theorem 3.65,
+			\begin{align*}
+				Tx &= \mathcal{M}(Tx), \\
+				&= \mathcal{M}(T)\mathcal{M}(x), \\
+				&= Ax.
+			\end{align*}
+		Hence, we have shown that $T \in \Ell(\F^{n,1}, \F^{m,1})$ implies that there exists an $m$-by-$n$ matrix $A$ such that $Tx = Ax$ for every $x \in \F^{n,1}$.
+		\end{proof}
+		% subsection exercise_15 (end)
+
+		\subsection*{Exercise 20}
+		Suppose $n$ is a positive integer and $A_{i,j} \in \F$ for $i,j = 1, \dots, n$. 
+		Prove that the following are equivalent (note that in both parts below, the number of equations equals the number of variables):
+		\begin{enumerate}[\hspace{5mm} (a)]
+			\item The trivial solution $x_{1} = \cdots = x_{n} = 0$ is the only solution to the homogeneous system of equations
+			\begin{align*}
+				\sum_{k=1}^{n} A_{1,k} \, x_{k} &= 0 \\
+				\vdots & \\
+				\sum_{k=1}^{n} A_{n,k} \, x_{k} &= 0.
+			\end{align*}
+			
+			\item For every $c_{1}, \dots , c_{n} \in \F$, there exists a solution to the system of equations
+			\begin{align*}
+				\sum_{k=1}^{n} A_{1,k} \, x_{k} &= c_{1} \\
+				\vdots & \\
+				\sum_{k=1}^{n} A_{n,k} \, x_{k} &= c_{n}.
+			\end{align*}
+		\end{enumerate}
+		
+		\begin{proof}
+		Let $n, A_{i,j}$ be as above.
+		Notice by the bounds on the sum, and the indices on the summands, that we are working in $\Ell(V)$ for $V$ such that $\dim V = n$.
+		Therefore, we're working in a vector space in which injectivity, surjectivity, and invertibility are equivalent, moreover we know that the number of variables equals the number of equations, allowing us to use Theorems 3.23 and 3.26.
+		Part (a) states that the only solution to the homogeneous system of equations is the trivial solution, which implies that the corresponding linear map is injective. 
+		Part (b) states that the given non-homogeneous system of equations has solutions for each arbitrarily chosen $c_{1}, \dots , c_{n} \in \F$, which implies that the corresponding linear maps is surjective.
+		As we mentioned above, in this case injectivity is equivalent to surjectivity, as we aimed to show.
+		\end{proof}
+		% subsection exercise_20 (end)
+	% section section_3_d (end)
+
+	\section*{Section 3.E}
+		\subsection*{Exercise 5}
+		Suppose $W_{1}, \dots, W_{m}$ are vector spaces. 
+		Prove that $\Ell(V, W_{1} \times \cdots \times W_{m})$ and $\Ell(V,W_{1}) \times \cdots \times \Ell(V,W_{m})$ are isomorphic vector spaces.
+		
+		\begin{proof}
+		Let $W_{1}, \dots, W_{m}$, $\Ell(V, W_{1} \times \cdots \times W_{m})$ and $\Ell(V,W_{1}) \times \cdots \times \Ell(V,W_{m})$ be as above.
+		By Theorem 3.59 it will suffice to show that $\dim{[\Ell(V, W_{1} \times \cdots \times W_{m})]} = \dim{[\Ell(V,W_{1}) \times \cdots \times \Ell(V,W_{m})]}$.
+		Notice that $\Ell(V,W_{1}) \times \cdots \times \Ell(V,W_{m})$ is a product of $m$ vector spaces, so its elements are $m$-tuples whose components are linear maps from $V$ to the appropriate $W_{j}$, it follows that $\dim{[\Ell(V,W_{1}) \times \cdots \times \Ell(V,W_{m})]} = m$.
+		Therefore, if we show that $\dim{[\Ell(V, W_{1} \times \cdots \times W_{m})]} = m$, then we're done.
+		The easiest way to accomplish this is probably to show that the dimension of a basis of $\Ell(V, W_{1} \times \cdots \times W_{m})$ is of length $m$.
+
+		Let $\mathcal{B}$ be a basis for $\Ell(V,W_{1} \times \cdots \times W_{m})$, in order for this basis to be linearly independent and spanning, it must be of length $m$.
+		Hence $\dim{[\Ell(V,W_{1} \times \cdots \times W_{m})]} = m$ as we aimed to show, more importantly, we have shown that $\Ell(V, W_{1} \times \cdots \times W_{m})$ and $\Ell(V,W_{1}) \times \cdots \times \Ell(V,W_{m})$ are isomorphic, as desired.
+		\end{proof}
+		% subsection exercise_5 (end)
+	% section section_3_e (end)
+\end{document}
