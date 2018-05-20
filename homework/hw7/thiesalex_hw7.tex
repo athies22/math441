@@ -1,0 +1,265 @@
+%!TEX output_directory = temp
+\documentclass[letterpaper, 12pt]{amsart}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%% boilerplate packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\usepackage[margin=1.2in]{geometry}
+		\usepackage{amsmath,amssymb,amsthm}
+		\usepackage{marvosym}
+		\usepackage[mathscr]{euscript}
+		\usepackage{enumerate}
+		\usepackage{graphicx}
+		\usepackage{mathrsfs}
+		\usepackage{color}
+		\usepackage{hyperref}
+		\usepackage{verbatim}
+		\usepackage{stmaryrd}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%% rename the abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		% \renewcommand{\abstractname}{Introduction}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% sets %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\DeclareMathOperator{\N}{\mathbb{N}}				% natural numbers
+		\DeclareMathOperator{\Z}{\mathbb{Z}}				% integers
+		\DeclareMathOperator{\Zp}{\mathbb{Z}^{+}}			% positive integers
+		\DeclareMathOperator{\Q}{\mathbb{Q}}				% rationals
+		\DeclareMathOperator{\Qc}{\mathbb{Q}^{c}}			% irrationals
+		\DeclareMathOperator{\R}{\mathbb{R}}				% reals
+		\DeclareMathOperator{\F}{\mathbb{F}}				% a field
+		\DeclareMathOperator{\C}{\mathbb{C}}				% complex numbers
+		\DeclareMathOperator{\Cnon}{\mathbb{C}^{\times}}	% nonzero complex numbers
+		\DeclareMathOperator{\Pcal}{\mathcal{P}}			% powerset, or set of polynomials
+		\DeclareMathOperator{\Ell}{\mathscr{L}}				% set of linear maps, or linear operator
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% use pretty letters %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\DeclareMathOperator{\ep}{\varepsilon}				% epsilons
+		\DeclareMathOperator{\ph}{\varphi}					% phis
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% algebra %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\renewcommand{\null}{\text{null }}					% null space
+		\DeclareMathOperator{\range}{\text{range }}			% range
+		\newcommand{\bmat}[1]{{\mathbf{#1}}}				% bold matrix
+		\newcommand{\bvec}[1]{{\vec{\mathbf{#1}}}}			% bold vector
+		\DeclareMathOperator{\ind}{\perp\!\!\!\perp}		% perpendicular, orthogonal
+		\DeclareMathOperator{\ord}{\text{ord}}				% order of a structure
+		\DeclareMathOperator{\Log}{Log}						% logarithm
+		\DeclareMathOperator{\Span}{Span}					% span
+		\newcommand{\pid}[1]{\langle #1 \rangle}			% bracket notation, used for 
+															% ideals or inner products
+		\newcommand{\norm}[1]{\mid \!\!#1 \!\!\mid}			%\norm{x} gives |x|
+
+		% fatdot notation
+		\makeatletter
+			\newcommand*\fatdot{\mathpalette\fatdot@{.5}}
+			\newcommand*\fatdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+		\makeatother
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%% probability & statistics %%%%%%%%%%%%%%%%%%%%%%%%%
+		\renewcommand{\Pr}{\mathbb{P}}						% probability
+		\DeclareMathOperator{\E}{\mathbb{E}}				% expectation
+		\DeclareMathOperator{\var}{\rm Var}					% variance
+		\DeclareMathOperator{\sd}{\rm SD}					% standard deviation
+		\DeclareMathOperator{\cov}{\rm Cov}					% covariance
+		\DeclareMathOperator{\SE}{\rm SE}					% standard error
+		\DeclareMathOperator{\ssreg}{{\rm SS}_{{\rm Reg}}}	% sum of squared regression
+		\DeclareMathOperator{\ssr}{{\rm SS}_{{\rm Res}}}	% sum of squared residuals
+		\DeclareMathOperator{\sst}{{\rm SS}_{{\rm Tot}}}	% total sum of squares
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% number theory %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\renewcommand{\mod}[1]{\ (\mathrm{mod}\ #1)}		% congruences
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%% theorem environments %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		% Some theorem-like environments, all numbered together starting at 1
+		% in each section.
+
+		\newtheorem{thm}{Theorem}[section]					% The default \theoremstyle is 
+		\newtheorem{defn}[thm]{Definition}					% bold headings and italic body text.
+		\newtheorem{prop}[thm]{Proposition}
+		\newtheorem{claim}[thm]{Claim}
+		\newtheorem{cor}[thm]{Corollary}
+		\newtheorem{lemma}[thm]{Lemma}
+
+		\theoremstyle{definition}  							% Bold headings and Roman body text.
+		\newtheorem{example}[thm]{Example}
+		\newtheorem{examples}[thm]{Examples}
+		\newtheorem{exercise}[thm]{Exercise}
+		\newtheorem{note}[thm]{Note}
+		\newtheorem{remark}[thm]{Remark}
+		\newtheorem{remarks}[thm]{Remarks}
+		\newtheorem{discussion}[thm]{Discussion}
+
+		\newcommand{\dfn}{\textbf} 							% Make defined words bold.
+		\newcommand{\mdfn}[1]{\dfn{\mathversion{bold}#1}} 	% Even make math symbols bold
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% complex numbers %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\DeclareMathOperator{\Arg}{Arg}						% argument of z \in \C
+		\DeclareMathOperator{\re}{Re}						% real component
+		\DeclareMathOperator{\im}{Im}						% imaginary component
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% various symbols %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\newcommand{\iso}{\cong}						% isometric/congruent
+		\newcommand{\ra}{\rightarrow}                   % right arrow
+		\newcommand{\Ra}{\Rightarrow}                   % right implies
+		\newcommand{\lra}{\longrightarrow}              % long right arrow
+		\newcommand{\la}{\leftarrow}                    % left arrow
+		\newcommand{\La}{\Leftarrow}                    % left implies
+		\newcommand{\lla}{\longleftarrow}               % long left arrow
+		\newcommand{\eqra}{\llra{\sim}}                 % equivalence/isomorphism
+		\newcommand{\blank}{\underbar{\ \ }}          	% An underscore, as in (__)xV
+		% \newcommand{\blank}{-}                          % A hyphen, as in (-)xV
+		\newcommand{\Id}{Id}                            % The identity functor
+		\newcommand{\und}{\underline}
+		\newcommand{\del}{\nabla}						% gradient vector
+
+		\raggedbottom		
+\begin{document}
+	\title{Homework 7  -- Math 441 \\ \today}
+	\author{Alex Thies \\ \href{mailto:athies@uoregon.edu}{\lowercase{athies$@$uoregon.edu}}}
+
+	\maketitle
+
+	Assignment: 3.E - 7, 13, 16; 4 - 4, 5; 5.A - 3, 6, 12, 17, 21;
+
+	\section*{Section 3.E}
+		\subsection*{Exercise 7}
+		Suppose $v, x$ are vectors in $V$ and $U, W$ are subspaces of $V$ such that $v + U = x + W$. 
+		Prove that $U = W$.
+
+		\begin{proof}
+		Let $v, x, V, U, W$ be as above.
+		Then $v = x + w_{1}$ for some $w_{1} \in W$, and by Theorem 3.85 we have $v - x \in W$.
+		Thus, for some $u \in U$ it follows that $v + u = x + w_{2}$ for some $w_{2} \in W$.
+		Therefore, we have that $u = (x-v) + w_{2} = -(v-x) + w_{2} = -w_{1}+w_{2} \in W$.
+		Since $u$ was chosen arbitrarily, we have shown that $U \subseteq W$, \textit{mutatis mutandis} to show that $W \subseteq U$.
+		Hence, by double-inclusion we have shown that $U = W$, as we aimed to do.
+		\end{proof}
+		% subsection exercise_7 (end)
+
+		\subsection*{Exercise 13}
+		Suppose $U$ is a subspace of $V$ and $v_{1} + U, \dots, v_{m} + U$ is a basis of $V/U$ and $u_{1}, \dots, u_{n}$ is a basis of $U$. 
+		Prove that $v_{1}, \dots, v_{m}, \dots, u_{n}$ is a basis of $V$.
+
+		\begin{proof}
+		Let $U, V, v_{1} + U, \dots, v_{m} + U$, and $u_{1}, \dots, u_{n}$ be as above.
+		Notice that since $v_{1} + U, \dots, v_{m} + U$ and $u_{1}, \dots, u_{n}$ are bases, they are linearly independent by themselves, and $v_{1}, \dots, v_{m}, u_{1}, \dots, u_{n}$ is linearly independent in $V$.
+		Additionally, these bases tell us that $\dim V/U = m$ and $\dim U = n$.
+		By Theorem 3.89 we know that $$\dim V = \dim V/U + \dim U,$$ if $V$ is a finite-dimensional vector space and $U \subseteq V$ is a subspace.
+		Notice that $\dim[v_{1}, \dots, v_{m}, u_{1}, \dots, u_{n}] = m+n$, so $v_{1}, \dots, v_{m}, \dots, u_{n}$ is a linearly independent list of the appropriate length to be a basis of $V$, if $V$ is finite-dimensional.
+		Therefore, to show that $v_{1}, \dots, v_{m}, u_{1}, \dots, u_{n}$ is a basis of $V$, it will suffice to show that $V$ is finite-dimensional.
+		\end{proof}
+		% subsection exercise_13 (end)
+
+		\subsection*{Exercise 16}
+		Suppose $U$ is a subspace of $V$ such that $\dim V/U = 1$. 
+		Prove that there exists $\ph \in \Ell(V, \F)$ such that $\null \ph = U$.
+
+		\begin{proof}
+		Let $U,V$ be as above.
+		The fact that $\dim V/U = 1$ tells us that there exists a $v \in V$ such that $v \notin U$ and such that $v + U$ is a basis of $V/U$.
+		We can send scalar multiples of $v$ to themselves in $\F$, i.e. define the linear map $\psi : V/U \to \F$ by the mapping $\lambda v + U \mapsto \lambda$, clearly $\psi \in \Ell(V/U,\F)$.
+		Next, we can use the quotient map to send things from $V$ to $V/U$, if we compose these two functions we'll have $\ph(\lambda v) = (\psi \circ \pi)(\lambda v) = \lambda$.
+		More formally, define $\ph : V \to V/U \to \F$ by the mapping $\lambda v \mapsto \lambda v + U \mapsto \lambda$. 
+		\end{proof}
+		% subsection exercise_16 (end)
+	% section section_3_e (end)
+
+	\section*{Section 4}
+		\subsection*{Exercise 4}
+		Suppose $m$ and $n$ are positive integers with $m \leq n$, and suppose $\lambda_{1}, \dots, \lambda_{m} \in \F$􏰃. 
+		Prove that there exists a polynomial $p \in \mathcal{P}(\F)$ with $\deg p = n$ such that $0 = p(\lambda_{1}) = \dots = p(\lambda_{m})$ and such that $p$ has no other zeros.
+
+		\begin{proof}
+		Let $m,n$ be as above.
+		Define $p(z) = (z - \lambda_{1}) \cdots (z - \lambda_{m})$ for $\lambda_{1}, \dots, \lambda_{m} \in \F$; notice $p \in \mathcal{P}(\F)$.
+		Then $p$ has $\lambda_{1}, \dots, \lambda_{m}$ as roots, but we can see that $\deg p = m$, which is too small.
+		Let $q = n-m+1$, then modify $p$ so that $\tilde{p}(z) = (z - \lambda_{1})^{q} \cdots (z - \lambda_{m})$.
+		Then we still have exactly $\lambda_{1}, \dots, \lambda_{m}$ as roots, and with $m-1$ linear factors each with multiplicity 1, and 1 linear factor with multiplicity $q = n-m+1$, it follows that $\deg \tilde{p} = n$.
+		Hence, we have shown that here exists a polynomial $p \in \mathcal{P}(\F)$ with $\deg p = n$ such that $0 = p(\lambda_{1}) = \dots = p(\lambda_{m})$ and such that $p$ has no other zeros, as we aimed to do.
+		\end{proof}
+		% subsection exercise_4 (end)
+
+		\subsection*{Exercise 5}
+		Suppose $m$ is a nonnegative integer, $z_{1}, \dots, z_{m+1}$ are distinct elements of $\F$, and $w_{1}, \dots, w_{m+1} \in \F$.
+		Prove that there exists a unique polynomial $p \in \mathcal{P}_{m}(\F)$ such that $$p(z_{j}) = w_{j}$$ for $j = 1, \dots, m+1$.
+
+		\begin{proof}
+		Let $m, z_{1}, \dots, z_{m+1}$, and $w_{1}, \dots, w_{m+1}$ be as above.
+		Define $T : \mathcal{P}_{m}(\F) \to \F^{m+1}$ by the mapping $Tp \mapsto (p(z_{1}), \dots, p(z_{m+1})) = (w_{1}, \dots, w_{m+1})$.
+		We will prove existence and uniqueness by showing that $T$ is a bijection, but first we have to show that $T$ is a linear map.
+		To show that $T$ is a linear map we will show that it is closed under addition and scalar multiplication.
+		Let $q,r \in \mathcal{P}_{m}(\F)$.
+		Then, $T(q+r) = ((q+r)(z_{1}), \dots, (q+r)(z_{m+1}))$, since $(q+r) \in \mathcal{P}_{m}(\F)$, it follows that $T$ is closed under addition.
+		Let $\lambda \in \F$.
+		Then, $T(\lambda q) = (\lambda q(z_{1}), \dots, \lambda q(z_{m+1})) = \lambda (q(z_{1}), \dots, q(z_{m+1}))$, so we have that $T$ is closed under scalar multiplication, hence $T \in \Ell(\mathcal{P}_{m}(\F), \F^{m+1})$; it remains to show that $T$ is a bijection.
+
+		\textbf{Injective}.
+		Let $s \in \null T$, then $s(z_{1}) = \cdots = s(z_{m+1})) = 0$, which implies that $s$ is a degree 4 polynomial that somehow has $m+1$ distinct roots.
+		This contradiction tells us that $s = 0$, therefore $T$ is injective.
+
+		\textbf{Surjective}.
+		By the FTLM we have,
+		\begin{align*}
+			\dim \range T &= \dim \mathcal{P}_{m}(\F) - \dim \null T, \\
+			&= m + 1 - 0, \\
+			&= \dim \F^{m+1}. \\
+			&\Ra \, \text{$T$ is surjective}.
+		\end{align*}
+		Hence, $T$ is both injective, and surjective, therefore it is a bijection as we aimed to show.
+		
+		\end{proof}
+		% subsection exercise_5 (end)
+	% section section_4 (end)
+
+	\section*{Section 5.A}
+		\subsection*{Exercise 3}
+		Suppose $S,T \in \Ell(V)$ are such that $ST = TS$. 
+		Prove that $\range S$ is invariant under $T$.
+
+		\begin{proof}
+		\end{proof}
+		% subsection exercise_3 (end)
+
+		\subsection*{Exercise 6}
+		Prove or give a counterexample: if $V$ is finite-dimensional and $U$ is a subspace of $V$ that is invariant under every operator on $V$, then $U = \{ 0 \}$ or $U = V$.
+
+		\begin{proof}
+		\end{proof}
+		% subsection exercise_6 (end)
+
+		\subsection*{Exercise 12}
+		Define $T \in \Ell\left( \mathcal{P}_{4}(\R) \right)$ by $$(Tp)(x) = xp'(x)$$ for all $x = \R$. 
+		Find all eigenvalues and eigenvectors of $T$.
+
+		\begin{proof}
+		\end{proof}
+		% subsection exercise_12 (end)
+
+		\subsection*{Exercise 17}
+		Give an example of an operator $T \in \Ell (\R^{4})$ such that $T$ has no (real) eigenvalues.
+
+		\begin{proof}
+		\end{proof}
+		% subsection exercise_17 (end)
+
+		\subsection*{Exercise 21}
+		Suppose $T \in \Ell(V)$ is invertible.
+		\begin{enumerate}[\hspace{5mm} (a)]
+			\item Suppose $\lambda \in \F$ with $\lambda \neq 0$.
+			Prove that $\lambda$ is an eigenvalue of $T$ if and only if $\tfrac{1}{\lambda}$ is an eigenvalue of $T^{-1}$.
+
+			\item Prove that $T$ and $T^{-1}$ have the same eigenvectors.
+		\end{enumerate}
+		
+		\begin{proof}
+		\end{proof}
+		% subsection exercise_21 (end)
+	% section section_5_a (end)
+\end{document}
