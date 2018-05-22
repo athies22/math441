@@ -2,7 +2,7 @@
 \documentclass[letterpaper, 12pt]{amsart}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%% boilerplate packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\usepackage[margin=1.2in]{geometry}
+		\usepackage[margin=1.5in]{geometry}
 		\usepackage{amsmath,amssymb,amsthm}
 		\usepackage{marvosym}
 		\usepackage[mathscr]{euscript}
@@ -145,15 +145,15 @@
 
 		\subsection*{Exercise 13}
 		Suppose $U$ is a subspace of $V$ and $v_{1} + U, \dots, v_{m} + U$ is a basis of $V/U$ and $u_{1}, \dots, u_{n}$ is a basis of $U$. 
-		Prove that $v_{1}, \dots, v_{m}, \dots, u_{n}$ is a basis of $V$.
+		Prove that $v_{1}, \dots, v_{m},u_{1}, \dots, u_{n}$ is a basis of $V$.
 
 		\begin{proof}
 		Let $U, V, v_{1} + U, \dots, v_{m} + U$, and $u_{1}, \dots, u_{n}$ be as above.
-		Notice that since $v_{1} + U, \dots, v_{m} + U$ and $u_{1}, \dots, u_{n}$ are bases, they are linearly independent by themselves, and $v_{1}, \dots, v_{m}, u_{1}, \dots, u_{n}$ is linearly independent in $V$.
-		Additionally, these bases tell us that $\dim V/U = m$ and $\dim U = n$.
-		By Theorem 3.89 we know that $$\dim V = \dim V/U + \dim U,$$ if $V$ is a finite-dimensional vector space and $U \subseteq V$ is a subspace.
-		Notice that $\dim[v_{1}, \dots, v_{m}, u_{1}, \dots, u_{n}] = m+n$, so $v_{1}, \dots, v_{m}, \dots, u_{n}$ is a linearly independent list of the appropriate length to be a basis of $V$, if $V$ is finite-dimensional.
-		Therefore, to show that $v_{1}, \dots, v_{m}, u_{1}, \dots, u_{n}$ is a basis of $V$, it will suffice to show that $V$ is finite-dimensional.
+		Let $w \in V$, to show that $v_{1}, \dots, v_{m},u_{1}, \dots, u_{n}$ is a basis of $V$, we will show that $w \in \Span(v_{1}, \dots, v_{m},u_{1}, \dots, u_{n})$.
+		Since $v_{1} + U, \dots, v_{m} + U$ is a basis of $V/U$, we have $$w + U = a_{1}(v_{1} + U) + \cdots + a_{m}(v_{m}+U).$$ By Theorem 3.85 we have that $w - (a_{1}v_{1} + \cdots + a_{m}v_{m}) \in U$.
+		Therefore, we can express this difference in terms of a basis of $U$, i.e., $$w - (a_{1}v_{1} + \cdots + a_{m}v_{m}) = b_{1}u_{1} + \cdots + b_{n}u_{n}.$$ 
+		This allows us to write $$w = a_{1}v_{1} + \cdots + a_{m}v_{m} + b_{1}u_{1} + \cdots + b_{n}u_{n}.$$ 
+		Therefore, $w \in \Span(v_{1}, \dots, v_{m},u_{1}, \dots,u_{n})$, and $v_{1}, \dots, v_{m},u_{1}, \dots, u_{n}$ is a basis of $V$, as we aimed to show.
 		\end{proof}
 		% subsection exercise_13 (end)
 
@@ -163,10 +163,24 @@
 
 		\begin{proof}
 		Let $U,V$ be as above.
-		The fact that $\dim V/U = 1$ tells us that there exists a $v \in V$ such that $v \notin U$ and such that $v + U$ is a basis of $V/U$.
-		We can send scalar multiples of $v$ to themselves in $\F$, i.e. define the linear map $\psi : V/U \to \F$ by the mapping $\lambda v + U \mapsto \lambda$, clearly $\psi \in \Ell(V/U,\F)$.
-		Next, we can use the quotient map to send things from $V$ to $V/U$, if we compose these two functions we'll have $\ph(\lambda v) = (\psi \circ \pi)(\lambda v) = \lambda$.
-		More formally, define $\ph : V \to V/U \to \F$ by the mapping $\lambda v \mapsto \lambda v + U \mapsto \lambda$. 
+		The best way forward will be to define a map from $V/U \to \F$, and then build $\ph$ as the composition of our map with the quotient map $\pi : V \to V/U$.
+		Since linear maps are closed under composition, this new composition of maps $\ph$ will be in the vector space $\Ell(V, \F)$, like we want.
+		We will have to pick a map from $V/U \to \F$ so that we get the desired property that $\null \ph = U$.
+
+		The fact that $\dim V/U = 1$ tells us that there exists a $v \in V$ where $v \notin U$ and such that $v + U$ is a basis of $V/U$.
+		We can send scalar multiples of these $v$ to the scalar in $\F$, and since $v \notin U$, every $u \in U$ will be sent to $0$.
+		So, define the linear map $\psi : V/U \to \F$ by the mapping $\lambda v + U \mapsto \lambda$.
+		Next, let $\ph = \psi \circ \pi$, notice that $\ph : V \to V/U \to \F$, so $\ph \in \Ell(V,\F)$, like we want.
+		We will proceed by double-inclusion to show that $\null \ph = U$.
+
+		\textbf{Step 1} ($\null \ph \subset U$).
+		Let $w \in V$ such that $\ph(w) = 0$.
+		It follows by the way we created $\ph$, that $w + U = 0v + U$, hence $w \in U$ and $\null \ph \subset U$.
+
+		\textbf{Step 2} ($U \subset \null \ph$).
+		Let $u \in U$.
+		Then $\pi(u) = u + U = 0 + U = 0v + U$, hence $\psi$ sends $u$ to $0$, i.e. $\ph(u) = 0$, and $u \in \null \ph$.
+		Thus, $U \subset \null \ph$, and by the double-inclusion that we have just shown, we have $U = \null \ph$, as desired.
 		\end{proof}
 		% subsection exercise_16 (end)
 	% section section_3_e (end)
@@ -178,11 +192,11 @@
 
 		\begin{proof}
 		Let $m,n$ be as above.
-		Define $p(z) = (z - \lambda_{1}) \cdots (z - \lambda_{m})$ for $\lambda_{1}, \dots, \lambda_{m} \in \F$; notice $p \in \mathcal{P}(\F)$.
+		Define $p: \mathcal{P}(\F) \to \F$ by $p(z) \mapsto (z - \lambda_{1})\cdots(z - \lambda_{m})$.
 		Then $p$ has $\lambda_{1}, \dots, \lambda_{m}$ as roots, but we can see that $\deg p = m$, which is too small.
-		Let $q = n-m+1$, then modify $p$ so that $\tilde{p}(z) = (z - \lambda_{1})^{q} \cdots (z - \lambda_{m})$.
-		Then we still have exactly $\lambda_{1}, \dots, \lambda_{m}$ as roots, and with $m-1$ linear factors each with multiplicity 1, and 1 linear factor with multiplicity $q = n-m+1$, it follows that $\deg \tilde{p} = n$.
-		Hence, we have shown that here exists a polynomial $p \in \mathcal{P}(\F)$ with $\deg p = n$ such that $0 = p(\lambda_{1}) = \dots = p(\lambda_{m})$ and such that $p$ has no other zeros, as we aimed to do.
+		Let $q = n-m+1$, then modify $p$ so that $\tilde{p}(z) \mapsto (z - \lambda_{1})^{q} \cdots (z - \lambda_{m})$.
+		Then we still have exactly $\lambda_{1}, \dots, \lambda_{m}$ as roots, and now with $m-1$ linear factors each with multiplicity 1, and one linear factor with multiplicity $q = n-m+1$, it follows that $\deg \tilde{p} = n$.
+		Hence, for $m \leq n$, we have shown that here exists a polynomial $\tilde{p} \in \mathcal{P}_{n}(\F)$ that has exactly $\lambda_{1}, \dots, \lambda_{m}$ as its roots, as we aimed to do.
 		\end{proof}
 		% subsection exercise_4 (end)
 
@@ -201,19 +215,19 @@
 		Then, $T(\lambda q) = (\lambda q(z_{1}), \dots, \lambda q(z_{m+1})) = \lambda (q(z_{1}), \dots, q(z_{m+1}))$, so we have that $T$ is closed under scalar multiplication, hence $T \in \Ell(\mathcal{P}_{m}(\F), \F^{m+1})$; it remains to show that $T$ is a bijection.
 
 		\textbf{Injective}.
-		Let $s \in \null T$, then $s(z_{1}) = \cdots = s(z_{m+1})) = 0$, which implies that $s$ is a degree 4 polynomial that somehow has $m+1$ distinct roots.
-		This contradiction tells us that $s = 0$, therefore $T$ is injective.
+		Because no $p \in \mathcal{P}_{m}(\F)$ has more than $m$ roots, it is impossible for any nonzero $p \in \mathcal{P}_{m}(\F)$ to be mapped to the $(m+1)$tuple of zeros, hence $\null T = \{ 0 \}$.
+		This implies that $T$ is injective, and that these polynomials $p$ are unique.
 
 		\textbf{Surjective}.
 		By the FTLM we have,
 		\begin{align*}
 			\dim \range T &= \dim \mathcal{P}_{m}(\F) - \dim \null T, \\
 			&= m + 1 - 0, \\
-			&= \dim \F^{m+1}. \\
-			&\Ra \, \text{$T$ is surjective}.
+			&= \dim \F^{m+1}.
 		\end{align*}
-		Hence, $T$ is both injective, and surjective, therefore it is a bijection as we aimed to show.
-		
+		This implies that $T$ is surjective, which guarantees that each list $w_{1},\dots,w_{m+1} \in \F^{m+1}$ will get hit by $T$.
+		Hence, $T$ is both injective, and surjective as we aimed to show.
+		As a result of this map $T$, it follows that there exists a unique polynomial $p \in \mathcal{P}_{m}(\F)$ such that $p(z_{j}) = w_{j}$ for $j = 1, \dots, m+1$.	
 		\end{proof}
 		% subsection exercise_5 (end)
 	% section section_4 (end)
@@ -224,6 +238,18 @@
 		Prove that $\range S$ is invariant under $T$.
 
 		\begin{proof}
+		Let $S,T$ be as above, and let $u \in \range S$.
+		Then, there exists $v \in V$ such that $u = Sv$.
+		To show that $\range S$ is invariant under $T$, we will show that $Tu \in \range S$.
+		Consider the following,
+			\begin{align*}
+				Tu &= T(Sv), \\
+				&= (TS)v, \\
+				&= (ST)v, \\
+				&= S(Tv) \in \range S.
+			\end{align*}
+		Since $u$ was arbitrarily chosen, we have that $Tu \in \range S$, hence $\range S$ is invariant under $T$, as we aimed to prove.
+			
 		\end{proof}
 		% subsection exercise_3 (end)
 
@@ -231,6 +257,13 @@
 		Prove or give a counterexample: if $V$ is finite-dimensional and $U$ is a subspace of $V$ that is invariant under every operator on $V$, then $U = \{ 0 \}$ or $U = V$.
 
 		\begin{proof}
+		Let $V$ be finite-dimensional. 
+		We will proceed by contrapositive and show that $U \neq \{0\}$ and $U \neq V$ together imply that there exists an operator $T$ on $V$ such that $U$ is not invariant under $T$.
+		Let $U$ be a subspace of $V$ such that $U \neq \{0\}$ and $U \neq V$.
+		Then, let $u \in U - \{0\}$.
+		Since $u \neq 0$, it is linearly independent as a list, extend it to a basis of $V$, e.g., $u, v_{1}, \dots, v_{m}$ is a basis of $V$.
+		Define a linear operator $T : V \to V$ by $a_{1}u + a_{2}u_{1} + \dots + u_{m+1}u_{m} \mapsto b_{1}w$ where $w \in V/U$.
+		Notice that since $w \in V/U$, we know that $w \notin U$; moreover, we have that $Tu = w$ which implies that $U$ is not invariant under $T$, as we aimed to show.
 		\end{proof}
 		% subsection exercise_6 (end)
 
@@ -239,13 +272,47 @@
 		Find all eigenvalues and eigenvectors of $T$.
 
 		\begin{proof}
+		Let $q \in \mathcal{P}_{4}(\F)$, and let $1,x,x^2,x^3,x^4$ be a basis of $\mathcal{P}_{4}(\F)$, then $$q(x) = a_{0} + a_{1}x + a_{2}x^{2} + a_{3}x^{3} + a_{4}x^{4}.$$ We can see that applying $T$ to $q$ yields $Tq = a_{1}x + 2a_{2}x^{2} + 3a_{3}x^{3} + 4a_{4}x^{4}$.
+		Recall that linear maps are additive, therefore we have,
+			\begin{align*}
+				(Tq)(x) &= T(a_{0} + a_{1}x + a_{2}x^{2} + a_{3}x^{3} + a_{4}x^{4}), \\
+				&= T(a_{0}) + T(a_{1}x) + T(a_{2}x^{2}) + T(a_{3}x^{3}) + T(a_{4}x^{4}), \\
+				&= a_{1}x + 2a_{2}x^{2} + 3a_{3}x^{3} + 4a_{4}x^{4}, \\
+				&= \lambda_{0}\left( 0 \right) + \lambda_{1}\left( a_{1}x \right) + \lambda_{2}\left( a_{2}x^{2} \right) + \lambda_{3}\left( a_{3}x^{3} \right) + \lambda_{4}\left( a_{4}x^{4} \right).
+			\end{align*}
+		Hence, we can see that $\lambda_{0} = 0, \lambda_{1} = 1, \lambda_{2} = 2, \lambda_{3} = 3, \lambda_{4} = 4$ with corresponding eigenvectors that can be seen above.
+		To be clear, we have eigenvectors $v_{0} = 1, $
 		\end{proof}
 		% subsection exercise_12 (end)
 
 		\subsection*{Exercise 17}
-		Give an example of an operator $T \in \Ell (\R^{4})$ such that $T$ has no (real) eigenvalues.
+		Give an example of an operator $T \in \Ell \left( \R^{4} \right)$ such that $T$ has no (real) eigenvalues.
 
 		\begin{proof}
+		My initial idea for this proof was to modify Example 5.8(a) from the text, because it presents a simple case to think about, but I couldn't think about what a linear operator looks like that does counterclockwise rotation in $\R^{4}$.
+		Fortunately, Example 5.8(a) presents an easily copy-able pattern, which we use here.
+
+		Consider $T \in \Ell(\R^{4})$ such that $$(x_{1},x_{2},x_{3},x_{4}) \mapsto (-x_{2},x_{1},-x_{4},x_{3}).$$
+		Then suppose $T$ has a real eigenvalues, i.e., suppose there exists $\lambda \in \R$ such that $T(x_{1},x_{2},x_{3},x_{4}) = \lambda(x_{1},x_{2},x_{3},x_{4})$ and one of $x_{i}$ is not zero.
+		This implies that $(-x_{2},x_{1},-x_{4},x_{3}) = \lambda(x_{1},x_{2},x_{3},x_{4})$, hence we have the following system of equations,
+			\begin{align*}
+				\lambda x_{1} + x_{2} &= 0, \\
+				\lambda x_{2} - x_{1} &= 0, \\
+				\lambda x_{3} + x_{4} &= 0, \\
+				\lambda x_{4} - x_{3} &= 0.
+			\end{align*}
+		Multiplying the corresponding binomials yields,
+			\begin{align*}
+			(\lambda x_{1} + x_{2})(\lambda x_{2} - x_{1}) &= 0, \\
+			\lambda^{2}x_{1}x_{2} - \lambda x_{1}x_{1} + \lambda x_{2}x_{2} - x_{1}x_{2} &= 0, \\
+			\lambda^{2}x_{1}x_{2} - (\lambda x_{1})x_{1} + (\lambda x_{2}) x_{2} - x_{1}x_{2} &= 0, \\
+			\lambda^{2}x_{1}x_{2} + x_{2}x_{1} + x_{1}x_{2} - x_{1}x_{2} &= 0, \\
+			\lambda^{2}x_{1}x_{2} + x_{1}x_{2} &=0, \\
+			\lambda^{2}x_{1}x_{2} &= - x_{1}x_{2}.
+			\end{align*}
+		\textit{Mutatis mutandis} to show that we also have $\lambda^{2}x_{3}x_{4} = - x_{3}x_{4}$.
+		Since at least one of $x_{i}$ is not zero, we have that $\lambda^{2} = -1$ which is true if and only if $\lambda = i \ \lightning$
+		This contradicts our assumption that $\lambda \in \R$, hence $T$ has no real eigenvalues, as we aimed to prove.
 		\end{proof}
 		% subsection exercise_17 (end)
 
@@ -259,6 +326,50 @@
 		\end{enumerate}
 		
 		\begin{proof}
+		Let $T \in \Ell(V)$ be invertible; recall that this is equivalent to $T$ is a bijection.
+
+		\textbf{Part (a)}.
+		Let $\lambda$ be as above.
+		Recall, since $\F$ is a field and $\lambda \neq 0$, there exists $\lambda^{-1} = 1/\lambda \in \F$ such that $\lambda\lambda^{-1}=1$.
+
+		$\Ra)$ Assume $\lambda$ is an eigenvalue of $T$.
+		Then for some nonzero $v \in V$ we have $$Tv = \lambda v.$$
+		Apply $T^{-1}$ to each side and we see that,
+		\begin{align*}
+			Tv &= \lambda v, \\
+			T^{-1}Tv &= T^{-1}(\lambda v), \\
+			v &= \lambda T^{-1}v, \\
+			\lambda^{-1}v &= \lambda^{-1}\lambda T^{-1}v, \\
+			\lambda^{-1}v &= T^{-1}v.
+		\end{align*}
+		Notice that by definition, $\lambda^{-1}$ is an eigenvalue of $T^{-1}$, as we aimed to show.
+
+		$\La)$ Assume $\lambda^{-1}$ is an eigenvalue of $T^{-1}$.
+		Then for some nonzero $v \in V$ we have $$T^{-1}v = \lambda^{-1} v.$$
+		Apply $T$ to each side and we see that,
+		\begin{align*}
+			T^{-1}v &= \lambda^{-1} v, \\
+			TT^{-1}v &= T(\lambda^{-1} v), \\
+			v &= \lambda^{-1} Tv, \\
+			\lambda v &= \lambda\lambda^{-1} Tv, \\
+			\lambda v &= Tv.
+		\end{align*}
+		Notice that by definition, $\lambda$ is an eigenvalue of $T$, thus $\lambda$ is an eigenvalue of $T$ if and only if $\lambda^{-1}$ is an eigenvalue of $T^{-1}$, as we aimed to show.
+
+		\textbf{Part (b)}.
+		A linear operator $T \in \Ell(V)$ either has eigenvalues, or it doesn't.
+		If $T$ has no eigenvalues, then it's trivial for the purposes of this question, so assume $T$ has eigenvalues $\lambda_{i}$ for $i = 0, 1, 2, \dots$; recall that if $\dim V = n$, then $i \leq n$, however if $V$ is infinite-dimensional, then $i$ has no upper bound.\footnote{A good example for the infinite-dimensional case would be to alter Exercise 5.A.12 so that instead of $\Ell(\mathcal{P}_{4}(\R)$ the maps were drawn from $\Ell(\mathcal{P}(\R))$. It is easily seen that in this case the eigenvalues would be $\lambda_{i} = i$ for $i = 0,1,2,\dots$.}
+		We continue to disregard the case where $\lambda_{i} = 0$, because by Theorem 5.6 $(T - 0 \cdot I) = T$ is not invertible, so there doesn't even exist a $T^{-1}$ to have identical eigenvectors.
+		Then, for some nonzero $v_{i} \in V$ we have $$Tv_{i} = \lambda_{i}v_{i}.$$
+		Consider one of sets of equations from the proof of part (a) but with the addition of our subscripts,
+		\begin{align*}
+			Tv_{i} &= \lambda_{i}v_{i}, \\
+			T^{-1}Tv_{i} &= T^{-1}\lambda_{i} v_{i}, \\
+			v_{i} &= \lambda_{i} T^{-1}v_{i}, \\
+			\lambda_{i}^{-1}v_{i} &= T^{-1}v_{i}.
+		\end{align*}
+		Notice that for each pair $\lambda_{i}, \lambda_{i}^{-1}$ guaranteed by part (a), they have the same corresponding eigenvector $v_{i}$.
+		It follows that for $\lambda_{i} \neq 0$, the maps $T$ and $T^{-1}$ have the same eigenvectors.
 		\end{proof}
 		% subsection exercise_21 (end)
 	% section section_5_a (end)
