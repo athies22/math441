@@ -1,0 +1,260 @@
+%!TEX output_directory = temp
+\documentclass[letterpaper, 12pt]{amsart}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%% boilerplate packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\usepackage[margin=1.5in]{geometry}
+		\usepackage{amsmath,amssymb,amsthm}
+		\usepackage{marvosym}
+		\usepackage[mathscr]{euscript}
+		\usepackage{enumerate}
+		\usepackage{graphicx}
+		\usepackage{mathrsfs}
+		\usepackage{color}
+		\usepackage{hyperref}
+		\usepackage{verbatim}
+		\usepackage{stmaryrd}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%% rename the abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		% \renewcommand{\abstractname}{Introduction}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% sets %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\DeclareMathOperator{\N}{\mathbb{N}}				% natural numbers
+		\DeclareMathOperator{\Z}{\mathbb{Z}}				% integers
+		\DeclareMathOperator{\Zp}{\mathbb{Z}^{+}}			% positive integers
+		\DeclareMathOperator{\Q}{\mathbb{Q}}				% rationals
+		\DeclareMathOperator{\Qc}{\mathbb{Q}^{c}}			% irrationals
+		\DeclareMathOperator{\R}{\mathbb{R}}				% reals
+		\DeclareMathOperator{\F}{\mathbb{F}}				% a field
+		\DeclareMathOperator{\C}{\mathbb{C}}				% complex numbers
+		\DeclareMathOperator{\Cnon}{\mathbb{C}^{\times}}	% nonzero complex numbers
+		\DeclareMathOperator{\Pcal}{\mathcal{P}}			% powerset, or set of polynomials
+		\DeclareMathOperator{\Ell}{\mathscr{L}}				% set of linear maps, or linear operator
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% use pretty letters %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\DeclareMathOperator{\ep}{\varepsilon}				% epsilons
+		\DeclareMathOperator{\ph}{\varphi}					% phis
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% algebra %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\renewcommand{\null}{\text{null }}					% null space
+		\DeclareMathOperator{\range}{\text{range }}			% range
+		\newcommand{\bmat}[1]{{\mathbf{#1}}}				% bold matrix
+		\newcommand{\bvec}[1]{{\vec{\mathbf{#1}}}}			% bold vector
+		\DeclareMathOperator{\ind}{\perp\!\!\!\perp}		% perpendicular, orthogonal
+		\DeclareMathOperator{\ord}{\text{ord}}				% order of a structure
+		\DeclareMathOperator{\Log}{Log}						% logarithm
+		\DeclareMathOperator{\Span}{Span}					% span
+		\newcommand{\pid}[1]{\langle #1 \rangle}			% bracket notation, used for 
+															% ideals or inner products
+		\newcommand{\norm}[1]{\mid \!\!#1 \!\!\mid}			%\norm{x} gives |x|
+
+		% fatdot notation
+		\makeatletter
+			\newcommand*\fatdot{\mathpalette\fatdot@{.5}}
+			\newcommand*\fatdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+		\makeatother
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%% probability & statistics %%%%%%%%%%%%%%%%%%%%%%%%%
+		\renewcommand{\Pr}{\mathbb{P}}						% probability
+		\DeclareMathOperator{\E}{\mathbb{E}}				% expectation
+		\DeclareMathOperator{\var}{\rm Var}					% variance
+		\DeclareMathOperator{\sd}{\rm SD}					% standard deviation
+		\DeclareMathOperator{\cov}{\rm Cov}					% covariance
+		\DeclareMathOperator{\SE}{\rm SE}					% standard error
+		\DeclareMathOperator{\ssreg}{{\rm SS}_{{\rm Reg}}}	% sum of squared regression
+		\DeclareMathOperator{\ssr}{{\rm SS}_{{\rm Res}}}	% sum of squared residuals
+		\DeclareMathOperator{\sst}{{\rm SS}_{{\rm Tot}}}	% total sum of squares
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% number theory %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\renewcommand{\mod}[1]{\ (\mathrm{mod}\ #1)}		% congruences
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%% theorem environments %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		% Some theorem-like environments, all numbered together starting at 1
+		% in each section.
+
+		\newtheorem{thm}{Theorem}[section]					% The default \theoremstyle is 
+		\newtheorem{defn}[thm]{Definition}					% bold headings and italic body text.
+		\newtheorem{prop}[thm]{Proposition}
+		\newtheorem{claim}[thm]{Claim}
+		\newtheorem{cor}[thm]{Corollary}
+		\newtheorem{lemma}[thm]{Lemma}
+
+		\theoremstyle{definition}  							% Bold headings and Roman body text.
+		\newtheorem{example}[thm]{Example}
+		\newtheorem{examples}[thm]{Examples}
+		\newtheorem{exercise}[thm]{Exercise}
+		\newtheorem{note}[thm]{Note}
+		\newtheorem{remark}[thm]{Remark}
+		\newtheorem{remarks}[thm]{Remarks}
+		\newtheorem{discussion}[thm]{Discussion}
+
+		\newcommand{\dfn}{\textbf} 							% Make defined words bold.
+		\newcommand{\mdfn}[1]{\dfn{\mathversion{bold}#1}} 	% Even make math symbols bold
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% complex numbers %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\DeclareMathOperator{\Arg}{Arg}						% argument of z \in \C
+		\DeclareMathOperator{\re}{Re}						% real component
+		\DeclareMathOperator{\im}{Im}						% imaginary component
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% various symbols %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\newcommand{\iso}{\cong}						% isometric/congruent
+		\newcommand{\ra}{\rightarrow}                   % right arrow
+		\newcommand{\Ra}{\Rightarrow}                   % right implies
+		\newcommand{\lra}{\longrightarrow}              % long right arrow
+		\newcommand{\la}{\leftarrow}                    % left arrow
+		\newcommand{\La}{\Leftarrow}                    % left implies
+		\newcommand{\lla}{\longleftarrow}               % long left arrow
+		\newcommand{\eqra}{\llra{\sim}}                 % equivalence/isomorphism
+		\newcommand{\blank}{\underbar{\ \ }}          	% An underscore, as in (__)xV
+		% \newcommand{\blank}{-}                          % A hyphen, as in (-)xV
+		\newcommand{\Id}{Id}                            % The identity functor
+		\newcommand{\und}{\underline}
+		\newcommand{\del}{\nabla}						% gradient vector
+
+		\raggedbottom		
+\begin{document}
+	\title{Homework 8  -- Math 441 \\ \today}
+	\author{Alex Thies \\ \href{mailto:athies@uoregon.edu}{\lowercase{athies$@$uoregon.edu}}}
+
+	\maketitle
+
+	Assignment: 5.A - 25, 30, 33; 5.B - 2, 6, 7, 13;
+
+	\section*{Section 5.A}
+		\subsection*{Exercise 25}
+		Suppose $T \in \Ell(V)$ and $u,v$ are eigenvectors of $T$ such that $u + v$ is also an eigenvector of $T$. 
+		Prove that $u$ and $v$ are eigenvectors of $T$ corresponding to the same eigenvalue.
+
+		\begin{proof}
+		Let $T,u,v$ be as above.
+		Let $\lambda_{1},\lambda_{2},\lambda_{3} \in \F$ be the eigenvalues corresponding to $u,v,u+v$.
+		Then we have $$Tu = \lambda_{1}u, \hspace{2.5mm} \text{and } \hspace{2.5mm} Tv = \lambda_{2}v.$$
+		Since $u+v$ is also an eigenvector, we can see that
+			\begin{align*}
+				T(u+v) &= \lambda_{3}(u + v), \\
+				Tu + Tv &= \lambda_{3}u + \lambda_{3}v, \\
+				\lambda_{1}u + \lambda_{2}v &= \lambda_{3}u + \lambda_{3}v, \\
+				u(\lambda_{1} - \lambda_{3}) + v(\lambda_{2} - \lambda_{3}) &= 0.
+			\end{align*}
+		Since $u$ and $v$ are eigenvectors we know that $u \neq 0$ and $v \neq 0$. 
+		Therefore, since $\lambda_{i} \in \F$ where $\F$ is a field, the above implies that $\lambda_{1} = \lambda_{3}$ and $\lambda_{2} = \lambda_{3}$, so by transitivity they are each equal to one another.
+		It follows that $u$ and $v$ have the same corresponding eigenvalue, as we aimed to prove.
+		\end{proof}
+		% subsection exercise_25 (end)
+
+		\subsection*{Exercise 30}
+		Suppose $T \in \Ell(\R^{3})$ and 􏰋$-4$, $5$, and $\sqrt{7}$ are eigenvalues of $T$.
+		Prove that there exists $x \in \R^{3}$ such that $Tx - 9x = (-4, 5, \sqrt{7})$.
+
+		\begin{proof}
+		Let $T$ be as above.
+		Since $\dim \F^{3} = 3$ we know by Theorem 5.13 that $\lambda_{1} = -4$, $\lambda_{2} = 5$, and $\lambda_{3} = \sqrt{7}$ are all of $T$'s eigenvalues, and therefore $9$ is not an eigenvalue of $T$.
+		Thus, by Theorem 5.6, it follows that $T - 9I$ is surjective.
+		It follows that for $(-4, 5, \sqrt{7}) \in \F^3$ there exists $x \in \F^3$ such that $(T-9I)x = Tx - 9x = (-4, 5, \sqrt{7})$, as desired.
+		\end{proof}
+		% subsection exercise_30 (end)
+
+		\subsection*{Exercise 33}
+		Suppose $T \in \Ell(V)$.
+		Prove that $T/(\range T) = 0$.
+
+		\begin{proof}
+		Let $T$ be as above.
+		Recall that $\range T \subseteq V$ is invariant under $T$.
+		Therefore, $T/(\range T)$ is a quotient operator.
+		Let $v + \range T \in V/(\range T)$, then by the definition of quotient operators we have $$T/(\range T)(v + \range T) = Tv + \range T.$$
+		Notice that $Tv \in \range T$, so $Tv + \range T = 0$, therefore $T/(\range T)(v + \range T) = 0$.
+		Since $v + \range T$ is arbitrary, it follows that $T/(\range T) = 0$, as we aimed to prove.
+		\end{proof}
+		% subsection exercise_33 (end)
+	% section section_5_a (end)
+
+	\section*{Section 5.B}
+		\subsection*{Exercise 2}
+		Suppose $T \in \Ell(V)$ and $(T - 2I)(T - 3I)(T - 4I) = 0$.
+		Suppose􏰀 $\lambda$ is an eigenvalue of $T$. 
+		Prove that $\lambda = 2$, or $\lambda = 3$, or $\lambda = 4$.
+
+		\begin{proof}
+		Let $T \in \Ell(V)$ and $\lambda$ be an eigenvalue of $T$ with corresponding eigenvector $v \in V$.
+		Notice that $(T - 2I)(T - 3I)(T - 4I) = 0$ is a third-degree polynomial operator that has been factored.
+		We'll show that we can write this polynomial in terms of the eigenvalue $\lambda$ in place of the operator $T$.
+		Observe the following pattern,
+			\begin{align*}
+				T^{2}v &= T(Tv), \\
+				&= T(\lambda v), \\
+				&= \lambda^2 v; \\
+				\\
+				T^3v &= T(T^2v), \\
+				&= T(\lambda^2v), \\
+				&= \lambda^{3}; \\
+				&\vdots \\
+				T^nv &= T(T^{n-1}v), \\
+				&= T(\lambda^{n-1}v), \\
+				&= \lambda^{n}v.
+			\end{align*}
+		This allows us to write $$(T - 2I)(T - 3I)(T - 4I) = (\lambda - 2I)(\lambda - 3I)(\lambda - 4I)$$ for the eigenvalue $\lambda$.
+		Consider $((\lambda - 2I)(\lambda - 3I)(\lambda - 4I))v = 0$ for the corresponding eigenvector $v$.
+		Since $v \neq 0$, it follows that $(\lambda - 2I)(\lambda - 3I)(\lambda - 4I) = 0$.
+		This occurs when $\lambda = 2$, or $\lambda = 3$, or $\lambda = 4$, as desired.
+		\end{proof}
+		% subsection exercise_2 (end)
+
+		\subsection*{Exercise 6}
+		Suppose $T \in \Ell(V)$ and $U$ is a subspace of $V$ invariant under $T$. 
+		Prove that $U$ is invariant under $p(T)$ for every polynomial $p \in \mathcal{P}(\F)$.
+
+		\begin{proof}
+		Let $T \in \Ell(V)$ and $U$ be as above.
+		We will proceed by induction over the natural numbers.
+
+		INDUCTION
+		\end{proof}
+		% subsection exercise_6 (end)
+
+		\subsection*{Exercise 7}
+		Suppose $T \in \Ell(V)$. 
+		Prove that $9$ is an eigenvalue of $T^2$ if and only if $3$ or $-􏰋3$ is an eigenvalue of $T$.
+
+		\begin{proof}
+		Let $T \in \Ell(V)$.
+
+		$\Ra)$ Assume $\lambda = 9$ is an eigenvalue of $T^2$ with corresponding eigenvector $v$.
+		Then by Theorem 5.10 we know $T^2-9I = (T+3I)(T-3I)$ is not injective.
+		In Exercise 3.B.11 we showed that the product of injective linear maps is injective.
+		If we apply the contrapositive in this case, that the product of linear maps not being injective implies that the factors are each not injective, then we see that each of $(T+3I),(T-3I)$ are not injective.
+		Theorem 5.10 can be applied again to conclude that $\pm3$ are eigenvalues for $T$, as desired.
+		It remains to prove the converse.
+
+		$\La)$ Assume $\lambda = \pm3$ is an eigenvalue of $T$ with corresponding eigenvector $v$.
+		In Exercise 2 we showed that $T^nv = \lambda^nv$, so we can apply that here and compute that 
+			\begin{align*}
+				T^{2}v &= \lambda^2v, \\
+				&= 3^2v = (-3)^2v, \\
+				&= 9v.
+			\end{align*}
+		It follows that $9$ is an eigenvalue of $T^2$, as we aimed to show.
+		\end{proof}
+		% subsection exercise_7 (end)
+
+		\subsection*{Exercise 13}
+		Suppose $W$ is a complex vector space and $T \in \Ell(W)$ has no eigenvalues. 
+		Prove that every subspace of $W$ invariant under $T$ is either $\{ 0 \}$ or infinite- dimensional.
+
+		\begin{proof}
+		Let $W$ be a vector space over $\C$ and $T \in \Ell(W)$ is such that $T$ has no eigenvalues.
+		Suppose by way of contradiction that $U$ is a finite-dimensional subspace of $W$ that is invariant under $T$, and $U \neq \{0\}$.
+		Since $U \neq \{0\}$, we know by Theorem 5.21 that $T|_{U}$ has an eigenvalue $\lambda$ with corresponding eigenvector $v$ and $v \neq 0 \, \lightning$
+		This contradicts our assumption that $T$ has no eigenvalues, hence $U$ must either be $\{ 0 \}$, or infinite-dimensional.
+		\end{proof}
+		% subsection exercise_13 (end)
+	% section section_5_b (end)
+\end{document}
