@@ -1,0 +1,355 @@
+%!TEX output_directory = temp
+\documentclass[letterpaper, 12pt]{amsart}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%% boilerplate packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\usepackage[margin=2in]{geometry}
+		\usepackage{amsmath,amssymb,amsthm}
+		\usepackage{marvosym}
+		\usepackage[mathscr]{euscript}
+		\usepackage{enumerate}
+		\usepackage{graphicx}
+		\usepackage{mathrsfs}
+		\usepackage{color}
+		\usepackage{hyperref}
+		\usepackage{verbatim}
+		\usepackage{stmaryrd}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%% rename the abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		% \renewcommand{\abstractname}{Introduction}
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% sets %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\DeclareMathOperator{\N}{\mathbb{N}}				% natural numbers
+		\DeclareMathOperator{\Z}{\mathbb{Z}}				% integers
+		\DeclareMathOperator{\Zp}{\mathbb{Z}^{+}}			% positive integers
+		\DeclareMathOperator{\Q}{\mathbb{Q}}				% rationals
+		\DeclareMathOperator{\Qc}{\mathbb{Q}^{c}}			% irrationals
+		\DeclareMathOperator{\R}{\mathbb{R}}				% reals
+		\DeclareMathOperator{\F}{\mathbb{F}}				% a field
+		\DeclareMathOperator{\C}{\mathbb{C}}				% complex numbers
+		\DeclareMathOperator{\Cnon}{\mathbb{C}^{\times}}	% nonzero complex numbers
+		\DeclareMathOperator{\Pcal}{\mathcal{P}}			% powerset, or set of polynomials
+		\DeclareMathOperator{\Ell}{\mathscr{L}}				% set of linear maps, or linear operator
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% use pretty letters %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\DeclareMathOperator{\ep}{\varepsilon}				% epsilons
+		\DeclareMathOperator{\ph}{\varphi}					% phis
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% algebra %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\renewcommand{\null}{\text{null }}					% null space
+		\DeclareMathOperator{\range}{\text{range }}			% range
+		\newcommand{\bmat}[1]{{\mathbf{#1}}}				% bold matrix
+		\newcommand{\bvec}[1]{{\vec{\mathbf{#1}}}}			% bold vector
+		\DeclareMathOperator{\ind}{\perp\!\!\!\perp}		% perpendicular, orthogonal
+		\DeclareMathOperator{\ord}{\text{ord}}				% order of a structure
+		\DeclareMathOperator{\Log}{Log}						% logarithm
+		\DeclareMathOperator{\Span}{Span}					% span
+		\newcommand{\pid}[1]{\langle #1 \rangle}			% bracket notation, used for 
+															% ideals or inner products
+		\newcommand{\norm}[1]{\mid \!\!#1 \!\!\mid}			%\norm{x} gives |x|
+
+		% fatdot notation
+		\makeatletter
+			\newcommand*\fatdot{\mathpalette\fatdot@{.5}}
+			\newcommand*\fatdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+		\makeatother
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%% probability & statistics %%%%%%%%%%%%%%%%%%%%%%%%%
+		\renewcommand{\Pr}{\mathbb{P}}						% probability
+		\DeclareMathOperator{\E}{\mathbb{E}}				% expectation
+		\DeclareMathOperator{\var}{\rm Var}					% variance
+		\DeclareMathOperator{\sd}{\rm SD}					% standard deviation
+		\DeclareMathOperator{\cov}{\rm Cov}					% covariance
+		\DeclareMathOperator{\SE}{\rm SE}					% standard error
+		\DeclareMathOperator{\ssreg}{{\rm SS}_{{\rm Reg}}}	% sum of squared regression
+		\DeclareMathOperator{\ssr}{{\rm SS}_{{\rm Res}}}	% sum of squared residuals
+		\DeclareMathOperator{\sst}{{\rm SS}_{{\rm Tot}}}	% total sum of squares
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% number theory %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\renewcommand{\mod}[1]{\ (\mathrm{mod}\ #1)}		% congruences
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%% theorem environments %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		% Some theorem-like environments, all numbered together starting at 1
+		% in each section.
+
+		\newtheorem{thm}{Theorem}[section]					% The default \theoremstyle is 
+		\newtheorem{defn}[thm]{Definition}					% bold headings and italic body text.
+		\newtheorem{prop}[thm]{Proposition}
+		\newtheorem{claim}[thm]{Claim}
+		\newtheorem{cor}[thm]{Corollary}
+		\newtheorem{lemma}[thm]{Lemma}
+
+		\theoremstyle{definition}  							% Bold headings and Roman body text.
+		\newtheorem{example}[thm]{Example}
+		\newtheorem{examples}[thm]{Examples}
+		\newtheorem{exercise}[thm]{Exercise}
+		\newtheorem{note}[thm]{Note}
+		\newtheorem{remark}[thm]{Remark}
+		\newtheorem{remarks}[thm]{Remarks}
+		\newtheorem{discussion}[thm]{Discussion}
+
+		\newcommand{\dfn}{\textbf} 							% Make defined words bold.
+		\newcommand{\mdfn}[1]{\dfn{\mathversion{bold}#1}} 	% Even make math symbols bold
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% complex numbers %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\DeclareMathOperator{\Arg}{Arg}						% argument of z \in \C
+		\DeclareMathOperator{\re}{Re}						% real component
+		\DeclareMathOperator{\im}{Im}						% imaginary component
+
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% various symbols %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\newcommand{\iso}{\cong}						% isometric/congruent
+		\newcommand{\ra}{\rightarrow}                   % right arrow
+		\newcommand{\Ra}{\Rightarrow}                   % right implies
+		\newcommand{\lra}{\longrightarrow}              % long right arrow
+		\newcommand{\la}{\leftarrow}                    % left arrow
+		\newcommand{\La}{\Leftarrow}                    % left implies
+		\newcommand{\lla}{\longleftarrow}               % long left arrow
+		\newcommand{\eqra}{\llra{\sim}}                 % equivalence/isomorphism
+		\newcommand{\blank}{\underbar{\ \ }}          	% An underscore, as in (__)xV
+		% \newcommand{\blank}{-}                          % A hyphen, as in (-)xV
+		\newcommand{\Id}{Id}                            % The identity functor
+		\newcommand{\und}{\underline}
+		\newcommand{\del}{\nabla}						% gradient vector
+
+		\raggedbottom		
+\begin{document}
+	\title{Homework 9  -- Math 441 \\ \today}
+	\author{Alex Thies \\ \href{mailto:athies@uoregon.edu}{\lowercase{athies$@$uoregon.edu}}}
+
+	\maketitle
+
+	Assignment: 5.B - 15, 20; 5.C - 1, 3, 6, 8, 12, 14; 8.A - ;
+
+	\section*{Section 5.B}
+		\subsection*{Exercise 15}
+		Give an example of an operator whose matrix with respect to some basis contains only nonzero numbers on the diagonal, but the operator is not invertible.
+		\vspace*{3mm}
+
+		\begin{proof}
+		This is actually pretty simple if we restrict ourselves to two-dimensional vector spaces and think about silly looking matrices.
+		We'll pick $T$ so that its diagonal is just a string of 1's, and then pick the other entries to interfere with either injectivity or surjectivity, since they are each equivalent to invertibility.\footnote{We didn't think about how to make $\det{\left[ \mathcal{M}(T) \right]} = 0$, ... we definitely did not do that.}
+		Let $V = \R^{2}$, $e_{1},e_{2}$ be the standard basis of $\R^2$, and $T \in \Ell(V)$ such that $$\mathcal{M}(T; e_{1},e_{2}) = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$$
+		Then we compute the following,
+			\begin{align*}
+				Te_{1} &= \mathcal{M}(T)\mathcal{M}(e_{1}), \\
+				&= \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} \begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}. \\
+				Te_{2} &= \mathcal{M}(T)\mathcal{M}(e_{2}), \\
+				&= \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} \begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}.
+			\end{align*}
+		It follows that $\range T \neq V$, hence $T$ is not surjective, implying that it is also not invertible, as desired.
+
+		Notice that we could extend this example to all scalar multiples of $\mathcal{M}(T; e_{1},e_{2})$.
+		Further, if we allow ourselves to think about row-reduction and determinants, then we know that we could extend this example to all square matrices (i.e., linear operators represented as square matrices) where each entry is equal to the same $\alpha \in \F/\{0\}$.
+		\end{proof}
+		% subsection exercise_15 (end)
+		\vspace*{2mm}
+		\hrule
+		\vspace*{2mm}
+
+		\subsection*{Exercise 20}
+		Suppose $V$ is a finite-dimensional complex vector space and $T \in \Ell(V)$. 
+		Prove that $T$ has an invariant subspace of dimension $k$ for each $k = 1, \dots, \dim{V}$.
+		\vspace*{3mm}
+
+		\begin{proof}
+		Let $V$ and $T$ be as above, let $n = \dim V$.
+		Since $V$ is finite-dimensional, it has a basis $v_{1}, \dots, v_{n}$.
+		In fact it has many bases.
+		Use Thereom 5.26(a) to pick $v_{1}, \dots, v_{n}$ such that $\mathcal{M}(T; v_{1}, \dots, v_{n})$ is upper-triangular.
+		Well, by Theorem 5.26(c), we also have that $\Span(v_{1}, \dots, v_{j})$ is invariant under $T$ for each $j = 1, \dots, n$.
+		It follows by definition that each of the invariant subsapces $\Span(v_{1}, \dots, v_{j})$ has dimension $j$, which is what we set out to prove.
+		Hence $T$ has an invariant subspace of dimension $k$ for each $k = 1, \dots, \dim{V}$, as desired.
+		\end{proof}
+		% subsection exercise_20 (end)
+		\vspace*{2mm}
+		\hrule
+		\vspace*{2mm}
+	% section section_5_b (end)
+
+	\section*{Section 5.C}
+		\subsection*{Exercise 1}
+		Suppose $T \in \Ell(V)$ is diagonalizable. 
+		Prove that $V = \null T \oplus \range T$.
+		\vspace*{3mm}
+
+		\begin{proof}
+		Let $T \in \Ell(V)$ such that $T$ is diagonalizable.
+		Notice that $V$ is not assumed to be finite-dimensional, which is problematic.
+
+		First, some boring cases.
+		Suppose $\null T = \{ 0 \}$.
+		Then by Theorem 3.16 we have that $T$ is injective, and since $T$ is an operator, by Theorem 3.69 it is also surjective.
+		It follows that $\range T = V$.
+		Moreover, we have $\null T \cap \range T = \{ 0 \}$, so we can invoke Theorem 1.45 to claim that $\null T + \range T$ is a direct sum.
+		Further, Since $T$ is a bijection, it follows that $V = \null T \oplus \range T$, like we want.
+		Next, suppose $\range T = \{ 0 \}$.
+		This implies that $T$ is the zero map, in which case $\null T = V$.
+		\textit{Mutatis mutandis} and we have $V = \null T \oplus \range T$, again.
+
+		Now, with the trivial cases out of the way, assume $\range T$ and $\null T$ each have as elements some nonzero vectors.
+		Hence, we have $\null T \neq 0$, implying that $T$ is not injective, and therefore not invertible.
+		Then it follows that $T$ has $\lambda_{1} = 0$ for an eigenvalue.
+		Let $\lambda_{2},\lambda_{3}, \dots$ be the remaining distinct eigenvalues of $T$.
+		Then we have the eigenspaces, $$E(\lambda_{1}, T), E(\lambda_{2},T), E(\lambda_{3}, T), \dots$$
+		Notice that $E(0,T) = \null T$, further by the definitions of eigen-
+		spaces, we know $\bigcap_{n=1}^{\infty} E(\lambda_{n},T) = \{ 0 \}$ which implies that $$E(\lambda_{1}, T) + E(\lambda_{2},T) + E(\lambda_{3},T) + \cdots$$ is a direct sum.
+		Additionally, recall that eigenspaces are designed to be invariant subspaces of $T$ for the purpose of decomposing $T$ into a direct sum of invariant subspaces.
+		So it makes sense to write,
+			\begin{align*}
+				V &= E(\lambda_{1}, T) \oplus E(\lambda_{2},T) \oplus E(\lambda_{3}, T) \oplus \cdots, \\
+				&= E(0, T) \oplus E(\lambda_{2},T) \oplus E(\lambda_{3}, T) \oplus \cdots, \\
+				&= \null T \oplus \left[ E(\lambda_{2},T) \oplus E(\lambda_{3}, T) \oplus \cdots \right].
+			\end{align*}
+		Thus, it will suffice to show, $$\range T = E(\lambda_{2},T) \oplus E(\lambda_{3}, T) \oplus \cdots.$$
+		We will do this by double-inclusion.
+
+		Let $u \in \range T$.
+		Recall two things.
+		First, since $E(0,T) = \null T$ we have $\range T|_{E(\lambda_{2},T) \oplus E(\lambda_{3}, T) \oplus \cdots} = \range T$.
+		 the corresponding eigenvectors $v_{2}, v_{3}, \dots$ for the distinct eigenvalues $\lambda_{2}, \lambda_{3}, \dots$ are linearly independent.
+		Therefore, for each $u \in \range T$ we have $v_{2}, v_{3}, \dots \in V$ such that $u = T(v_{2},v_{3},\dots)$.
+		Then, since each $v_{j} \in E(\lambda_{j},T)$ for $j = 2,3,...$, we have $u \in E(\lambda_{2},T) \oplus E(\lambda_{3}, T) \oplus \cdots$.
+		It follows that $\range T \subset E(\lambda_{2},T) \oplus E(\lambda_{3}, T) \oplus \cdots$, as desired.
+
+		To prove the reverse inclusion, let $w \in E(\lambda_{2},T) \oplus E(\lambda_{3}, T) \oplus \cdots$.
+		Then $w = w_{2} + w_{3} + \cdots$ where each $w_{j} \in E(\lambda_{j},T)$ for $j = 2,3,\dots$.
+		Thus, each $w_{j}$ is an eigenvector for $\lambda_{j}$, i.e., $$Tw_{j} = \lambda_{j}w_{j}.$$
+		Eigenspaces are closed under scalar multiplication, so we can make $\tfrac{1}{\lambda_{j}}w_{j} \in E(\lambda_{j},T)$.
+		We need these terms because they have the nice behavior exhibited below,
+			\begin{align*}
+				w_{j} &= \frac{\lambda_{j}}{\lambda_{j}} w_{j}, \\
+				&= \lambda_{j}\left(\tfrac{1}{\lambda_{j}} w_{j} \right), \\
+				&= T\left(\tfrac{1}{\lambda_{j}} w_{j} \right).
+			\end{align*}
+		This allows us to take $w = w_{2} + w_{3} + \cdots$, and write it as $$w = T\left(\tfrac{1}{\lambda_{2}} w_{2}\right) + T\left(\tfrac{1}{\lambda_{3}} w_{3}\right) + \cdots.$$
+		This implies $w \in \range T$, hence $E(\lambda_{2},T) \oplus E(\lambda_{3}, T) \oplus \cdots \subset \range T$.
+		Thus, we have shown $\range T = E(\lambda_{2},T) \oplus E(\lambda_{3}, T) \oplus \cdots$, and more importantly, $V = \null T \oplus \range T$ as we wanted to prove.
+		\end{proof}
+		% subsection exercise_1 (end)
+		\vspace*{2mm}
+		\hrule
+		\vspace*{2mm}
+
+		\subsection*{Exercise 3}
+		Suppose $V$ is finite-dimensional and $T \in \Ell(V)$. 
+		Prove that the following are equivalent:
+			\begin{enumerate}[\hspace*{5mm}(a)]
+				\item $V = \null T \oplus \range T$.
+				\item $V = \null T + \range T$.
+				\item $\null T \cap \range T = \{0\}$.
+			\end{enumerate}
+		\vspace*{3mm}
+
+		\begin{proof}
+		Let $V,T$ be as above.
+		Thankfully, this time we have that $V$ is finite-dimensional, unlocking several useful theorems.
+
+		\textbf{(a)$\Ra$(b)}.
+		Assume $V = \null T \oplus \range T$; then by definition $V = \null T + \range T$.
+		First one down.
+
+		\textbf{(b)$\Ra$(c)}.
+		Assume $V = \null T + \range T$.
+		Since $V$ is finite-dimensional, it follows by the Fundamental Theorem of Linear Maps that $\dim V \geq \dim \null T + \dim \range T$.
+		Moreover, by Theorem 2.34 we have $\dim(\null T + \range T) = \dim{\null T} + \dim{\range T} - \dim{(\null{T}\cap\range{T})}$.
+		By our assumption $\dim(\null T + \range T) = \dim{V}$, allowing us to compute,
+			\begin{align*}
+				\dim V &\geq \dim \null T + \dim \range T, \\
+				\dim(\null T + \range T) &\geq \dim \null T + \dim \range T, \\
+				\dim{\null T} + \dim{\range T} &\geq \dim \null T + \dim \range T, \\
+				- \dim{(\null{T}\cap\range{T})} & \\
+				0 &\geq \dim{(\null{T}\cap\range{T})}.
+			\end{align*}
+		It follows that $\dim{(\null{T}\cap\range{T})} = 0$, hence we have the desired result that $\null T \cap \range T = \{0\}$.
+		One piece to go.
+
+		\textbf{(c)$\Ra$(a)}.
+		Assume $\null T \cap \range T = \{0\}$.
+		Our first conclusion is that $\null T + \range T$ is a direct sum, by Theorem 1.45.
+		Since $\dim{(\null T \cap \range T)} = 0$, and by our previously used theorems we have,
+			\begin{align*}
+			\dim{V} &= \dim(\null T + \range T), \\
+			&= \dim{\null T} + \dim{\range T} - \dim{(\null{T}\cap\range{T})}, \\
+			&= \dim{\null T} + \dim{\range T} - 0, \\
+			&= \dim{\null T} + \dim{\range T}.
+			\end{align*}
+		It follows that $\null T \oplus \range T$ is of the correct dimension for us to claim our final result, that $V = \null T \oplus \range T$.
+		
+		Thus, by the transitivity of implications, we have shown that (a), (b), and (c) are equivalent.		
+		\end{proof}
+		% subsection exercise_3 (end)
+		\vspace*{2mm}
+		\hrule
+		\vspace*{2mm}
+
+		\subsection*{Exercise 6}
+		Suppose $V$ is finite-dimensional, $T \in \Ell(V)$ has $\dim V$ distinct eigenvalues, and $S \in \Ell(V)$ has the same eigenvectors as $T$ (not necessarily with the same eigenvalues). 
+		Prove that $ST = TS$.
+		\vspace*{3mm}
+
+		\begin{proof}
+		Let $V,T,S$ be as above.
+		\end{proof}
+		% subsection exercise_6 (end)
+		\vspace*{2mm}
+		\hrule
+		\vspace*{2mm}
+
+		\subsection*{Exercise 8}
+		Suppose $T \in \Ell(\F^{5})$ and $\dim{E(8, T)} = 4$.
+		Prove that $T-􏰋2I$ or $T-􏰋6I$ is invertible.
+		\vspace*{3mm}
+
+		\begin{proof}
+		Let $T$ be as above.
+		We are given that $\dim{E(8, T)} = 4$, hence we know that $\lambda_{1} = 8$ is an eigenvalue of $T$ with four corresponding nonzero eigenvectors $v_{1}, v_{2}, v_{3}, v_{4}$.
+		Moreover, since $\dim \F^{5} = 5$, Theorem 5.13 tells us that there are at most four more possible eigenvalues of $T$.
+		Notice that by Theorem 5.6, to prove that $T-􏰋2I$ or $T-􏰋6I$ is invertible, it will be sufficient to show that none of these four possible eigenvalues are equal to 2 or 6.
+
+		Suppose by way of contradiction that $\lambda_{2} = 2$ and $\lambda_{3} = 6$ are eigenvalues of $T$ with correspoding nonzero eigenvectors $x_{2}, x_{3}$.
+		Then, by definition we know $E(2,T) \neq \{ 0 \}$ and $E(6,T) \neq \{ 0 \}$; it follows that each of their dimensions is at least 1.
+		By Theorem 5.38, and since $\lambda_{1}, \lambda_{2}, \lambda_{3}$ are distinct eigenvalues of $T$, it follows that the sum of the dimensions of their correspoding eigenspaces is less than the dimension of $V$, i.e., $$\dim{E(2,T)} + \dim{E(6,T)} + \dim{E(8,T)} \leq \dim{V}.$$
+		But this would imply that $1 + 1 + 4 \leq 5 \, \lightning$
+		Hence, $2$ and $6$ are not eigenvalues of $T$, as we aimed to prove. 
+		\end{proof}
+		% subsection exercise_8 (end)
+		\vspace*{2mm}
+		\hrule
+		\vspace*{2mm}
+
+		\subsection*{Exercise 12}
+		Suppose $R,T \in \Ell(\F^{3})$ each have 2, 6, 7 as eigenvalues. 
+		Prove that there exists an invertible operator $S \in \Ell(\F^{3})$ such that $R = S^{-1}TS$.
+		\vspace*{3mm}
+
+		\begin{proof}
+		\end{proof}
+
+		% subsection exercise_12 (end)
+		\vspace*{2mm}
+		\hrule
+		\vspace*{2mm}
+
+		\subsection*{Exercise 14}
+		Find $T \in \Ell(\C^{3})$ such that 6 and 7 are eigenvalues of $T$ and such that $T$ does not have a diagonal matrix with respect to any basis of $\C^{3}$.
+		\vspace*{3mm}
+
+		\begin{proof}
+		\end{proof}
+		% subsection exercise_14 (end)
+		\vspace*{2mm}
+		\hrule
+		\vspace*{2mm}
+	% section section_5_c (end)
+
+	\section*{Section 8.A}
+	% section section_8_a (end)
+\end{document}
