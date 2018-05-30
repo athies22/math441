@@ -182,7 +182,7 @@
 
 		\begin{proof}
 		Let $T \in \Ell(V)$ such that $T$ is diagonalizable.
-		Notice that $V$ is not assumed to be finite-dimensional, which is problematic.
+		As Shida mentioned in clas on Wednesday, May 30, since $V$ is assumed to be diagonalizable, by the definitions in the textbook, it follows that we should assume $V$ is finite-dimensional.
 
 		First, some boring cases.
 		Suppose $\null T = \{ 0 \}$.
@@ -197,30 +197,29 @@
 		Now, with the trivial cases out of the way, assume $\range T$ and $\null T$ each have as elements some nonzero vectors.
 		Hence, we have $\null T \neq 0$, implying that $T$ is not injective, and therefore not invertible.
 		Then it follows that $T$ has $\lambda_{1} = 0$ for an eigenvalue.
-		Let $\lambda_{2},\lambda_{3}, \dots$ be the remaining distinct eigenvalues of $T$.
-		Then we have the eigenspaces, $$E(\lambda_{1}, T), E(\lambda_{2},T), E(\lambda_{3}, T), \dots$$
+		Let $\lambda_{2}, \dots, \lambda_{n}$ be the remaining distinct eigenvalues of $T$.
+		Then we have the eigenspaces, $$E(\lambda_{1}, T), E(\lambda_{2},T), \dots, E(\lambda_{n}, T)$$
 		Notice that $E(0,T) = \null T$, further by the definitions of eigen-
-		spaces, we know $\bigcap_{n=1}^{\infty} E(\lambda_{n},T) = \{ 0 \}$ which implies that $$E(\lambda_{1}, T) + E(\lambda_{2},T) + E(\lambda_{3},T) + \cdots$$ is a direct sum.
-		Additionally, recall that eigenspaces are designed to be invariant subspaces of $T$ for the purpose of decomposing $T$ into a direct sum of invariant subspaces.
-		So it makes sense to write,
+		spaces, we know $\bigcap_{i=1}^{n} E(\lambda_{i},T) = \{ 0 \}$ which implies that $$E(\lambda_{1}, T) + E(\lambda_{2},T) + \cdots + E(\lambda_{n}, T),$$ is a direct sum.
+		So by Theorem 5.41, it makes sense to write,
 			\begin{align*}
-				V &= E(\lambda_{1}, T) \oplus E(\lambda_{2},T) \oplus E(\lambda_{3}, T) \oplus \cdots, \\
-				&= E(0, T) \oplus E(\lambda_{2},T) \oplus E(\lambda_{3}, T) \oplus \cdots, \\
-				&= \null T \oplus \left[ E(\lambda_{2},T) \oplus E(\lambda_{3}, T) \oplus \cdots \right].
+				V &= E(\lambda_{1}, T) \oplus E(\lambda_{2},T) \oplus \cdots \oplus E(\lambda_{n}, T), \\
+				&= E(0, T) \oplus E(\lambda_{2},T) \oplus \cdots \oplus E(\lambda_{n}, T), \\
+				&= \null T \oplus \left[ E(\lambda_{2},T) \oplus \cdots \oplus E(\lambda_{n}, T) \right].
 			\end{align*}
-		Thus, it will suffice to show, $$\range T = E(\lambda_{2},T) \oplus E(\lambda_{3}, T) \oplus \cdots.$$
+		Thus, it will suffice to show, $$\range T = E(\lambda_{2},T) \oplus \cdots \oplus E(\lambda_{n}, T).$$
 		We will do this by double-inclusion.
 
 		Let $u \in \range T$.
 		Recall two things.
-		First, since $E(0,T) = \null T$ we have $\range T|_{E(\lambda_{2},T) \oplus E(\lambda_{3}, T) \oplus \cdots} = \range T$.
-		 the corresponding eigenvectors $v_{2}, v_{3}, \dots$ for the distinct eigenvalues $\lambda_{2}, \lambda_{3}, \dots$ are linearly independent.
-		Therefore, for each $u \in \range T$ we have $v_{2}, v_{3}, \dots \in V$ such that $u = T(v_{2},v_{3},\dots)$.
-		Then, since each $v_{j} \in E(\lambda_{j},T)$ for $j = 2,3,...$, we have $u \in E(\lambda_{2},T) \oplus E(\lambda_{3}, T) \oplus \cdots$.
-		It follows that $\range T \subset E(\lambda_{2},T) \oplus E(\lambda_{3}, T) \oplus \cdots$, as desired.
+		First, since $E(0,T) = \null T$ we have $\range T|_{E(\lambda_{2},T) \oplus \cdots \oplus E(\lambda_{n}, T)} = \range T$.
+		 the corresponding eigenvectors $v_{2}, \dots, v_{n}$ for the distinct eigenvalues $\lambda_{2}, \dots, \lambda_{n}$ are linearly independent and form a basis of $V$.
+		Therefore, for each $u \in \range T$ we have $v_{2}, \dots, v_{n}$ such that $u = T(v_{2}, \dots, v_{n})$.
+		Then, since each $v_{j} \in E(\lambda_{j},T)$ for $j = 2,3,\dots,n$, we have $u \in E(\lambda_{2},T) \oplus \cdots \oplus E(\lambda_{n}, T)$.
+		It follows that $\range T \subset E(\lambda_{2},T) \oplus \cdots \oplus E(\lambda_{n}, T)$, as desired.
 
-		To prove the reverse inclusion, let $w \in E(\lambda_{2},T) \oplus E(\lambda_{3}, T) \oplus \cdots$.
-		Then $w = w_{2} + w_{3} + \cdots$ where each $w_{j} \in E(\lambda_{j},T)$ for $j = 2,3,\dots$.
+		To prove the reverse inclusion, let $w \in E(\lambda_{2},T) \oplus \cdots \oplus E(\lambda_{n}, T)$.
+		Then $w = w_{2} + \cdots + w_{n}$ where each $w_{j} \in E(\lambda_{j},T)$ for $j = 2,3,\dots,n$.
 		Thus, each $w_{j}$ is an eigenvector for $\lambda_{j}$, i.e., $$Tw_{j} = \lambda_{j}w_{j}.$$
 		Eigenspaces are closed under scalar multiplication, so we can make $\tfrac{1}{\lambda_{j}}w_{j} \in E(\lambda_{j},T)$.
 		We need these terms because they have the nice behavior exhibited below,
@@ -229,9 +228,9 @@
 				&= \lambda_{j}\left(\tfrac{1}{\lambda_{j}} w_{j} \right), \\
 				&= T\left(\tfrac{1}{\lambda_{j}} w_{j} \right).
 			\end{align*}
-		This allows us to take $w = w_{2} + w_{3} + \cdots$, and write it as $$w = T\left(\tfrac{1}{\lambda_{2}} w_{2}\right) + T\left(\tfrac{1}{\lambda_{3}} w_{3}\right) + \cdots.$$
+		This allows us to take $w = w_{2} + w_{3} + \cdots$, and write it as $$w = T\left(\tfrac{1}{\lambda_{2}} w_{2}\right) + T\left(\tfrac{1}{\lambda_{3}} w_{3}\right) + \cdots + T\left(\tfrac{1}{\lambda_{n}} w_{n}\right).$$
 		This implies $w \in \range T$, hence $E(\lambda_{2},T) \oplus E(\lambda_{3}, T) \oplus \cdots \subset \range T$.
-		Thus, we have shown $\range T = E(\lambda_{2},T) \oplus E(\lambda_{3}, T) \oplus \cdots$, and more importantly, $V = \null T \oplus \range T$ as we wanted to prove.
+		Thus, we have shown $\range T = E(\lambda_{2},T) \oplus \cdots \oplus E(\lambda_{n}, T)$, and more importantly, $V = \null T \oplus \range T$ as we wanted to prove.
 		\end{proof}
 		% subsection exercise_1 (end)
 		\vspace*{2mm}
