@@ -120,6 +120,7 @@
 		\newcommand{\del}{\nabla}						% gradient vector
 
 		\raggedbottom		
+		\usepackage[all]{nowidow}
 \begin{document}
 	\title{Homework 9  -- Math 441 \\ \today}
 	\author{Alex Thies \\ \href{mailto:athies@uoregon.edu}{\lowercase{athies$@$uoregon.edu}}}
@@ -166,7 +167,7 @@
 		Use Thereom 5.26(a) to pick $v_{1}, \dots, v_{n}$ such that $\mathcal{M}(T; v_{1}, \dots, v_{n})$ is upper-triangular.
 		Well, by Theorem 5.26(c), we also have that $\Span(v_{1}, \dots, v_{j})$ is invariant under $T$ for each $j = 1, \dots, n$.
 		It follows by definition that each of the invariant subsapces $\Span(v_{1}, \dots, v_{j})$ has dimension $j$, which is what we set out to prove.
-		Hence $T$ has an invariant subspace of dimension $k$ for each $k = 1, \dots, \dim{V}$, as desired.
+		If we switch our $j$'s for $k$'s, then we have shown $T$ has an invariant subspace of dimension $k$ for each $k = 1, \dots, \dim{V}$, as desired.
 		\end{proof}
 		% subsection exercise_20 (end)
 		\vspace*{2mm}
@@ -182,7 +183,7 @@
 
 		\begin{proof}
 		Let $T \in \Ell(V)$ such that $T$ is diagonalizable.
-		As Shida mentioned in clas on Wednesday, May 30, since $V$ is assumed to be diagonalizable, by the definitions in the textbook, it follows that we should assume $V$ is finite-dimensional.
+		By definition, we can say that $V$ is finite-dimensional.
 
 		First, some boring cases.
 		Suppose $\null T = \{ 0 \}$.
@@ -208,7 +209,7 @@
 				&= \null T \oplus \left[ E(\lambda_{2},T) \oplus \cdots \oplus E(\lambda_{n}, T) \right].
 			\end{align*}
 		Thus, it will suffice to show, $$\range T = E(\lambda_{2},T) \oplus \cdots \oplus E(\lambda_{n}, T).$$
-		We will do this by double-inclusion.
+		We do this by double-inclusion.
 
 		Let $u \in \range T$.
 		Recall two things.
@@ -229,7 +230,7 @@
 				&= T\left(\tfrac{1}{\lambda_{j}} w_{j} \right).
 			\end{align*}
 		This allows us to take $w = w_{2} + w_{3} + \cdots$, and write it as $$w = T\left(\tfrac{1}{\lambda_{2}} w_{2}\right) + T\left(\tfrac{1}{\lambda_{3}} w_{3}\right) + \cdots + T\left(\tfrac{1}{\lambda_{n}} w_{n}\right).$$
-		This implies $w \in \range T$, hence $E(\lambda_{2},T) \oplus E(\lambda_{3}, T) \oplus \cdots \subset \range T$.
+		This implies $w \in \range T$, hence $E(\lambda_{2},T) \oplus \cdots \oplus E(\lambda_{n}, T) \subset \range T$.
 		Thus, we have shown $\range T = E(\lambda_{2},T) \oplus \cdots \oplus E(\lambda_{n}, T)$, and more importantly, $V = \null T \oplus \range T$ as we wanted to prove.
 		\end{proof}
 		% subsection exercise_1 (end)
@@ -249,17 +250,19 @@
 
 		\begin{proof}
 		Let $V,T$ be as above.
-		Thankfully, this time we have that $V$ is finite-dimensional, unlocking several useful theorems.
+		Since $V$ is finite-dimensional, we have several useful theorems.
+		To prove the above are equivalent conditions we will show $(a) \Ra (b)$, $(b) \Ra (c)$, and $(c) \Ra (a)$.
+		By transitivity, this implies they are each equivalent to one another.
 
 		\textbf{(a)$\Ra$(b)}.
 		Assume $V = \null T \oplus \range T$; then by definition $V = \null T + \range T$.
-		First one down.
+		One down, two to go.
 
 		\textbf{(b)$\Ra$(c)}.
 		Assume $V = \null T + \range T$.
 		Since $V$ is finite-dimensional, it follows by the Fundamental Theorem of Linear Maps that $\dim V \geq \dim \null T + \dim \range T$.
 		Moreover, by Theorem 2.34 we have $\dim(\null T + \range T) = \dim{\null T} + \dim{\range T} - \dim{(\null{T}\cap\range{T})}$.
-		By our assumption $\dim(\null T + \range T) = \dim{V}$, allowing us to compute,
+		By our assumption $$\dim(\null T + \range T) = \dim{V},$$ allowing us to compute,
 			\begin{align*}
 				\dim V &\geq \dim \null T + \dim \range T, \\
 				\dim(\null T + \range T) &\geq \dim \null T + \dim \range T, \\
@@ -282,7 +285,7 @@
 			\end{align*}
 		It follows that $\null T \oplus \range T$ is of the correct dimension for us to claim our final result, that $V = \null T \oplus \range T$.
 		
-		Thus, by the transitivity of implications, we have shown that (a), (b), and (c) are equivalent.		
+		Thus, by the transitivity of implications, we have shown that (a), (b), and (c) are equivalent.
 		\end{proof}
 		% subsection exercise_3 (end)
 		\vspace*{2mm}
@@ -296,6 +299,38 @@
 
 		\begin{proof}
 		Let $V,T,S$ be as above.
+		Recall that $ST$ and $TS$ are linear operators, i.e., functions with some structure.
+		To show equality of functions, we have to prove that they have the same domain and codomain, and that for a given input, the two functions produce the same output.
+		Since $\Ell(V)$ is closed under the multiplication of linear operators, we know by definition that $ST$ and $TS$ have the same domain and codomain, namely $V$. Therefore, to show that they are equal, it remains to show that for a given input, they have the same output.
+
+		Let $\dim V = n$.
+		Further, let $\lambda_{1}, \dots, \lambda_{n}$ be the $n$ distinct eigenvalues of $T$, with $v_{1}, \dots, v_{n}$ their corresponding eigenvectors, i.e., for $j = 1,\dots,n$ we have $$Tv_{j} = \lambda_{j}v_{j}.$$
+		Recall that these eigenvectors $v_{1}, \dots, v_{n}$ are also the eigenvectors of $S$, let their corresponding eigenvalues for $S$ be $\mu_{j}$ for $j=1,\dots,n$.
+		Theorem 5.44 tells us that since $T$ has $n = \dim V$ distinct eigenvalues, we know $T$ is diagonalizable.
+		Then we know $v_{1}, \dots, v_{n}$ form a basis of $V$ by Theorem 5.41. 
+		So, let $v \in V$ and write $v$ in terms of this basis of eigenvectors, i.e., $v = a_{1}v_{1} + \cdots + a_{n}v_{n}$.
+		Next, we'll compute $STv$ and $TSv$; they should be equal.
+			\begin{align*}
+				STv &= ST(a_{1}v_{1} + \cdots + a_{n}v_{n}), \\
+				&= S ( a_{1}Tv_{1} + \cdots + a_{n}Tv_{n} ), \\
+				&= S ( a_{1}\lambda_{1}v_{1} + \cdots + a_{n}\lambda_{n}v_{n} ), \\
+				&= a_{1}\lambda_{1}Sv_{1} + \cdots + a_{n}\lambda_{n}Sv_{n}, \\
+				&= a_{1}\lambda_{1}\mu_{1}v_{1} + \cdots + a_{n}\lambda_{n}\mu_{n}v_{n}.
+			\end{align*}
+		To clean up our scalars, let $\omega_{j} = a_{j}\lambda_{j}\mu_{j}$ for $j = 1,\dots,n$.
+		Then we have $$STv = \omega_{1}v_{1} + \cdots + \omega_{n}v_{n}.$$
+
+		Now we'll compute $TSv$, and hope it is equal to what we found above.
+			\begin{align*}
+				TSv &= TS(a_{1}v_{1} + \cdots + a_{n}v_{n}), \\
+				&= T ( a_{1}Sv_{1} + \cdots + a_{n}Sv_{n} ), \\
+				&= T ( a_{1}\mu_{1}v_{1} + \cdots + a_{n}\mu_{n}v_{n} ), \\
+				&= a_{1}\mu_{1}Sv_{1} + \cdots + a_{n}\mu_{n}Sv_{n}, \\
+				&= a_{1}\mu_{1}\lambda_{1}v_{1} + \cdots + a_{n}\mu_{n}\lambda_{n}v_{n}, \\
+				&= a_{1}\lambda_{1}\mu_{1}v_{1} + \cdots + a_{n}\lambda_{n}\mu_{n}v_{n}, \\
+				&= \omega_{1}v_{1} + \cdots + \omega_{n}v_{n}
+			\end{align*}
+		Hence, by the commutivity of scalar multiplication, we have shown $STv = TSv$, which implies $ST = TS$, as we aimed to show.
 		\end{proof}
 		% subsection exercise_6 (end)
 		\vspace*{2mm}
@@ -330,6 +365,53 @@
 		\vspace*{3mm}
 
 		\begin{proof}
+		Let $R,T$ be as above.
+		Then $\lambda_{1} = 2$, $\lambda_{1} = 2$, and $\lambda_{1} = 2$ are the eigenvalues of $R$ and $T$, with corresponding eigenvectors $v_{1}, v_{2}, v_{3}$ for $T$, and $w_{1}, w_{2}, w_{3}$ for $R$, i.e.,
+			\begin{align*}
+				&Tv_{1} = 2v_{1}, \hspace{5mm} Tv_{2} = 6v_{2}, \hspace{5mm} Tv_{3} = 7v_{3}; \\
+				&Rw_{1} = 2v_{1}, \hspace{5mm} Rw_{2} = 6v_{2}, \hspace{5mm} Rw_{3} = 7v_{3}.
+			\end{align*}
+		Define $S \in \Ell(V)$ by $w_{j} \mapsto v_{j}$ for $j = 1,2,3$.
+		Notice that the definition of $S$ establishes a one-to-one correspondence between different basis elements of $V$, therefore $S$ is bijective and invertible.
+		It follows that we have the inverse operator $S^{-1} \in \Ell(V)$ defined by $v_{j} \mapsto w_{j}$ for $j = 1,2,3$.
+		As in Exercise 5.C.6, $R$ and $S^{-1}TS$ have the same domain and codomain, so to show $R = S^{-1}TS$, it will suffice to show that for the same input, the two operators produce the same output.
+		Recall, since $R$ and $T$ each have $\dim V$ distinct eigenvalues, by Theorems 5.44 and 5.41, we know that they are diagonalizable, and that their eigenvectors form bases of $V$.
+		Let $v,w \in V$ such that $v = a_{1}v_{1} + a_{2}v_{2} + a_{3}v_{3}$, and $w = b_{1}w_{1} + b_{2}w_{2} + b_{3}w_{3}$.
+		We will show that $S^{-1}TSw = Rw$ for our arbitrarily chosen $w$.
+			\begin{align*}
+				S^{-1}TSw &= S^{-1}TS(b_{1}w_{1} + b_{2}w_{2} + b_{3}w_{3}), \\
+				&= S^{-1} T(b_{1}Sw_{1} + b_{2}Sw_{2} + b_{3}Sw_{3}), \\
+				&= S^{-1} T(b_{1}v_{1} + b_{2}v_{2} + b_{3}v_{3}), \\
+				&= S^{-1}(b_{1}Tv_{1} + b_{2}Tv_{2} + b_{3}Tv_{3}), \\
+				&= S^{-1}(2b_{1}v_{1} + 6b_{2}v_{2} + 6b_{3}v_{3}), 
+			\end{align*}
+			\begin{align*}
+				&= 2b_{1}S^{-1}v_{1} + 6b_{2}S^{-1}v_{2} + 7b_{3}S^{-1}v_{3}, \\
+				&= 2b_{1}w_{1} + 6b_{2}w_{2} + 7b_{3}w_{3}.
+			\end{align*}
+		Now we'll show that this equals $Rw$.
+			\begin{align*}
+				Rw &= R(b_{1}w_{1} + b_{2}w_{2} + b_{3}w_{3}), \\
+				&= b_{1}Rw_{1} + b_{2}Rw_{2} + b_{3}Rw_{3}, \\
+				&= b_{1}2w_{1} + b_{2}6w_{2} + b_{3}7w_{3}, \\
+				&= 2b_{1}w_{1} + 6b_{2}w_{2} + 7b_{3}w_{3}.
+			\end{align*}
+		Notice that we could just flip some of this stuff around and show our desired result this way,
+			\begin{align*}
+				S^{-1}TSw &= S^{-1}TS(b_{1}w_{1} + b_{2}w_{2} + b_{3}w_{3}), \\
+				&= S^{-1} T(b_{1}Sw_{1} + b_{2}Sw_{2} + b_{3}Sw_{3}), \\
+				&= S^{-1} T(b_{1}v_{1} + b_{2}v_{2} + b_{3}v_{3}), \\
+				&= S^{-1}(b_{1}Tv_{1} + b_{2}Tv_{2} + b_{3}Tv_{3}), \\
+				&= S^{-1}(2b_{1}v_{1} + 6b_{2}v_{2} + 6b_{3}v_{3}), \\
+				&= 2b_{1}S^{-1}v_{1} + 6b_{2}S^{-1}v_{2} + 7b_{3}S^{-1}v_{3}, \\
+				&= 2b_{1}w_{1} + 6b_{2}w_{2} + 7b_{3}w_{3}, \\
+				&= b_{1}2w_{1} + b_{2}6w_{2} + b_{3}7w_{3}, \\
+				&= b_{1}Rw_{1} + b_{2}Rw_{2} + b_{3}Rw_{3}, \\
+				&= R(b_{1}w_{1} + b_{2}w_{2} + b_{3}w_{3}), \\
+				&= Rw.
+			\end{align*}
+		This is probably `more elegant,' but who's to say.
+		In either case, we have shown $S^{-1}TSw = Rw$, as we aimed to do.
 		\end{proof}
 
 		% subsection exercise_12 (end)
@@ -342,6 +424,23 @@
 		\vspace*{3mm}
 
 		\begin{proof}
+		Let $T$ be as above, notice $\dim \C^{3} = 3$.
+		First we should understand how we're going to handle the statement ``$T$ does not have a diagonal matrix with respect to any basis of $\C^{3}$.''
+		Theorem 5.41 states that this is equivalent to $\dim \C^{3} = \dim E(\lambda_{1},T) + \dim E(\lambda_{2},T) + \dim E(\lambda_{3},T)$ being false.
+		Therefore, if we can cook up an operator $T$ that breaks the dimension part of Theorem 5.41, then we're done.
+		Recall that we are also told to assume that $\lambda_{1} = 6$, and $\lambda_{2} = 7$.
+		Additionally, since these are nonzero eigenvalues, they have corresponding eigenspaces with dimension at least 1.
+		This means that however we make $T$, it has to be such that $\lambda_{1}$ and $\lambda_{2}$ are its only eigenvalues.
+		Moreover, we have to make sure that they each have exactly one corresponding eigenvector, otherwise the dimensions of their eigenspaces could sum to 3, which we need to avoid.
+		The best way to do this will be to map one basis element to a linear combination of the other two, with coefficients related to the eigenvalues.
+		Let $e_{1},e_{2},e_{3}$ be a basis of $\C^{3}$, then define $T \in \Ell(\C^{3})$ such that $$e_{1} \mapsto 6e_{1}, \hspace{5mm} e_{2} \mapsto 7e_{2}, \hspace{5mm} e_{3} \mapsto \, 6e_{1} + e_{2}.$$
+
+		\vspace*{5mm}
+		EXPLAIN WHY
+		\vspace*{5mm}
+
+		We have $\dim E(6,T) = 1$ and $\dim E(7,T) = 1$, clearly these do not sum to 3.
+		Thus, by Theorem 5.41, since $\dim \C^3 \neq \dim E(6,T) + \dim E(7,T)$, it is equivalent to state that $T$ does not have a diagonal matrix with respect to any basis of $\C^{3}$.
 		\end{proof}
 		% subsection exercise_14 (end)
 		\vspace*{2mm}
