@@ -16,7 +16,7 @@
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%% rename the abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		% \renewcommand{\abstractname}{Introduction}
+		\renewcommand{\abstractname}{Assignment}
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% sets %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -120,14 +120,20 @@
 		\newcommand{\del}{\nabla}						% gradient vector
 
 		\raggedbottom		
-		\usepackage[all]{nowidow}
 \begin{document}
 	\title{Homework 9  -- Math 441 \\ \today}
 	\author{Alex Thies \\ \href{mailto:athies@uoregon.edu}{\lowercase{athies$@$uoregon.edu}}}
 
-	\maketitle
+	\begin{abstract}
+	The following exercises are assigned from \textit{Linear Algebra Done Right}, 3rd Edition, by Sheldon Axler. 
+			\begin{tabular}{rl}
+				& 5.B - 15, 20; \\
+				& 5.C - 1, 3, 6, 8, 12, 14; \\
+				& 8.A - 2, 6, 12, 17.
+			\end{tabular}
+	\end{abstract}
 
-	Assignment: 5.B - 15, 20; 5.C - 1, 3, 6, 8, 12, 14; 8.A - ;
+	\maketitle
 
 	\section*{Section 5.B}
 		\subsection*{Exercise 15}
@@ -142,6 +148,7 @@
 			\begin{align*}
 				Te_{1} &= \mathcal{M}(T)\mathcal{M}(e_{1}), \\
 				&= \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} \begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}. \\
+				\\
 				Te_{2} &= \mathcal{M}(T)\mathcal{M}(e_{2}), \\
 				&= \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} \begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}.
 			\end{align*}
@@ -214,7 +221,7 @@
 		Let $u \in \range T$.
 		Recall two things.
 		First, since $E(0,T) = \null T$ we have $\range T|_{E(\lambda_{2},T) \oplus \cdots \oplus E(\lambda_{n}, T)} = \range T$.
-		 the corresponding eigenvectors $v_{2}, \dots, v_{n}$ for the distinct eigenvalues $\lambda_{2}, \dots, \lambda_{n}$ are linearly independent and form a basis of $V$.
+		Second, the corresponding eigenvectors $v_{2}, \dots, v_{n}$ for the distinct eigenvalues $\lambda_{2}, \dots, \lambda_{n}$ are linearly independent and form a basis of $V$.
 		Therefore, for each $u \in \range T$ we have $v_{2}, \dots, v_{n}$ such that $u = T(v_{2}, \dots, v_{n})$.
 		Then, since each $v_{j} \in E(\lambda_{j},T)$ for $j = 2,3,\dots,n$, we have $u \in E(\lambda_{2},T) \oplus \cdots \oplus E(\lambda_{n}, T)$.
 		It follows that $\range T \subset E(\lambda_{2},T) \oplus \cdots \oplus E(\lambda_{n}, T)$, as desired.
@@ -309,7 +316,8 @@
 		Theorem 5.44 tells us that since $T$ has $n = \dim V$ distinct eigenvalues, we know $T$ is diagonalizable.
 		Then we know $v_{1}, \dots, v_{n}$ form a basis of $V$ by Theorem 5.41. 
 		So, let $v \in V$ and write $v$ in terms of this basis of eigenvectors, i.e., $v = a_{1}v_{1} + \cdots + a_{n}v_{n}$.
-		Next, we'll compute $STv$ and $TSv$; they should be equal.
+
+		\noindent{Next, we'll compute $STv$ and $TSv$; they should be equal.}
 			\begin{align*}
 				STv &= ST(a_{1}v_{1} + \cdots + a_{n}v_{n}), \\
 				&= S ( a_{1}Tv_{1} + \cdots + a_{n}Tv_{n} ), \\
@@ -319,7 +327,6 @@
 			\end{align*}
 		To clean up our scalars, let $\omega_{j} = a_{j}\lambda_{j}\mu_{j}$ for $j = 1,\dots,n$.
 		Then we have $$STv = \omega_{1}v_{1} + \cdots + \omega_{n}v_{n}.$$
-
 		Now we'll compute $TSv$, and hope it is equal to what we found above.
 			\begin{align*}
 				TSv &= TS(a_{1}v_{1} + \cdots + a_{n}v_{n}), \\
@@ -330,7 +337,7 @@
 				&= a_{1}\lambda_{1}\mu_{1}v_{1} + \cdots + a_{n}\lambda_{n}\mu_{n}v_{n}, \\
 				&= \omega_{1}v_{1} + \cdots + \omega_{n}v_{n}
 			\end{align*}
-		Hence, by the commutivity of scalar multiplication, we have shown $STv = TSv$, which implies $ST = TS$, as we aimed to show.
+		Hence, by the commutivity of scalar multiplication, we have shown $STv = TSv$, which implies $ST = TS$, as we aimed to do.
 		\end{proof}
 		% subsection exercise_6 (end)
 		\vspace*{2mm}
@@ -433,7 +440,7 @@
 		This means that however we make $T$, it has to be such that $\lambda_{1}$ and $\lambda_{2}$ are its only eigenvalues.
 		Moreover, we have to make sure that they each have exactly one corresponding eigenvector, otherwise the dimensions of their eigenspaces could sum to 3, which we need to avoid.
 		The best way to do this will be to map one basis element to a linear combination of the other two, with coefficients related to the eigenvalues.
-		Let $e_{1},e_{2},e_{3}$ be a basis of $\C^{3}$, then define $T \in \Ell(\C^{3})$ such that $$e_{1} \mapsto 6e_{1}, \hspace{5mm} e_{2} \mapsto 7e_{2}, \hspace{5mm} e_{3} \mapsto \, 6e_{1} + e_{2}.$$
+		Let $e_{1},e_{2},e_{3}$ be a basis of $\C^{3}$, then define $T \in \Ell(\C^{3})$ such that $$e_{1} \mapsto 6e_{1}, \hspace{5mm} e_{2} \mapsto 7e_{2}, \hspace{5mm} e_{3} \mapsto \, 6e_{3} + e_{1}.$$
 
 		\vspace*{5mm}
 		EXPLAIN WHY
@@ -449,5 +456,50 @@
 	% section section_5_c (end)
 
 	\section*{Section 8.A}
+		\subsection*{Exercise 2}
+		Define $T \in \Ell(\C^2)$ by $$T(w,z) = (-z,w).$$
+		Find the generalized eigenspaces corresponding to the distinct eigenvalues of $T$.
+
+		\begin{proof}
+		Let $T$ be as above.
+		\end{proof}
+		% subsection exercise_2 (end)
+		\vspace*{2mm}
+		\hrule
+		\vspace*{2mm}
+
+		\subsection*{Exercise 6}
+		Suppose $T \in \Ell(\C^3)$ is defined by $T(z_{1}, z_{2}, z_{3}) = (z_{2},z_{3},0)$. 
+		Prove that $T$ has no square root. 
+		More precisely, prove that there does not exist $S \in \Ell(\C^3)$ such that $S^2=T$.
+
+		\begin{proof}
+		Let $T$ be as above, and suppose by way of contradiction that there exists $S \in \Ell(\C^3)$ such that $S^2=T$.
+		\end{proof}
+		% subsection exercise_6 (end)
+		\vspace*{2mm}
+		\hrule
+		\vspace*{2mm}
+
+		\subsection*{Exercise 12}
+		Suppose $N \in \Ell(V)$ and there exists a basis of $V$ with respect to which $N$ has an upper-triangular matrix with only $0$'s on the diagonal. 
+		Prove that $N$ is nilpotent.
+
+		\begin{proof}
+		Let $N$ be as above.
+		\end{proof}
+		% subsection exercise_12 (end)
+		\vspace*{2mm}
+		\hrule
+		\vspace*{2mm}
+
+		\subsection*{Exercise 17}
+		Suppose $T \in \Ell(V)$ and $m$ is a nonnegative integer such that $$\range T^{m} = \range T^{m+1}.$$
+		Prove that $\range T^k = \range T^m$ for all $k > m$.
+
+		\begin{proof}
+		Let $T,m,k$ be as above.
+		\end{proof}
+		% subsection exercise_17 (end)
 	% section section_8_a (end)
 \end{document}
