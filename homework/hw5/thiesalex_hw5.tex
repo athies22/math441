@@ -152,7 +152,7 @@
 		Prove that $V$ is finite-dimensional.
 
 		\begin{proof}
-		Let $T \in \Ell(\mathbf{V},\mathbf{W})$ such that $\dim \null T = m$ and $\dim \range T = n$ for $m,n \in \Z^{+}$.
+		Let $T \in \Ell(\mathbf{V},\mathbf{W})$ such that $$\dim \null T = m \text{ and } \dim \range T = n$$ for $m,n \in \Z^{+}$.
 		Let $u_{1}, \dots, u_{m}$ be a basis of $\null T$ and $w_{1}, \dots, w_{n}$ be a basis of $\range T$.
 		Since $T$ is surjective, $\range T = \mathbf{W}$, so $w_{1}, \dots, w_{n}$ is also a basis of $\mathbf{W}$.
 		Moreover, since $T$ is surjective, for each $w \in \mathbf{W}$, there exists $v \in \mathbf{V}$ such that $Tv = w$, hence we can write our basis of $W$ as $Tv_{1}, \dots, Tv_{n}$ for $v_{j} \in V$.
@@ -162,7 +162,7 @@
 				Tv &= a_{1}Tv_{1} + \cdots + a_{n}Tv_{n}, \\
 				0 &= T(a_{1}v_{1} + \cdots a_{n}v_{n}) - Tv, \\
 				&= T(a_{1}v_{1} + \cdots a_{n}v_{n} - v), \\
-				&= T(v - (a_{1}v_{1} + \cdots a_{n}v_{n}) ), \\
+				&= T(v - (a_{1}v_{1} + \cdots a_{n}v_{n}) ).
 			\end{align*}
 		So, we have that $v - a_{1}v_{1} - \cdots a_{n}v_{n} \in \null T$, thus we can write it as a linear combination of the basis elements $u_{i}$. 
 		So we have:

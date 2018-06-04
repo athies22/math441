@@ -252,7 +252,7 @@
 		Let $u_{1_{1}}, \dots, u_{1_{m}}$ be a basis for $U_{1}$, and generally, let $u_{i_{1}}, \dots, u_{i_{j}}, \dots u_{i_{m}}$ be a basis for $U_{i}$.
 		From the definition of sums of vector spaces, each $v \in U_{1} + \cdots + U_{m}$ can be written as a linear combination of each of the $u_{i_{j}}$'s.
 		It follows then that $u_{1_{1}}, \dots, u_{1_{m}}, \dots, u_{m_{1}}, \dots, u_{m_{m}}$ spans $U_{1} + \cdots + U_{m}$.
-		Thus by Theorem 2.31, since $u_{1_{1}}, \dots, u_{1_{m}}, \dots, u_{m_{1}}, \dots, u_{m_{m}}$ spans $U_{1} + \cdots + U_{m}$, it contains a basis for $U_{1} + \cdots + U_{m}$, i.e., it could be made shorter.
+		Thus by Theorem 2.31, since $$u_{1_{1}}, \dots, u_{1_{m}}, \dots, u_{m_{1}}, \dots, u_{m_{m}}$$ spans $U_{1} + \cdots + U_{m}$, it contains a basis for $U_{1} + \cdots + U_{m}$, i.e., it could be made shorter.
 		Thus $\dim(U_{1} + \cdots + U_{m}) \leq \dim U_{1} + \cdots + \dim U_{m}$; it remains to show that $U_{1} + \cdots + U_{m}$ is finite-dimensional.
 		Notice that each of $\dim U_{i} \in \Z^{+}$, and that $\dim U_{1} + \cdots + \dim U_{m}$ is a finite sum.
 		Hence $\dim(U_{1} + \cdots + U_{m})$ is less than or equal to a finite sum of integers, which implies that $\dim(U_{1} + \cdots + U_{m}) \leq t$ for some $t \in \Z^{+}$, thus $U_{1} + \cdots + U_{m}$ is finite-dimensional.
@@ -263,7 +263,8 @@
 		You might guess, by analogy with the formula for the number of elements in the union of three subsets of a finite set, that if $U_{1}, U_{2}, U_{3}$ are subspaces of a finite-dimensional vector space, then 
 		\begin{align*}
 			\dim(U_{1} + U_{2} + U_{3}) &= \dim U_{1} + \dim U_{2} + \dim U_{3} \\
-			&\hspace{5mm} - \dim(U_{1} \cap U_{2}) - \dim(U_{1} \cap U_{3}) - \dim(U_{2} \cap U_{3}) \\
+			&\hspace{5mm} - \dim(U_{1} \cap U_{2}) - \dim(U_{1} \cap U_{3}) \\
+			& \hspace{5mm} - \dim(U_{2} \cap U_{3}) \\
 			&\hspace{5mm} + \dim(U_{1} \cap U_{2} \cap U_{3}).
 		\end{align*}
 		Prove this or give a counterexample.
