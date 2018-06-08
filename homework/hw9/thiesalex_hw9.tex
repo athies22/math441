@@ -173,7 +173,7 @@
 		Let $V$ and $T$ be as above, let $n = \dim V$.
 		Since $V$ is finite-dimensional, it has a basis $v_{1}, \dots, v_{n}$.
 		In fact it has many bases.
-		Use Thereom 5.26(a) to pick $v_{1}, \dots, v_{n}$ such that $\mathcal{M}(T; v_{1}, \dots, v_{n})$ is upper-triangular.
+		Use Thereom 5.26(a) to pick a basis $v_{1}, \dots, v_{n}$ such that $\mathcal{M}(T; v_{1}, \dots, v_{n})$ is upper-triangular.
 		Well, by Theorem 5.26(c), we also have that $\Span(v_{1}, \dots, v_{j})$ is invariant under $T$ for each $j = 1, \dots, n$.
 		It follows by definition that each of the invariant subsapces $\Span(v_{1}, \dots, v_{j})$ has dimension $j$, which is what we set out to prove.
 		If we switch our $j$'s for $k$'s, then we have shown $T$ has an invariant subspace of dimension $k$ for each $k = 1, \dots, \dim{V}$, as desired.
@@ -217,12 +217,12 @@
 				&= E(0, T) \oplus E(\lambda_{2},T) \oplus \cdots \oplus E(\lambda_{n}, T), \\
 				&= \null T \oplus \left[ E(\lambda_{2},T) \oplus \cdots \oplus E(\lambda_{n}, T) \right].
 			\end{align*}
-		Thus, it will suffice to show, $$\range T = E(\lambda_{2},T) \oplus \cdots \oplus E(\lambda_{n}, T).$$
+		Thus, to prove $V = \null T \oplus \range T$, it will suffice to show, $$\range T = E(\lambda_{2},T) \oplus \cdots \oplus E(\lambda_{n}, T).$$
 		We do this by double-inclusion.
 
 		Let $u \in \range T$.
 		Recall two things.
-		First, since $E(0,T) = \null T$ we have $\range T|_{E(\lambda_{2},T) \oplus \cdots \oplus E(\lambda_{n}, T)} = \range T$.
+		First, since $E(0,T) = \null T$, and operators map $0 \mapsto 0$, we have $\range T|_{E(\lambda_{2},T) \oplus \cdots \oplus E(\lambda_{n}, T)} = \range T$.
 		Second, the corresponding eigenvectors $v_{2}, \dots, v_{n}$ for the distinct eigenvalues $\lambda_{2}, \dots, \lambda_{n}$ are linearly independent and form a basis of $V$.
 		Therefore, for each $u \in \range T$ we have $v_{2}, \dots, v_{n}$ such that $u = T(v_{2}, \dots, v_{n})$.
 		Then, since each $v_{j} \in E(\lambda_{j},T)$ for $j = 2,3,\dots,n$, we have $u \in E(\lambda_{2},T) \oplus \cdots \oplus E(\lambda_{n}, T)$.
@@ -308,8 +308,8 @@
 
 		\begin{proof}
 		Let $V,T,S$ be as above.
-		Recall that $ST$ and $TS$ are linear operators, i.e., functions with some structure.
-		To show equality of functions, we have to prove that they have the same domain and codomain, and that for a given input, the two functions produce the same output.
+		Notice that $ST$ and $TS$ are linear operators, i.e., functions with some structure.
+		Recall that to show equality of functions, we have to prove that they have the same domain and codomain, and that for a given input, the two functions produce the same output.
 		Since $\Ell(V)$ is closed under the multiplication of linear operators, we know by definition that $ST$ and $TS$ have the same domain and codomain, namely $V$. Therefore, to show that they are equal, it remains to show that for a given input, they have the same output.
 
 		Let $\dim V = n$.
@@ -361,7 +361,7 @@
 		Then, by definition we know $E(2,T) \neq \{ 0 \}$ and $E(6,T) \neq \{ 0 \}$; it follows that each of their dimensions is at least 1.
 		By Theorem 5.38, and since $\lambda_{1}, \lambda_{2}, \lambda_{3}$ are distinct eigenvalues of $T$, it follows that the sum of the dimensions of their correspoding eigenspaces is less than the dimension of $V$, i.e., $$\dim{E(2,T)} + \dim{E(6,T)} + \dim{E(8,T)} \leq \dim{V}.$$
 		But this would imply that $1 + 1 + 4 \leq 5 \, \lightning$
-		Hence, $2$ and $6$ are not eigenvalues of $T$, as we aimed to prove. 
+		Hence, $2$ and $6$ are not eigenvalues of $T$, which implies that $T-􏰋2I$ or $T-􏰋6I$ is invertible, as we aimed to prove. 
 		\end{proof}
 		% subsection exercise_8 (end)
 		\vspace*{2mm}
@@ -385,7 +385,7 @@
 		It follows that we have the inverse operator $S^{-1} \in \Ell(V)$ defined by $v_{j} \mapsto w_{j}$ for $j = 1,2,3$.
 		As in Exercise 5.C.6, $R$ and $S^{-1}TS$ have the same domain and codomain, so to show $R = S^{-1}TS$, it will suffice to show that for the same input, the two operators produce the same output.
 		Recall, since $R$ and $T$ each have $\dim V$ distinct eigenvalues, by Theorems 5.44 and 5.41, we know that they are diagonalizable, and that their eigenvectors form bases of $V$.
-		Let $v,w \in V$ such that $v = a_{1}v_{1} + a_{2}v_{2} + a_{3}v_{3}$, and $w = b_{1}w_{1} + b_{2}w_{2} + b_{3}w_{3}$.
+		Let $w \in V$ such that $w = b_{1}w_{1} + b_{2}w_{2} + b_{3}w_{3}$.
 		We will show that $S^{-1}TSw = Rw$ for our arbitrarily chosen $w$.
 			\begin{align*}
 				S^{-1}TSw &= S^{-1}TS(b_{1}w_{1} + b_{2}w_{2} + b_{3}w_{3}), \\
@@ -438,7 +438,7 @@
 		Theorem 5.41 states that this is equivalent to $\dim \C^{3} = \dim E(\lambda_{1},T) + \dim E(\lambda_{2},T) + \dim E(\lambda_{3},T)$ being false.
 		Therefore, if we can cook up an operator $T$ that breaks the dimension part of Theorem 5.41, then we're done.
 		Recall that we are also told to assume that $\lambda_{1} = 6$, and $\lambda_{2} = 7$.
-		Additionally, since these are nonzero eigenvalues, they have corresponding eigenspaces with dimension at least 1.
+		Since these are nonzero eigenvalues, they have corresponding eigenspaces with dimension at least 1.
 		This means that however we make $T$, it has to be such that $\lambda_{1}$ and $\lambda_{2}$ are its only eigenvalues.
 		Moreover, we have to make sure that they each have exactly one corresponding eigenvector, otherwise the dimensions of their eigenspaces could sum to 3, which we need to avoid.
 		The best way to do this will be to create a map that corresponds to an upper-triangular matrix with only 6's and 7's along the diagonal.
@@ -448,10 +448,10 @@
 		To finish the proof, we just have to check that the corresponding eigenspaces for $\lambda_{1}$ and $\lambda_{2}$ are each dimension one.
 		It is clear by definitions that $\dim E(7,T) = 1$, so it remains to check that $\dim E(6,T) < 2$.
 		Consider the linear map $T - 6I$ and its isomorphic matrix $$\mathcal{M}(T - 6I, (\zeta_{1},\zeta_{2},\zeta_{3})) = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix}.$$
-		Jumping back from $\F^{3,3}$ to $\Ell(\C^3)$ and we see that $T - 6I$ is defined by the mapping $(\zeta_{1},\zeta_{2},\zeta_{3}) \mapsto (\zeta_{2},0,\zeta_{3})$.
+		Jumping back from $\C^{3,3}$ to $\Ell(\C^3)$ and we see that $T - 6I$ is defined by the mapping $(\zeta_{1},\zeta_{2},\zeta_{3}) \mapsto (\zeta_{2},0,\zeta_{3})$.
 		Since $(T - 6I)\zeta \in \range T - 6I$ it follows that $\dim \range T - 6I = 2$.
-		Since the dimensions of the null space and range of $T$ must sum to three in this case, we know $\dim \null T - 6I = \dim E(6,T) = 1$.			
-		So, finally, we have $\dim E(6,T) = 1$ and $\dim E(7,T) = 1$, clearly these do not sum to 3.
+		Since the dimensions of the null space and range of $T$ must sum to 3 in this case, we know $\dim \null T - 6I = \dim E(6,T) = 1$.			
+		It follows that we have $\dim E(6,T) = 1$ and $\dim E(7,T) = 1$, clearly these do not sum to 3.
 		Thus, by Theorem 5.41, since $\dim \C^3 \neq \dim E(6,T) + \dim E(7,T)$, it is equivalent to state that $T$ does not have a diagonal matrix with respect to any basis of $\C^{3}$.
 		\end{proof}
 		% subsection exercise_14 (end)
